@@ -19,8 +19,24 @@ Plug 'edkolev/tmuxline.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+" Hide buffers on switch
+set hidden
+
 " Enable truecolors
 set termguicolors
+
+" Tab size to 4
+set tabstop=4
+set shiftwidth=4
+
+" Proper linebreak
+set linebreak
+set breakindent
+set breakindentopt=shift:2
+
+" Show whitespace chars
+set listchars=eol:¬,tab:>\ ,trail:!
+set list
 
 " Keybind NERDTree
 nmap <C-t> :NERDTreeToggle<CR>
@@ -28,8 +44,34 @@ nmap <C-t> :NERDTreeToggle<CR>
 " Enable syntax
 syntax on
 
-" Line numbers
+" Fixed gutter
+
+" if has("patch-8.1.1564")
+" 	" Recently vim can merge signcolumn and number column into one
+" 	set signcolumn=number
+" else
+" 	set signcolumn=yes
+" endif
+set signcolumn=number
+
+" Line numbers, relative
 set number
+set relativenumber
+
+" Search case
+set smartcase
+
+" Prohibit arrowkeys
+" in normal mode
+nnoremap <Left>  : echoe "Use h" <CR>
+nnoremap <Right> : echoe "Use l" <CR>
+nnoremap <Up>    : echoe "Use k" <CR>
+nnoremap <Down>  : echoe "Use j" <CR>
+" in insert mode
+inoremap <Left>  : echoe "Use h" <CR>
+inoremap <Right> : echoe "Use l" <CR>
+inoremap <Up>    : echoe "Use k" <CR>
+inoremap <Down>  : echoe "Use j" <CR>
 
 " Onedark config
 "let g:lightline = {
@@ -47,6 +89,8 @@ colorscheme codedark
 " Vim-airline config
 "let g:airline_powerline_fonts = 1
 "let g:airline_skip_empty_sections = 1
+" Show buffers at top
+let g:airline#extensions#tabline#enabled = 1
 " Powerline-like
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 " Default Vim-airline theme
@@ -65,6 +109,9 @@ let g:tmuxline_preset = 'powerline'
 "    \'z'    : '#H'}
 let g:airline#extensions#tmuxline#enabled = 0
 let g:tmuxline_theme = 'powerline'
+
+" coc updatetime
+set updatetime=300
 
 " coc tab autocomplete
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"

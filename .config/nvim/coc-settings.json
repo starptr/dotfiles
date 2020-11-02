@@ -1,4 +1,6 @@
 {
 	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
-	"python.jediEnabled": false
+	"python.jediEnabled": false,
+	"latex.build.onSave": true,
+	"latex.build.args": ["-pdf","-interaction=nonstopmode","-synctex=1"]
 }

@@ -6,6 +6,10 @@ Plug 'tpope/vim-sensible'
 "Plug 'junegunn/seoul256.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'autozimu/LanguageClient-neovim', {
+"	\ 'branch': 'next',
+"	\ 'do': 'bash install.sh',
+"	\ }
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -15,12 +19,16 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-fugitive'
 Plug 'edkolev/tmuxline.vim'
+Plug 'luochen1990/rainbow'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 " Hide buffers on switch
 set hidden
+
+" More space for messages
+set cmdheight=2
 
 " Enable truecolors
 set termguicolors
@@ -86,6 +94,9 @@ inoremap <Down>  : echoe "Use j" <CR>
 set t_Co=256
 colorscheme codedark
 
+" Activate rainbow
+let g:rainbow_active = 1
+
 " Vim-airline config
 "let g:airline_powerline_fonts = 1
 "let g:airline_skip_empty_sections = 1
@@ -113,9 +124,5 @@ let g:tmuxline_theme = 'powerline'
 " coc updatetime
 set updatetime=300
 
-" coc tab autocomplete
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" coc status info
-set statusline^=%{coc#status()}
+" coc config
+runtime ./coc-nvim.vim

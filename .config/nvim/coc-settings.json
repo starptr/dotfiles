@@ -2,5 +2,18 @@
 	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
 	"python.jediEnabled": false,
 	"latex.build.onSave": true,
-	"latex.build.args": ["-pdf","-interaction=nonstopmode","-synctex=1"]
+	"latex.build.args": ["-pdf", "-interaction=nonstopmode", "-synctex=1"],
+	"coc.preferences.formatOnSaveFiletypes": [
+		"javascript",
+		"typescript",
+		"typescriptreact",
+		"json",
+		"javascriptreact",
+		"typescript.tsx"
+	],
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.errorSign": "",
+	"diagnostic.warningSign": "",
+	"diagnostic.infoSign": ""
 }

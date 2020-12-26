@@ -36,6 +36,7 @@ set termguicolors
 " Tab size to 4
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 
 " Proper linebreak
 set linebreak
@@ -50,7 +51,7 @@ set list
 nmap <C-t> :NERDTreeToggle<CR>
 
 " Enable syntax
-syntax on
+syntax enable
 
 " Fixed gutter
 
@@ -96,6 +97,14 @@ colorscheme codedark
 
 " Activate rainbow
 let g:rainbow_active = 1
+" Set rainbow colors
+let g:rainbow_conf = {
+			\	'guifgs': ['#A070FF', '#D81E5B', '#E0D100', '#82FF9E', '#57B8FF'],
+			\}
+
+let rainbow_preview_test = {
+			\ 'test': ['hi', ['yes', ['id like more', ['here', ['you', ['go']]]]]],
+			\}
 
 " Vim-airline config
 "let g:airline_powerline_fonts = 1

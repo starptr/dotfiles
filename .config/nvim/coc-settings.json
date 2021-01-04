@@ -1,4 +1,19 @@
 {
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cc", "cpp", "cuda", "c++", "objc", "objcpp"],
+			"rootPatterns": [".ccls-root", ".ccls", "compile_commands.json", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
+				},
+				"client": {
+					"snippetSupport": true
+				}
+			}
+		}
+	},
 	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
 	"python.jediEnabled": false,
 	"latex.build.onSave": true,
@@ -9,7 +24,8 @@
 		"typescriptreact",
 		"json",
 		"javascriptreact",
-		"typescript.tsx"
+		"typescript.tsx",
+		"cpp"
 	],
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": false,

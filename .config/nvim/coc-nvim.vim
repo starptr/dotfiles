@@ -1,3 +1,5 @@
+" Options for neoclide/coc.nvim
+
 " Set config location for vim
 if !has('nvim')
 	let g:coc_config_home='~/.config/nvim'

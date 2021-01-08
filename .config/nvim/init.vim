@@ -1,3 +1,6 @@
+" No compat
+set nocompatible
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
@@ -12,11 +15,10 @@ call plug#begin('~/.vim/plugged')
 	"	\ }
 	
 	" Language-specific support
-	Plug 'leafgarland/typescript-vim'
-	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'kevinoid/vim-jsonc'
+	Plug 'sheerun/vim-polyglot'
+	"Plug 'leafgarland/typescript-vim'
 	"Plug 'bfrg/vim-cpp-modern'
-	Plug 'octol/vim-cpp-enhanced-highlight'
+	"Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'jiangmiao/auto-pairs'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
@@ -25,14 +27,14 @@ call plug#begin('~/.vim/plugged')
 	
 	Plug 'preservim/nerdtree'
 	Plug 'ryanoasis/vim-devicons'
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	"Plug 'itchyny/lightline.vim'
+	"Plug 'vim-airline/vim-airline'
+	"Plug 'vim-airline/vim-airline-themes'
+	Plug 'itchyny/lightline.vim'
 	Plug 'joshdick/onedark.vim'
 	Plug 'tomasiser/vim-code-dark'
 	Plug 'tmux-plugins/vim-tmux'
 	Plug 'tpope/vim-fugitive'
-	Plug 'edkolev/tmuxline.vim'
+	"Plug 'edkolev/tmuxline.vim'
 	Plug 'luochen1990/rainbow'
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -76,33 +78,8 @@ inoremap <Right> : echoe "Use l" <CR>
 inoremap <Up>    : echoe "Use k" <CR>
 inoremap <Down>  : echoe "Use j" <CR>
 
-" Onedark config
-"let g:lightline = {
-"	\ 'colorscheme': 'onedark',
-"	\ }
-"colorscheme onedark
-
-" Vim-code-dark config
-"let g:lightline = {
-"	\ 'colorscheme': 'codedark',
-"	\ }
-colorscheme codedark
-
-" Vim-airline config
-"let g:airline_powerline_fonts = 1
-"let g:airline_skip_empty_sections = 1
-" Show buffers at top
-let g:airline#extensions#tabline#enabled = 1
-" Toggle via command
-"command B set showtabline=(&showtabline == 1 ? 2 : 1)
-
-" Powerline-like
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-" Default Vim-airline theme
-let g:airline_theme='powerlineish'
-
 " Tmuxline config
-let g:tmuxline_preset = 'powerline'
+"let g:tmuxline_preset = 'powerline'
 "let g:tmuxline_preset = {
 "    \'a'    : '#{prefix_highlight}',
 "    \'b'    : '#W',
@@ -112,11 +89,19 @@ let g:tmuxline_preset = 'powerline'
 "    \'x'    : '%a',
 "    \'y'    : '#W %R',
 "    \'z'    : '#H'}
-let g:airline#extensions#tmuxline#enabled = 0
-let g:tmuxline_theme = 'powerline'
+"let g:airline#extensions#tmuxline#enabled = 0
+"let g:tmuxline_theme = 'powerline'
 
 " Global vim options
 runtime ./misc-qol.vim
+
+" Theming
+"runtime ./airline.vim
+runtime ./onedark.vim
+runtime ./lightline.vim
+" Theme-related vim options
+syntax enable
+colorscheme onedark
 
 " Language-specific configs
 runtime ./languages.vim

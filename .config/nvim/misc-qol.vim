@@ -30,7 +30,7 @@ set breakindent
 set breakindentopt=shift:2
 
 " Enable syntax
-syntax enable
+"syntax enable
 
 " Show line numbers and symbols
 set signcolumn=yes

@@ -1,3 +1,5 @@
+" Options for preservim/NERDTree
+
 " Keybind NERDTree
 nmap <C-t> :NERDTreeToggle<CR>
 

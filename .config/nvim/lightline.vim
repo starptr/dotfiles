@@ -1,7 +1,7 @@
 " Options for itchyny/lightline.vim
 
 let g:lightline = {
-			\ 'colorscheme': 'onedark',
+			\ 'colorscheme': 'one',
 			\ }
 
 "let g:lightline = {

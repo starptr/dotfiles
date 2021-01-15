@@ -31,6 +31,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim'
 	Plug 'joshdick/onedark.vim'
+	Plug 'rakr/vim-one'
 	Plug 'tomasiser/vim-code-dark'
 	Plug 'tmux-plugins/vim-tmux'
 	Plug 'tpope/vim-fugitive'
@@ -64,7 +65,7 @@ else
 endif
 
 " Build c++ file
-map <leader>b :!g++ main.cpp -ggdb -o main <enter>
+map <leader>b :!g++ main.cpp -ggdb -fsanitize=address -fno-omit-frame-pointer -o main <enter>
 
 " Prohibit arrowkeys
 " in normal mode
@@ -97,11 +98,13 @@ runtime ./misc-qol.vim
 
 " Theming
 "runtime ./airline.vim
-runtime ./onedark.vim
+"runtime ./onedark.vim
+runtime ./one.vim
 runtime ./lightline.vim
 " Theme-related vim options
 syntax enable
-colorscheme onedark
+colorscheme one
+set background=light
 
 " Language-specific configs
 runtime ./languages.vim

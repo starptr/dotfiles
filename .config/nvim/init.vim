@@ -104,7 +104,7 @@ runtime ./lightline.vim
 " Theme-related vim options
 syntax enable
 colorscheme one
-set background=light
+set background=dark
 
 " Language-specific configs
 runtime ./languages.vim

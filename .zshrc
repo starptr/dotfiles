@@ -147,6 +147,9 @@ export EDITOR='nvim'
 # fzf shell extension
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Custom directory colors
+export LS_COLORS="$(vivid generate molokai)"
+
 # X-server support
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 export LIBGL_ALWAYS_INDIRECT=1

@@ -105,6 +105,8 @@ runtime ./lightline.vim
 syntax enable
 colorscheme one
 set background=dark
+" Override theming options
+runtime ./one_overrides.vim
 
 " Language-specific configs
 runtime ./languages.vim

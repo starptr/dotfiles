@@ -37,7 +37,7 @@ set signcolumn=yes
 
 " Line numbers, relative
 set number
-"set relativenumber
+set relativenumber
 
 " Search case
 set smartcase

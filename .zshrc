@@ -158,3 +158,6 @@ sudo /etc/init.d/dbus start &> /dev/null
 # GUI theme
 export GDK_THEME=Greybird-dark
 export QT_STYLE_OVERRIDE=Greybird-dark
+
+export GOPATH="$HOME/bin/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g

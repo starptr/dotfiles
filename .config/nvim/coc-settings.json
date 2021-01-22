@@ -1,5 +1,6 @@
 {
 	"languageserver": {
+		/*
 		"ccls": {
 			"command": "ccls",
 			"filetypes": ["c", "cc", "cpp", "cuda", "c++", "objc", "objcpp"],
@@ -13,6 +14,7 @@
 				}
 			}
 		}
+		*/
 	},
 	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
 	"python.jediEnabled": false,
@@ -31,5 +33,6 @@
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",
-	"diagnostic.infoSign": ""
+	"diagnostic.infoSign": "",
+	"clangd.path": "/home/yuto/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 }

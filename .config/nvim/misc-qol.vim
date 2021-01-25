@@ -29,6 +29,9 @@ set linebreak
 set breakindent
 set breakindentopt=shift:2
 
+" Open Gdiff with vsplits
+set diffopt+=vertical
+
 " Enable syntax
 "syntax enable
 

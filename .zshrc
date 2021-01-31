@@ -113,13 +113,6 @@ source $ZSH_CUSTOM/aliases.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Remove bad path dirs from windows
-badpaths=('/mnt/d/Program Files/nodejs/:' '/mnt/d/Program Files/nodejs/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:' '/mnt/d/yuyun/AppData/Roaming/npm/node_modules/windows-build-tools/node_modules/.bin:' '/mnt/d/yuyun/AppData/Roaming/npm/node_modules/.bin:')
-# uhhhhpaths=('/mnt/d/Program Files/nodejs/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:' '/mnt/d/yuyun/AppData/Roaming/npm/node_modules/windows-build-tools/node_modules/.bin:' '/mnt/d/yuyun/AppData/Roaming/npm/node_modules/.bin:')
-for badpath in $badpaths; do
-  export PATH=${PATH//$badpath};
-done
-
 # Add texlive to path
 export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
 export MANPATH="/usr/local/texlive/2020/texmf-dist/doc/man:$MANPATH"
@@ -141,23 +134,11 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # Init rbenv shell extension
 eval "$(rbenv init -)"
 
-# Specify default text editor
-export EDITOR='nvim'
-
 # fzf shell extension
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Custom directory colors
 export LS_COLORS="$(vivid generate molokai)"
-
-# X-server support
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-export LIBGL_ALWAYS_INDIRECT=1
-sudo /etc/init.d/dbus start &> /dev/null
-
-# GUI theme
-export GDK_THEME=Greybird-dark
-export QT_STYLE_OVERRIDE=Greybird-dark
 
 # Go version manager and golang paths
 export GOPATH="$HOME/bin/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
@@ -165,3 +146,7 @@ alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stef
 
 # jabba paths
 [ -s "/home/yuto/.jabba/jabba.sh" ] && source "/home/yuto/.jabba/jabba.sh"
+
+# Set cs61b variables
+export REPO_DIR=/home/yuto/Documents/Coursework/cs61b/sp21-s1521
+export SNAPS_DIR=/home/yuto/Documents/Coursework/cs61b/snaps-sp21-s1521

@@ -1,0 +1,3 @@
+[submodule "prezto"]
+	path = /home/yuto/.zprezto
+	url = https://github.com/starptr/prezto

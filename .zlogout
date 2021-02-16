@@ -1,0 +1,1 @@
+/home/yuto/.zprezto/runcoms/zlogout

@@ -1,1 +1,1 @@
-/home/yuto/.zprezto/runcoms/zshrc
+.zprezto/runcoms/zshrc

@@ -1,1 +1,1 @@
-/home/yuto/.zprezto/runcoms/zshenv
+.zprezto/runcoms/zshenv

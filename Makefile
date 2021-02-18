@@ -17,7 +17,7 @@ submods:
 
 node:
 	@echo "Installing n-install and NodeJS LTS..."
-	N_PREFIX=${HOME}/.n curl -L https://git.io/n-install | bash -s -- -n -y lts
+	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
 	@echo "n-install and NodeJS LTS installed."
 	@echo
 
@@ -29,7 +29,7 @@ rust:
 
 go:
 	@echo "Installing g-install..."
-	GOPATH=${HOME}/bin/go GOROOT=${HOME}/.go curl -sSL https://git.io/g-install | sh -s -- -y
+	curl -sSL https://git.io/g-install | GOPATH=${HOME}/bin/go GOROOT=${HOME}/.go sh -s -- -y
 	@echo "g-install finished."
 	@echo
 

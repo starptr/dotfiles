@@ -3,8 +3,8 @@
 all: firstrun submods node rust go java ruby finish
 
 firstrun:
-	(! test -s $$HOME/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
-	touch $HOME/.bootstrapped
+	@(! test -s $$HOME/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
+	@touch $$HOME/.bootstrapped
 	@echo "This file tells Makefile that this home is already bootstrapped. Only delete if you know what you're doing!" > $$HOME/.bootstrapped
 	@echo "First time bootstrapping!"
 	@echo

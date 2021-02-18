@@ -15,10 +15,9 @@ submods:
 	@echo "Submodules cloned."
 	@echo
 
-N_PREFIX = ${HOME}/.n
 node:
 	@echo "Installing n-install and NodeJS LTS..."
-	curl -L https://git.io/n-install | bash -s -- -n -y lts
+	N_PREFIX=${HOME}/.n curl -L https://git.io/n-install | bash -s -- -n -y lts
 	@echo "n-install and NodeJS LTS installed."
 	@echo
 
@@ -28,11 +27,9 @@ rust:
 	@echo "Rust installed."
 	@echo
 
-GOPATH=${HOME}/bin/go
-GOROOT=${HOME}/.go
 go:
 	@echo "Installing g-install..."
-	curl -sSL https://git.io/g-install | sh -s -- -y
+	GOPATH=${HOME}/bin/go GOROOT=${HOME}/.go curl -sSL https://git.io/g-install | sh -s -- -y
 	@echo "g-install finished."
 	@echo
 

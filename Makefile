@@ -1,6 +1,6 @@
-.PHONY: all
+.PHONY: init
 
-all: firstrun submods node rust go java ruby finish
+init: firstrun submods node rust go java ruby finish
 
 firstrun:
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
@@ -13,6 +13,12 @@ submods:
 	@echo "Cloning submodules..."
 	yadm submodule update --recursive --init
 	@echo "Submodules cloned."
+	@echo
+
+submods-update:
+	@echo "Updating submodules..."
+	yadm submodule update --recursive --remote
+	@echo "Submodules update."
 	@echo
 
 node:

@@ -1,12 +1,24 @@
 .PHONY: init
 
 init: firstrun submods node rust go java ruby vim-plug finish
+remove: firstrun-check submods-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun
 
 firstrun:
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
 	@touch ${HOME}/.bootstrapped
 	@echo "This file tells Makefile that this home is already bootstrapped. Only delete if you know what you're doing!" > $$HOME/.bootstrapped
 	@echo "First time bootstrapping!"
+	@echo
+
+firstrun-check:
+	@(test -s ${HOME}/.bootstrapped) || { echo "You haven't bootstrapped! Exiting..."; exit 1; }
+	@echo "You have bootstrapped. Continuing removal..."
+	@echo
+
+lastrun:
+	@echo "Resetting bootstrapped state to new..."
+	rm -f ${HOME}/.bootstrapped
+	@echo "Bootstrap state clean!"
 	@echo
 
 submods:
@@ -21,10 +33,23 @@ submods-update:
 	@echo "Submodules update."
 	@echo
 
+submods-remove:
+	@echo "Warning! All local submodule changes will be lost."
+	@read -p "Press enter only if this is intentional!"
+	yadm submodule foreach --recursive git reset --hard
+	@echo "Submodule heads are reset."
+	@echo
+
 node:
 	@echo "Installing n-install and NodeJS LTS..."
 	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
 	@echo "n-install and NodeJS LTS installed."
+	@echo
+
+node-remove:
+	@echo "Warning! n-install will be removed."
+	n-uninstall -y
+	@echo "n-install and NodeJS installs removed."
 	@echo
 
 rust:
@@ -33,10 +58,23 @@ rust:
 	@echo "Rust installed."
 	@echo
 
+rust-remove:
+	@echo "Warning! rust will be removed."
+	rustup self uninstall
+	@echo "Rust removed."
+	@echo
+
 go:
 	@echo "Installing g-install..."
 	curl -sSL https://git.io/g-install | GOPATH=${HOME}/bin/go GOROOT=${HOME}/.go sh -s -- -y
 	@echo "g-install finished."
+	@echo
+
+go-remove:
+	@echo "Warning! go and g will be removed, including files in $$GOROOT."
+	@read -p "Press enter only if this is intentional!"
+	rm -rf ${GOPATH} ${GOROOT}
+	@echo "g removed."
 	@echo
 
 java:
@@ -45,11 +83,22 @@ java:
 	@echo "jabba installed."
 	@echo
 
+java-remove:
+	@echo "Warning! jabba and java will be removed."
+	rm -rf ${JABBA_HOME}
+	@echo "jabba removed."
+	@echo
+
 ruby:
 	@echo "Installing ruby-build plugin..."
-	mkdir -p "$$(${HOME}/.rbenv/bin/rbenv root)"/plugins
-	git clone https://github.com/rbenv/ruby-build.git "$$(${HOME}/.rbenv/bin/rbenv root)"/plugins/ruby-build
+	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
 	@echo "ruby-build installed."
+	@echo
+
+ruby-remove:
+	@echo "Warning! rbenv will be removed."
+	rm -rf `rbenv root`
+	@echo "rbenv removed."
 	@echo
 
 vim-plug:

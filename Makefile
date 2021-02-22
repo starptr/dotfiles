@@ -1,6 +1,6 @@
 .PHONY: init
 
-init: firstrun submods node rust go java ruby finish
+init: firstrun submods node rust go java ruby vim-plug finish
 
 firstrun:
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
@@ -50,6 +50,13 @@ ruby:
 	mkdir -p "$$(${HOME}/.rbenv/bin/rbenv root)"/plugins
 	git clone https://github.com/rbenv/ruby-build.git "$$(${HOME}/.rbenv/bin/rbenv root)"/plugins/ruby-build
 	@echo "ruby-build installed."
+	@echo
+
+vim-plug:
+	@echo "Installing vim-plug..."
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	sh -c 'curl -fLo "${HOME}".local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	@echo "vim-plug installed."
 	@echo
 
 finish:

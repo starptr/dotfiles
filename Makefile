@@ -1,7 +1,7 @@
 .PHONY: init
 
-init: firstrun submods node rust go java ruby vim-plug finish
-remove: firstrun-check submods-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun
+init: firstrun submods python node rust go java ruby vim-plug finish
+remove: firstrun-check submods-remove python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun
 
 firstrun:
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
@@ -38,6 +38,18 @@ submods-remove:
 	@read -p "Press enter only if this is intentional!"
 	yadm submodule foreach --recursive git reset --hard
 	@echo "Submodule heads are reset."
+	@echo
+
+python:
+	@echo "Installing pyenv..."
+	curl https://pyenv.run | bash
+	@echo "pyenv installed."
+	@echo
+
+python-remove:
+	@echo "Warning! pyenv and local python installs will be removed."
+	rm -rf ${HOME}/.pyenv
+	@echo "pyenv and python removed."
 	@echo
 
 node:

@@ -4,4 +4,4 @@ mkdir -p "$HOME/src"
 git clone https://github.com/alacritty/alacritty.git "$HOME/src/alacritty"
 cd "$HOME/src/alacritty"
 cargo build --release
-ln -s "$HOME/src/alacritty/target/release/alacritty" "$HOME/bin/alacritty" 
+ln -fs "$HOME/src/alacritty/target/release/alacritty" "$HOME/bin/alacritty" 

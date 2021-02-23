@@ -12,6 +12,8 @@ firstrun:
 
 firstrun-check:
 	@(test -s ${HOME}/.bootstrapped) || { echo "You haven't bootstrapped! Exiting..."; exit 1; }
+	@(test -s ${HOME}/.bootstrap-remove) || { echo "The file .bootstrap-remove isnt in the home directory. touch this file and enter data to continue with removal. Exiting..."; exit 1; }
+	@rm -f ${HOME}/.bootstrap-remove
 	@echo "You have bootstrapped. Continuing removal..."
 	@echo
 
@@ -35,7 +37,6 @@ submods-update:
 
 submods-remove:
 	@echo "Warning! All local submodule changes will be lost."
-	@read -p "Press enter only if this is intentional!"
 	yadm submodule foreach --recursive git reset --hard
 	@echo "Submodule heads are reset."
 	@echo
@@ -84,7 +85,6 @@ go:
 
 go-remove:
 	@echo "Warning! go and g will be removed, including files in $$GOROOT."
-	@read -p "Press enter only if this is intentional!"
 	rm -rf ${GOPATH} ${GOROOT}
 	@echo "g removed."
 	@echo

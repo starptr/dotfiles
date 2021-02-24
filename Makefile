@@ -57,6 +57,8 @@ node:
 	@echo "Installing n-install and NodeJS LTS..."
 	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
 	@echo "n-install and NodeJS LTS installed."
+	@echo "Installing yarn..."
+	npm i --global yarn
 	@echo
 
 node-remove:

@@ -19,3 +19,5 @@ cargo install tealdeer
 cargo install vivid
 cargo install bat
 cargo install exa
+
+echo "Done! To install tmux plugins, press <prefix>+I in a tmux environment."

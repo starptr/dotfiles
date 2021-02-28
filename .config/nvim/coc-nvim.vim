@@ -1,5 +1,22 @@
 " Options for neoclide/coc.nvim
 
+" Install these extensions if missing
+let g:coc_global_extensions = [
+	\ "coc-clangd",
+	\ "coc-css",
+	\ "coc-html",
+	\ "coc-json",
+	\ "coc-marketplace",
+	\ "coc-prettier",
+	\ "coc-pyright",
+	\ "coc-rust-analyzer",
+	\ "coc-sql",
+	\ "coc-texlab",
+	\ "coc-tsserver",
+	\ "coc-vimlsp",
+	\ "coc-yaml"
+  \ ]
+
 " Set config location for vim
 if !has('nvim')
 	let g:coc_config_home='~/.config/nvim'

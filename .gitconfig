@@ -1,5 +1,7 @@
 [user]
 	email = starptr@users.noreply.github.com
-	name = starptr
+	name = Yuto Nishida
 [credential]
 	helper = store
+[init]
+	defaultBranch = main

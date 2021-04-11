@@ -58,10 +58,7 @@ python-remove:
 
 node: ## Installs n-install.
 	@echo "Installing n-install and NodeJS LTS..."
-	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
-	@echo "n-install and NodeJS LTS installed."
-	@echo "Installing yarn..."
-	npm i --global yarn
+	{ curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts } || { mkdir ~/src; git clone https://github.com/tj/n.git ${HOME}/src/n; cd ${HOME}/src/n; PREFIX=${HOME}/.n make install }
 	@echo
 
 node-remove:

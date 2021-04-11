@@ -1,6 +1,6 @@
 .PHONY: init
 
-init: firstrun submods python node rust go java ruby vim-plug finish
+init: firstrun submods vim-plug python node rust go java ruby finish
 remove: firstrun-check submods-remove python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun
 
 firstrun:

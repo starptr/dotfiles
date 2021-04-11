@@ -6,7 +6,7 @@ help: ## This help
 init: firstrun submods vim-plug python node rust go java ruby finish ## Bootstrap tools
 remove: firstrun-check submods-remove python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun ## Uninstall tools
 
-firstrun: # Mark this home as bootstrapped
+firstrun: # Check that this home was not bootstrapped
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
 	@touch ${HOME}/.bootstrapped
 	@echo "This file tells Makefile that this home is already bootstrapped. Only delete if you know what you're doing!" > $$HOME/.bootstrapped
@@ -20,7 +20,7 @@ firstrun-check: # Check that this home was bootstrapped
 	@echo "You have bootstrapped. Continuing removal..."
 	@echo
 
-lastrun:
+lastrun: # Mark this home as bootstrapped
 	@echo "Resetting bootstrapped state to new..."
 	rm -f ${HOME}/.bootstrapped
 	@echo "Bootstrap state clean!"
@@ -44,7 +44,7 @@ submods-remove: ## Remove local submodule heads
 	@echo "Submodule heads are reset."
 	@echo
 
-python: ## Installs pyenv. Use asdf instead
+python: ## Installs pyenv.
 	@echo "Installing pyenv..."
 	curl https://pyenv.run | bash
 	@echo "pyenv installed."
@@ -56,7 +56,7 @@ python-remove:
 	@echo "pyenv and python removed."
 	@echo
 
-node: ## Installs n-install. Use asdf instead
+node: ## Installs n-install.
 	@echo "Installing n-install and NodeJS LTS..."
 	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
 	@echo "n-install and NodeJS LTS installed."

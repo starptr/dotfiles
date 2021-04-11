@@ -6,14 +6,14 @@ help: ## This help
 init: firstrun submods vim-plug python node rust go java ruby finish ## Bootstrap tools
 remove: firstrun-check submods-remove python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun ## Uninstall tools
 
-firstrun:
+firstrun: # Mark this home as bootstrapped
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
 	@touch ${HOME}/.bootstrapped
 	@echo "This file tells Makefile that this home is already bootstrapped. Only delete if you know what you're doing!" > $$HOME/.bootstrapped
 	@echo "First time bootstrapping!"
 	@echo
 
-firstrun-check:
+firstrun-check: # Check that this home was bootstrapped
 	@(test -s ${HOME}/.bootstrapped) || { echo "You haven't bootstrapped! Exiting..."; exit 1; }
 	@(test -s ${HOME}/.bootstrap-remove) || { echo "The file .bootstrap-remove isnt in the home directory. touch this file and enter data to continue with removal. Exiting..."; exit 1; }
 	@rm -f ${HOME}/.bootstrap-remove
@@ -26,25 +26,25 @@ lastrun:
 	@echo "Bootstrap state clean!"
 	@echo
 
-submods:
+submods: ## Clone submodules recursively
 	@echo "Cloning submodules..."
 	yadm submodule update --recursive --init
 	@echo "Submodules cloned."
 	@echo
 
-submods-update:
+submods-update: ## Update submodules recursively
 	@echo "Updating submodules..."
 	yadm submodule update --recursive --remote
 	@echo "Submodules update."
 	@echo
 
-submods-remove:
+submods-remove: ## Remove local submodule heads
 	@echo "Warning! All local submodule changes will be lost."
 	yadm submodule foreach --recursive git reset --hard
 	@echo "Submodule heads are reset."
 	@echo
 
-python:
+python: ## Installs pyenv. Use asdf instead
 	@echo "Installing pyenv..."
 	curl https://pyenv.run | bash
 	@echo "pyenv installed."
@@ -56,7 +56,7 @@ python-remove:
 	@echo "pyenv and python removed."
 	@echo
 
-node:
+node: ## Installs n-install. Use asdf instead
 	@echo "Installing n-install and NodeJS LTS..."
 	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
 	@echo "n-install and NodeJS LTS installed."

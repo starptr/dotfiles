@@ -1,6 +1,7 @@
 .PHONY: help init
 
 help: ## This help
+	@echo "Using the Makefile is deprecated."
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 init: firstrun submods vim-plug python node rust go java ruby finish ## Bootstrap tools

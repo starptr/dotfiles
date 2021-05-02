@@ -1,4 +1,5 @@
 alias c="code -n"
+alias ls="ls --color"
 alias l="ls -A"
 alias la="ls -al"
 

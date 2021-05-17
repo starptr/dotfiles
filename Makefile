@@ -107,7 +107,7 @@ java-remove:
 
 ruby:
 	@echo "Installing ruby-build plugin..."
-	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
+	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | bash
 	@echo "ruby-build installed."
 	@echo
 

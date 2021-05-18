@@ -8,9 +8,8 @@ This file is the readme for the dotfile repo. This text is here since this file 
 - If `yadm` isn't available, try running
 
 ```console
-$ curl -Lo ~/bin/scripts/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm --create-dirs
-$ chmod +x ~/bin/scripts/yadm
-$ ln -s scripts/yadm ~/bin/yadm
+$ curl -Lo ~/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm --create-dirs
+$ chmod +x ~/bin/yadm
 $ PATH=~/bin:$PATH
 ```
 

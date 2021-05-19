@@ -89,6 +89,7 @@ zinit snippet PZT::modules/utility
 zinit snippet PZT::modules/ssh
 zinit snippet PZT::modules/completion
 #zinit snippet PZT::modules/ruby
+zinit ice silent
 zinit snippet PZT::modules/git
 #zinit snippet PZT::modules/history-substring-search
 #zinit snippet PZTM::syntax-highlighting
@@ -96,6 +97,7 @@ zinit snippet PZT::modules/git
 # Custom aliases
 source $ZSH_CUSTOM/aliases.sh
 
+zinit ice wait
 zinit load zdharma/fast-syntax-highlighting
 
 setopt promptsubst
@@ -107,6 +109,7 @@ zinit light mafredri/zsh-async
 
 zinit ice svn silent atload'prompt sorin'
 zinit snippet PZT::modules/prompt
+
 #zinit ice depth=1
 #zinit light romkatv/powerlevel10k
 

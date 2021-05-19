@@ -97,7 +97,7 @@ zinit snippet PZT::modules/git
 # Custom aliases
 source $ZSH_CUSTOM/aliases.sh
 
-zinit ice wait
+zinit ice wait lucid
 zinit load zdharma/fast-syntax-highlighting
 
 setopt promptsubst

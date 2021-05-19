@@ -19,7 +19,9 @@ export ZSH_CUSTOM="$HOME/.zsh_custom"
 export N_PREFIX="$HOME/.n"; PATH="$N_PREFIX/bin:$PATH"
 
 # yarn
-export PATH="$(yarn global bin):$PATH"
+if command -v yarn &> /dev/null; then
+	export PATH="$(yarn global bin):$PATH"
+fi
 
 # add rust bins to path
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -33,7 +35,9 @@ alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stef
 
 # ruby paths
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if command -v rbenv &> /dev/null; then
+	eval "$(rbenv init -)"
+fi
 
 # Add texlive to path
 export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
@@ -42,7 +46,9 @@ export INFOPATH="/usr/local/texlive/2020/texmf-dist/doc/info:$INFOPATH"
 
 
 # Custom directory colors # Update: use zinit
-export LS_COLORS="$(vivid generate snazzy)"
+if command -v vivid &> /dev/null; then
+	export LS_COLORS="$(vivid generate snazzy)"
+fi
 
 # fzf shell extension
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -108,6 +114,10 @@ zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 zstyle ':prezto:module:python:virtualenv' initialize 'yes'
 zinit ice wait lucid
 zinit snippet PZT::modules/python
+
+# Neovim
+zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
+zinit light neovim/neovim
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh

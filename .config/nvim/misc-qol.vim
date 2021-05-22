@@ -1,5 +1,8 @@
 " Miscellaneous global and common vim options
 
+" GVim font
+set guifont=Roboto\ Mono\ for\ Powerline:h15
+
 " Hide buffers on switch
 set hidden
 
@@ -53,4 +56,4 @@ set listchars=eol:¬,tab:⎸\ ,trail:!
 set list
 
 " updatetime
-set updatetime=750
+set updatetime=100

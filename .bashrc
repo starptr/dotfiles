@@ -3,10 +3,9 @@
 # for examples
 
 # Force zsh shell for environments that do not support changing shells
-# `touch ~/.allow_bash` to bypass
-if [ ! -e ~/.allow_bash ]; then
+# `touch ~/.force_zsh` to force
+if [ -e ~/.force_zsh ]; then
 	exec zsh -l
-	#exit 0
 fi
 
 # If not running interactively, don't do anything

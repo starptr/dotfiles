@@ -14,8 +14,8 @@ call plug#begin('~/.vim/plugged')
 	"	\ 'do': 'bash install.sh',
 	"	\ }
 
-	Plug 'MarcWeber/vim-addon-local-vimrc'
-	" Plug 'embear/vim-localvimrc'
+	"Plug 'MarcWeber/vim-addon-local-vimrc'
+	"" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
 	Plug 'sheerun/vim-polyglot'
@@ -44,10 +44,14 @@ call plug#begin('~/.vim/plugged')
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" Add a neovim runtimepath to vim
+" Add a neovim runtimepath to vim and windows
 " nvimify called at the end
-if !has('nvim')
-	let &runtimepath.=',/home/yuto/.config/nvim'
+if has('win32')
+	let &runtimepath.=',~/dotfiles-linux/.config/nvim'
+else
+	if !has('nvim')
+		let &runtimepath.=',~/.config/nvim'
+	endif
 endif
 
 " Use Windows clipboard

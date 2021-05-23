@@ -205,7 +205,7 @@ schemes:
       cursor:     CellForeground
     selection:
       text:       CellForeground
-      background: CellBackground
+      background: '#606060'
     normal:
       black:      '#000000'
       red:        '#fb0120'
@@ -224,7 +224,7 @@ schemes:
       cursor:     CellForeground
     selection:
       text:       CellForeground
-      background: CellBackground
+      background: '#909090'
     normal:
       black:      '#000000'
       red:        '#fb0120'

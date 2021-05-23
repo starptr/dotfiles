@@ -122,7 +122,7 @@ zinit snippet PZT::modules/python
 zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
 zinit light neovim/neovim
 
-zinit ice wait from"gh-r" as"program" bpick"*-x86_64-unknown-linux-gnu*" mv"*-x86_64-*/lsd -> lsd"
+zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-unknown-linux-gnu*" mv"*-x86_64-*/lsd -> lsd"
 zinit light Peltoche/lsd
 
 # added by travis gem

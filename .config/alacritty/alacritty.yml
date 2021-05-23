@@ -196,7 +196,44 @@ schemes:
       magenta:    '#b4009e'
       cyan:       '#61d6d6'
       white:      '#f2f2f2'
-
+  my_bright_dark: &my_bright_dark
+    primary:
+      background: '#000000'
+      foreground: '#ffffff'
+    cursor:
+      text:       CellBackground
+      cursor:     CellForeground
+    selection:
+      text:       CellForeground
+      background: CellBackground
+    normal:
+      black:      '#000000'
+      red:        '#fb0120'
+      green:      '#00f769'
+      yellow:     '#ebff87'
+      blue:       '#62d6e8'
+      magenta:    '#d381c3'
+      cyan:       '#a1efe4'
+      white:      '#ffffff'
+  my_bright_light: &my_bright_light
+    primary:
+      background: '#ffffff'
+      foreground: '#000000'
+    cursor:
+      text:       CellBackground
+      cursor:     CellForeground
+    selection:
+      text:       CellForeground
+      background: CellBackground
+    normal:
+      black:      '#000000'
+      red:        '#fb0120'
+      green:      '#00f769'
+      yellow:     '#fba922' ##ebff87
+      blue:       '#62d6e8'
+      magenta:    '#d381c3'
+      cyan:       '#a1efe4'
+      white:      '#ffffff'
   one_light: &one_light
     primary:
       background: '#fafafa'
@@ -238,7 +275,7 @@ schemes:
       white:      '#828997' # mono-2
 
 # Colors (Tomorrow Night)
-colors: *one_dark
+colors: *my_bright_dark
   # Default colors
   #primary:
   #  background: '#1d1f21'

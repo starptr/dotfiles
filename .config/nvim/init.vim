@@ -14,8 +14,8 @@ call plug#begin('~/.vim/plugged')
 	"	\ 'do': 'bash install.sh',
 	"	\ }
 
-	"Plug 'MarcWeber/vim-addon-local-vimrc'
-	"" Plug 'embear/vim-localvimrc'
+	Plug 'MarcWeber/vim-addon-local-vimrc'
+	" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
 	Plug 'sheerun/vim-polyglot'

@@ -15,12 +15,15 @@ fi
 
 # WSL-only config
 if [[ -n "$IS_WSL" || -n "$WSL_DISTRO_NAME" ]]; then
+	export IS_WSL=true
   # X-server support
   export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
   export LIBGL_ALWAYS_INDIRECT=1
   sudo /etc/init.d/dbus start &> /dev/null
-  
+
   # GUI theme
   export GDK_THEME=Greybird-dark
   export QT_STYLE_OVERRIDE=Greybird-dark
+else
+	export IS_WSL=false
 fi

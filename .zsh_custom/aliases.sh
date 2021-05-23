@@ -5,9 +5,9 @@ alias la="ls -al"
 
 alias svim="vim -u NONE"
 if $IS_WSL; then
-	alias nv="neovide.exe --wsl"
+	alias nve="neovide.exe --wsl"
 else
-	alias nv="neovide"
+	alias nve="neovide"
 fi
 
 alias e="exa -a"

@@ -122,8 +122,13 @@ zinit snippet PZT::modules/python
 zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
 zinit light neovim/neovim
 
+# lsd
 zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-unknown-linux-gnu*" mv"*-x86_64-*/lsd -> lsd"
 zinit light Peltoche/lsd
+
+# exa
+zinit ice wait lucid from"gh-r" as"program" bpick"exa-linux-x86_64-*" mv"bin/exa -> exa"
+zinit light ogham/exa
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh

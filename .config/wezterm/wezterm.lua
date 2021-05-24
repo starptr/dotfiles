@@ -1,6 +1,31 @@
 local wezterm = require 'wezterm';
+
+-- Settings depending on OS
+if package.config:sub(1,1) == '\\' then
+	-- windows
+	default_prog = {"powershell.exe"}
+	wsl_domain = {
+		name = "wsl",
+		serve_command = {"wsl", "wezterm-mux-server", "--daemonize"},
+	}
+else
+	-- unix
+	default_prog = {"zsh", "-l"}
+	wsl_domain = {
+		name = "wsl",
+		socket_path = "/mnt/c/Users/yuyun/.local/share/wezterm/sock",
+		skip_permissions_check = true,
+	}
+end
+
 return {
-	font = wezterm.font("Roboto Mono for Powerline"),
+	default_prog = default_prog,
+
+	unix_domains = {
+		wsl_domain,
+	},
+
+	font = wezterm.font("UbuntuMono NF"),
 	color_scheme = "My BlulocoDark",
 	-- color_scheme = "BlulocoLight"
 	color_schemes = {

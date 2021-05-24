@@ -21,6 +21,14 @@ end
 return {
 	default_prog = default_prog,
 
+	ssh_domains = {
+		{
+			name = "wslssh",
+			remote_address = "localhost:2222",
+			no_agent_auth = true,
+			username = "yuto",
+		}
+	},
 	unix_domains = {
 		wsl_domain,
 	},

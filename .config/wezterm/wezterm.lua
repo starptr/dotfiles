@@ -29,9 +29,9 @@ return {
 			username = "yuto",
 		}
 	},
-	unix_domains = {
-		wsl_domain,
-	},
+	--unix_domains = {
+	--	wsl_domain,
+	--},
 
 	font = wezterm.font("UbuntuMono NF"),
 	color_scheme = "My BlulocoDark",

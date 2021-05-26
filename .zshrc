@@ -123,12 +123,16 @@ zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> n
 zinit light neovim/neovim
 
 # lsd
-zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-unknown-linux-gnu*" mv"*-x86_64-*/lsd -> lsd"
+zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-*-gnu*" mv"*-x86_64-*/lsd -> lsd" mv"*-x86_64-*/lsd.exe -> lsd"
 zinit light Peltoche/lsd
 
 # exa
 zinit ice wait lucid from"gh-r" as"program" bpick"exa-linux-x86_64-*" mv"bin/exa -> exa"
 zinit light ogham/exa
+
+# wezterm
+#zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
+#zinit light wez/wezterm
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh

@@ -131,8 +131,8 @@ zinit ice wait lucid from"gh-r" as"program" bpick"exa-linux-x86_64-*" mv"bin/exa
 zinit light ogham/exa
 
 # wezterm
-zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
-zinit light wez/wezterm
+#zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
+#zinit light wez/wezterm
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh

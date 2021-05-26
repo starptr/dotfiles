@@ -123,7 +123,7 @@ zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> n
 zinit light neovim/neovim
 
 # lsd
-zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-unknown-linux-gnu*" mv"*-x86_64-*/lsd -> lsd"
+zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-*-gnu*" mv"*-x86_64-*/lsd -> lsd" mv"*-x86_64-*/lsd.exe -> lsd"
 zinit light Peltoche/lsd
 
 # exa

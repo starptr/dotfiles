@@ -4,18 +4,18 @@ local wezterm = require 'wezterm';
 if package.config:sub(1,1) == '\\' then
 	-- windows
 	default_prog = {"powershell.exe"}
-	wsl_domain = {
-		name = "wsl",
-		serve_command = {"wsl", "wezterm-mux-server", "--daemonize"},
-	}
+	--wsl_domain = {
+	--	name = "wsl",
+	--	serve_command = {"wsl", "wezterm-mux-server", "--daemonize"},
+	--}
 else
 	-- unix
 	default_prog = {"zsh", "-l"}
-	wsl_domain = {
-		name = "wsl",
-		socket_path = "/mnt/c/Users/yuyun/.local/share/wezterm/sock",
-		skip_permissions_check = true,
-	}
+	--wsl_domain = {
+	--	name = "wsl",
+	--	socket_path = "/mnt/c/Users/yuyun/.local/share/wezterm/sock",
+	--	skip_permissions_check = true,
+	--}
 end
 
 return {
@@ -29,9 +29,9 @@ return {
 			username = "yuto",
 		}
 	},
-	--unix_domains = {
-	--	wsl_domain,
-	--},
+	-- unix_domains = {
+	-- 	wsl_domain,
+	-- },
 
 	font = wezterm.font("UbuntuMono NF"),
 	font_size = 14,

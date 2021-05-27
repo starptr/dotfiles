@@ -34,6 +34,7 @@ return {
 	--},
 
 	font = wezterm.font("UbuntuMono NF"),
+	font_size = 14,
 	color_scheme = "My BlulocoDark",
 	-- color_scheme = "BlulocoLight"
 	color_schemes = {

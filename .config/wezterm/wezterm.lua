@@ -42,7 +42,9 @@ return {
 		{ key="w", mods="LEADER", action="ShowTabNavigator" },
 		-- Activate neighboring tabs
 		{ key="n", mods="LEADER", action=wezterm.action{ActivateTabRelative=1} },
+		{ key="n", mods="LEADER|CTRL", action=wezterm.action{ActivateTabRelative=1} },
 		{ key="p", mods="LEADER", action=wezterm.action{ActivateTabRelative=-1} },
+		{ key="p", mods="LEADER|CTRL", action=wezterm.action{ActivateTabRelative=-1} },
 		-- Close tab
 		{ key="&", mods="LEADER|SHIFT", action=wezterm.action{CloseCurrentTab={confirm=true}} },
 		-- Close pane

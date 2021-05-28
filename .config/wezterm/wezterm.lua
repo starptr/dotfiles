@@ -85,7 +85,7 @@ return {
 			brights = {"#191919","#ff355b","#b7e876","#ffc251","#76d5ff","#ba76e7","#6cbfb5","#c2c8d7"},
 		},
 		["My BlulocoDark"] = {
-			foreground = "#abb2bf",
+			foreground = "#f7f7f7",
 			background = "#080808",
 			cursor_bg = "#fec309",
 			cursor_border = "#fec309",

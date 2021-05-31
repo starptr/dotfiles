@@ -19,6 +19,21 @@ else
 end
 
 font_rule_sets = {
+	['FiraMono NF'] = {
+		{
+			italic = true,
+			font = wezterm.font("Fira Mono", {italic=true}),
+		},
+		{
+			italic = true,
+			intensity = "Bold",
+			font = wezterm.font("Fira Mono", {weight="Bold", italic=true}),
+		},
+		{
+			intensity = "Bold",
+			font = wezterm.font("FiraMono NF", {weight="Bold"}),
+		},
+	},
 	['FiraCode NF'] = {
 		{
 			italic = true,
@@ -39,7 +54,24 @@ font_rule_sets = {
 			intensity = "Half",
 			font = wezterm.font("JetBrainsMono NF", {weight="Light"}),
 		}
-	}
+	},
+	["VictorMono NF"] = {
+		{
+			italic = true,
+			font = wezterm.font("VictorMono NF", {italic=true}),
+		},
+		{
+			italic = true,
+			intensity = "Bold",
+			font = wezterm.font("VictorMono NF", {weight="Bold", italic=true}),
+		},
+	},
+	["UbuntuMono NF"] = {
+		{
+			intensity = "Bold",
+			font = wezterm.font("UbuntuMono NF", {weight="Bold"}),
+		},
+	},
 }
 
 return {
@@ -94,9 +126,12 @@ return {
 	--freetype_load_target = "Normal",
 	--font_anatialias = "Greyscale",
 	--font_hinting = "None",
-	font = wezterm.font("FiraCode NF"),
+	
+	-- Mono suffix refers to No-Liga NFs only
+	-- FiraMono is No-Liga version of FiraCode
+	font = wezterm.font("UbuntuMono NF"),
 	font_size = 13,
-	font_rules = font_rule_sets['FiraCode NF'],
+	font_rules = font_rule_sets['UbuntuMono NF'],
 	color_scheme = "My BlulocoDark",
 	-- color_scheme = "BlulocoLight"
 	color_schemes = {

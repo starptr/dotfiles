@@ -18,6 +18,30 @@ else
 	--}
 end
 
+font_rule_sets = {
+	['FiraCode NF'] = {
+		{
+			italic = true,
+			font = wezterm.font("JetBrainsMono NF", {italic=true}),
+		},
+		{
+			intensity = "Bold",
+			font = wezterm.font("FiraCode NF", {weight="Bold"}),
+		},
+	},
+	['JetBrainsMono NF'] = {
+		-- Incomplete
+		{
+			italic = true,
+			font = wezterm.font("JetBrainsMono NF", {weight="Medium", italic=true}),
+		},
+		{
+			intensity = "Half",
+			font = wezterm.font("JetBrainsMono NF", {weight="Light"}),
+		}
+	}
+}
+
 return {
 	-- Keybinds
 	leader = { key="a", mods="CTRL", timeout_milliseconds=3000 },
@@ -67,8 +91,12 @@ return {
 	-- },
 
 	-- Appearance
-	font = wezterm.font("UbuntuMono NF"),
-	font_size = 14,
+	--freetype_load_target = "Normal",
+	--font_anatialias = "Greyscale",
+	--font_hinting = "None",
+	font = wezterm.font("FiraCode NF"),
+	font_size = 13,
+	font_rules = font_rule_sets['FiraCode NF'],
 	color_scheme = "My BlulocoDark",
 	-- color_scheme = "BlulocoLight"
 	color_schemes = {

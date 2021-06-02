@@ -33,9 +33,12 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'vim-airline/vim-airline'
 	"Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim'
-	Plug 'joshdick/onedark.vim'
+
 	Plug 'rakr/vim-one'
+	Plug 'joshdick/onedark.vim'
 	Plug 'tomasiser/vim-code-dark'
+	Plug 'sonph/onehalf', {'rtp': 'vim'}
+	
 	Plug 'tmux-plugins/vim-tmux'
 	Plug 'tpope/vim-fugitive'
 	"Plug 'edkolev/tmuxline.vim'
@@ -103,17 +106,14 @@ inoremap <Down>  : echoe "Use j" <CR>
 " Global vim options
 runtime ./misc-qol.vim
 
-" Theming
+" Statusline Theming
 "runtime ./airline.vim
 "runtime ./onedark.vim
-runtime ./one.vim
 runtime ./lightline.vim
-" Theme-related vim options
-syntax enable
-colorscheme one
-set background=dark
-" Override theming options
-runtime ./one_overrides.vim
+
+" Choose theme
+runtime ./use_theme_onehalf.vim
+"runtime ./use_theme_one.vim
 
 " Language-specific configs
 runtime ./languages.vim

@@ -3,6 +3,9 @@
 " GVim font
 set guifont=UbuntuMono\ NF:h18
 
+" Mouse events
+set mouse=a
+
 " Hide buffers on switch
 set hidden
 

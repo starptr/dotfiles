@@ -1,7 +1,7 @@
 " Miscellaneous global and common vim options
 
 " GVim font
-set guifont=UbuntuMono\ NF:h19
+set guifont=UbuntuMono\ NF:h18
 
 " Hide buffers on switch
 set hidden

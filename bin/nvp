@@ -1,4 +1,21 @@
-#!/bin/sh
+#!/bin/bash
+read lower_port upper_port < /proc/sys/net/ipv4/ip_local_port_range
+while :; do
+	for (( port = lower_port ; port <= upper_port ; port++ )); do
+	#port=$lower_port
+	#echo $port
+	#while [ "$port" -le "$upper_port" ]; do
+		echo "Checking $port"
+        #nc -l -p "$port" 2>/dev/null && break 2
+		if [[ ! "$(lsof -iTCP:"$port")" ]]; then
+			echo "Found unused port $port!"
+			break 2
+		fi
+		echo "$port is taken!"
+		#port=$((port+1))
+    done
+done
 
-nvim --headless --listen localhost:6688 "$@" &
-powershell.exe -Command "neovide.exe --remote-tcp=localhost:6688 --maximized"
+
+nvim --headless --listen "localhost:$port" "$@" &
+powershell.exe -Command "neovide.exe --remote-tcp=localhost:$port --maximized"

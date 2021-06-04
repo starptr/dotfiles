@@ -1,0 +1,4 @@
+#!/bin/sh
+
+nvim --headless --listen localhost:6688 "$@" &
+neovide.exe --remote-tcp=localhost:6688

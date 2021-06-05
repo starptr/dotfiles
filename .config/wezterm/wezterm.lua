@@ -135,14 +135,28 @@ return {
 	color_scheme = "My Bright Dark Alacritty",
 	-- color_scheme = "BlulocoLight"
 	color_schemes = {
+		["My Material"] = {
+			foreground = "#000000",
+			background = "#ffffff",
+			cursor_bg = "#4191e0",
+			cursor_border = "#4191e0",
+			cursor_fg = "#ffffff",
+			selection_bg = "#909090",
+			selection_fg = "#ffffff",
+			ansi = {"#000000","#b7141f","#457b24","#f6981e","#134eb2","#560088","#0e717c","#ffffff"},
+			brights = {"#101010", "#e83b3f", "#7aba3a", "#ff9d25", "#54a4f3", "#aa4dbc", "#26bbd1", "#efefef"},
+		},
 		["My Bright Dark Alacritty"] = {
 			foreground = "#ffffff",
 			background = "#000000",
 			-- cursor_bg
 			-- cursor_border
 			-- cursor_fg
+			cursor_bg = "#fec309",
+			cursor_border = "#fec309",
+			cursor_fg = "#000000",
 			selection_bg = "#606060",
-			-- selection_fg
+			selection_fg = "#000000",
 			ansi = {"#000000","#fb0120","#00f769","#ebff87","#62d6e8","#d381c3","#a1efe4","#ffffff"},
 		},
 		["My Bright Lights"] = {
@@ -162,7 +176,7 @@ return {
 			background = "#080808",
 			cursor_bg = "#fec309",
 			cursor_border = "#fec309",
-			cursor_fg = "#ffffff",
+			cursor_fg = "#000000",
 			selection_bg = "#2f3441",
 			selection_fg = "#abb2bf",
 			

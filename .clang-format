@@ -1,0 +1,7 @@
+---
+Language: Cpp
+DerivePointerAlignment: true
+IndentWidth: 8
+UseTab: ForIndentation
+ColumnLimit: 0
+---

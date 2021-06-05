@@ -132,7 +132,14 @@ zinit light ogham/exa
 
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
+#zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"
 #zinit light wez/wezterm
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh
+
+# Wezterm SSH
+CURR_PROCESS_LIST=$(ps aux)
+if [[ "$(grep "[s]shd: [^\/]" <<< "$CURR_PROCESS_LIST")" && "$(grep "[w]ezterm cli proxy" <<< "$CURR_PROCESS_LIST")" ]]; then
+	source ~/bin/append-winpaths.sh
+fi

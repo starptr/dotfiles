@@ -10,7 +10,7 @@ alias da="exa -al"
 
 alias svim="vim -u NONE"
 if $IS_WSL; then
-	alias nve="neovide.exe --wsl"
+	alias nve="neovide.exe --wsl --disowned"
 else
 	alias nve="neovide"
 fi

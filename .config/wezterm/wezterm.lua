@@ -132,9 +132,19 @@ return {
 	font = wezterm.font("UbuntuMono NF"),
 	font_size = 13,
 	font_rules = font_rule_sets['UbuntuMono NF'],
-	color_scheme = "My BlulocoDark",
+	color_scheme = "My Bright Dark Alacritty",
 	-- color_scheme = "BlulocoLight"
 	color_schemes = {
+		["My Bright Dark Alacritty"] = {
+			foreground = "#ffffff",
+			background = "#000000",
+			-- cursor_bg
+			-- cursor_border
+			-- cursor_fg
+			selection_bg = "#606060",
+			-- selection_fg
+			ansi = {"#000000","#fb0120","#00f769","#ebff87","#62d6e8","#d381c3","#a1efe4","#ffffff"},
+		},
 		["My Bright Lights"] = {
 			foreground = "#b3c9d7",
 			background = "#080808",

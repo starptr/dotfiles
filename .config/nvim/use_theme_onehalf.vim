@@ -1,8 +1,9 @@
 " Full config for theme sonph/onehalf
 syntax on
 " onehalflight or onehalfdark
-colorscheme onehalflight
+colorscheme onehalfdark
 " Not relevant to main colorscheme, but for statusline
-set background=light
+set background=dark
 
-"highlight Normal guibg=NONE
+" Comment out for light theme
+highlight Normal guibg=NONE

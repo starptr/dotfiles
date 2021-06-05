@@ -85,13 +85,17 @@ return {
 		{ key="%", mods="LEADER|SHIFT", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}} },
 		-- Switch pane
 		{ key="h", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Left"} },
-		{ key="h", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Left"} },
+		{ key="h", mods="CTRL", action=wezterm.action{ActivatePaneDirection="Left"} },
+		--{ key="h", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Left"} },
 		{ key="l", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Right"} },
-		{ key="l", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Right"} },
+		{ key="l", mods="CTRL", action=wezterm.action{ActivatePaneDirection="Right"} },
+		--{ key="l", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Right"} },
 		{ key="j", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Down"} },
-		{ key="j", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Down"} },
+		{ key="j", mods="CTRL", action=wezterm.action{ActivatePaneDirection="Down"} },
+		--{ key="j", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Down"} },
 		{ key="k", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Up"} },
-		{ key="k", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Up"} },
+		{ key="k", mods="CTRL", action=wezterm.action{ActivatePaneDirection="Up"} },
+		--{ key="k", mods="LEADER|CTRL", action=wezterm.action{ActivatePaneDirection="Up"} },
 		-- New tab
 		{ key="c", mods="LEADER", action=wezterm.action{SpawnTab="CurrentPaneDomain"} },
 		-- List tabs

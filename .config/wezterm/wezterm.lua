@@ -2,6 +2,7 @@ local wezterm = require 'wezterm';
 local keybinds = require 'keybinds';
 local appearance = require 'appearance';
 local color_schemes = require 'color_schemes';
+local color_scheme_handler = require 'color_scheme_handler';
 
 -- Settings depending on OS
 if package.config:sub(1,1) == '\\' then
@@ -20,6 +21,8 @@ else
 	--	skip_permissions_check = true,
 	--}
 end
+
+print("how")
 
 return {
 	-- Keybinds
@@ -51,6 +54,6 @@ return {
 	font = wezterm.font("UbuntuMono NF"),
 	font_size = 13,
 	font_rules = appearance.font_rule_sets['UbuntuMono NF'],
-	color_scheme = "My Material",
+	color_scheme = color_scheme_handler.get_mode("My Bright Dark Alacritty"),
 	color_schemes = color_schemes,
 }

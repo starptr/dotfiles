@@ -22,8 +22,6 @@ else
 	--}
 end
 
-print("how")
-
 return {
 	-- Keybinds
 	leader = keybinds.leader,

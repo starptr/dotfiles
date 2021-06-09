@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
 
 	" Language-specific support
 	Plug 'sheerun/vim-polyglot'
+	Plug 'leafOfTree/vim-svelte-plugin'
 	"Plug 'leafgarland/typescript-vim'
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
@@ -111,9 +112,20 @@ runtime ./misc-qol.vim
 "runtime ./onedark.vim
 runtime ./lightline.vim
 
+" Automatic theme changing
+function! SetDayNNite()
+	if v:false
+		set background=dark
+	else
+		set background=light
+	endif
+endfunction
+
 " Choose theme
-runtime ./use_theme_onehalf.vim
-"runtime ./use_theme_one.vim
+call SetDayNNite()
+
+"runtime ./use_theme_onehalf.vim
+runtime ./use_theme_one.vim
 
 " Language-specific configs
 runtime ./languages.vim

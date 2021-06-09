@@ -12,3 +12,7 @@ augroup END
 let g:cpp_class_decl_highlight = 1
 " Highlight member variables
 let g:cpp_member_variable_highlight = 1
+
+" vim-svelte-plugin
+let g:vim_svelte_plugin_use_typescript = 1
+let g:vim_svelte_plugin_use_sass = 1

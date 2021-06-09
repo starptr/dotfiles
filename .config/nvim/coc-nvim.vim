@@ -14,7 +14,8 @@ let g:coc_global_extensions = [
 	\ "coc-texlab",
 	\ "coc-tsserver",
 	\ "coc-vimlsp",
-	\ "coc-yaml"
+	\ "coc-yaml",
+	\ "coc-svelte"
   \ ]
 
 " Set config location for vim

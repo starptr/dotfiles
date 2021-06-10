@@ -60,3 +60,6 @@ set list
 
 " updatetime
 set updatetime=100
+
+" using high speed connection (vim only)
+set ttyfast

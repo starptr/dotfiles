@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'jiangmiao/auto-pairs'
+	Plug 'dense-analysis/ale'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
 	Plug 'puremourning/vimspector'
@@ -34,6 +35,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'vim-airline/vim-airline'
 	"Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim'
+	Plug 'voldikss/vim-floaterm'
 
 	Plug 'rakr/vim-one'
 	Plug 'joshdick/onedark.vim'
@@ -138,6 +140,8 @@ runtime ./nerdtree.vim
 
 " coc config
 runtime ./coc-nvim.vim
+" ale config
+runtime ./ale.vim
 
 " Nvimify vim
 if !has('nvim')

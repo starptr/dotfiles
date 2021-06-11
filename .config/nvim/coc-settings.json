@@ -29,6 +29,7 @@
 		"typescript.tsx",
 		"cpp"
 	],
+	"diagnostic.displayByAle": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.errorSign": "",

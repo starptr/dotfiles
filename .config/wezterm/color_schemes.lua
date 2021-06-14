@@ -1,5 +1,3 @@
-local wezterm = require 'wezterm';
-
 local module = {
 	["My Material"] = {
 		foreground = "#000000",

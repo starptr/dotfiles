@@ -1,0 +1,11 @@
+# My Bright Dark Alacritty
+[colors]
+foreground = "#ffffff"
+background = "#000000"
+cursor_bg = "#fec309"
+cursor_border = "#fec309"
+cursor_fg = "#000000"
+selection_bg = "#606060"
+selection_fg = "#000000"
+
+ansi = ["#000000","#fb0120","#00f769","#ebff87","#62d6e8","#d381c3","#a1efe4","#ffffff"]

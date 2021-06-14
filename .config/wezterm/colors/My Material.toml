@@ -1,0 +1,12 @@
+# My Material
+[colors]
+foreground = "#000000"
+background = "#ffffff"
+cursor_bg = "#4191e0"
+cursor_border = "#4191e0"
+cursor_fg = "#ffffff"
+selection_bg = "#909090"
+selection_fg = "#ffffff"
+
+ansi = ["#000000","#b7141f","#457b24","#f6981e","#134eb2","#560088","#0e717c","#ffffff"]
+brights = ["#101010", "#e83b3f", "#7aba3a", "#ff9d25", "#54a4f3", "#aa4dbc", "#26bbd1", "#efefef"]

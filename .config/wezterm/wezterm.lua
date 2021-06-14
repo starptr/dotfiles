@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm';
 local keybinds = require 'keybinds';
 local appearance = require 'appearance';
-local color_schemes = require 'color_schemes';
+local utils = require 'utils';
 local color_scheme_handler = require 'color_scheme_handler';
 
 -- Settings depending on OS
@@ -54,4 +54,7 @@ return {
 	font_rules = appearance.font_rule_sets['UbuntuMono NF'],
 	color_scheme = color_scheme_handler.get_mode("My Bright Dark Alacritty"),
 	color_schemes = color_schemes,
+	color_scheme_dirs = { (utils.get_home()..(utils.is_unix()
+		and "/.config/wezterm/colors"
+		or "\\.config\\wezterm\\colors")) }
 }

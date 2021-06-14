@@ -9,3 +9,4 @@ selection_bg = "#606060"
 selection_fg = "#000000"
 
 ansi = ["#000000","#fb0120","#00f769","#ebff87","#62d6e8","#d381c3","#a1efe4","#ffffff"]
+brights = ["#555555", "#ff5555", "#55ff55", "#ffff55", "#5555ff", "#ff55ff", "#55ffff", "#efefef"]

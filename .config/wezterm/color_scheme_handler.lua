@@ -1,10 +1,9 @@
 local module = {}
 
 function module.get_mode(fallback_mode)
-	-- TODO: handle windows
-	if package.config:sub(1,1) == '\\' then return fallback_mode end
-
-	local sys_theme_file = io.open(os.getenv("HOME").."/.config/day-n-nite/mode_config", "r")
+	local sys_theme_file = io.open((package.config:sub(1,1) == '/')
+		and (os.getenv("HOME").."/.config/day-n-nite/mode_config")
+		or (os.getenv("USERPROFILE").."\\.config\\day-n-nite\\mode_config"), "r")
 	if not sys_theme_file then
 		io.stderr:write("day-n-nite mode config not found")
 		return fallback_mode

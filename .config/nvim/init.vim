@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
 	"	\ 'branch': 'next',
 	"	\ 'do': 'bash install.sh',
 	"	\ }
+	"Plug 'dense-analysis/ale'
 
 	Plug 'MarcWeber/vim-addon-local-vimrc'
 	" Plug 'embear/vim-localvimrc'
@@ -24,7 +25,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'dense-analysis/ale'
+	"Plug 'rstacruz/vim-closer'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
 	Plug 'puremourning/vimspector'
@@ -141,7 +142,7 @@ runtime ./nerdtree.vim
 " coc config
 runtime ./coc-nvim.vim
 " ale config
-runtime ./ale.vim
+"runtime ./ale.vim
 
 " Nvimify vim
 if !has('nvim')

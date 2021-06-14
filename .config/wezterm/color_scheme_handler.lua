@@ -1,9 +1,13 @@
+local utils = require 'utils';
+
 local module = {}
 
 function module.get_mode(fallback_mode)
-	local sys_theme_file = io.open((package.config:sub(1,1) == '/')
-		and (os.getenv("HOME").."/.config/day-n-nite/mode_config")
-		or (os.getenv("USERPROFILE").."\\.config\\day-n-nite\\mode_config"), "r")
+	local sys_theme_path = utils.get_home()..(utils.is_unix()
+		and "/.config/day-n-nite/mode_config"
+		or "\\.config\\day-n-nite\\mode_config")
+	local sys_theme_file = io.open(sys_theme_path, "r")
+
 	if not sys_theme_file then
 		io.stderr:write("day-n-nite mode config not found")
 		return fallback_mode

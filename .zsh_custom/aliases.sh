@@ -6,7 +6,7 @@ alias la="ls -al"
 alias e="exa -a"
 alias ea="exa -la"
 alias d="lsd -A"
-alias da="exa -al"
+alias da="lsd -al"
 
 alias svim="vim -u NONE"
 if $IS_WSL; then

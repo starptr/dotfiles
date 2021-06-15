@@ -136,7 +136,7 @@ zinit light ogham/exa
 #zinit light wez/wezterm
 
 # yadm completions
-zinit ice wait atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_yadm" as"program"
+zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_yadm" as"program"
 zinit light TheLocehiliosan/yadm
 
 # added by travis gem

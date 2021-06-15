@@ -135,6 +135,10 @@ zinit light ogham/exa
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"
 #zinit light wez/wezterm
 
+# yadm completions
+zinit ice wait atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_yadm" as"program"
+zinit light TheLocehiliosan/yadm
+
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh
 

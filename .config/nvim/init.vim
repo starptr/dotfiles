@@ -115,20 +115,41 @@ runtime ./misc-qol.vim
 "runtime ./onedark.vim
 runtime ./lightline.vim
 
+" Reload statusline
+function! g:LightlineReload()
+	call lightline#init()
+	call lightline#colorscheme()
+	call lightline#update()
+endfunction
+
 " Automatic theme changing
 function! SetDayNNite()
-	if v:false
+	let mode = readfile(expand("~/.config/day-n-nite/mode_config"))[0]
+
+	"if &background ==# "light"
+	if mode ==# "Night"
 		set background=dark
 	else
 		set background=light
 	endif
+	" Apply theme
+	"runtime ./use_theme_onehalf.vim
+	runtime ./use_theme_one.vim
+
+	call g:LightlineReload()
 endfunction
+
+augroup daynnite
+	autocmd!
+	if has('nvim')
+		au Signal SIGUSR1 call SetDayNNite() | redraw! | normal! <c-L>
+	else
+		au SigUSR1 * call SetDayNNite() | redraw! | normal! <c-L>
+	endif
+augroup END
 
 " Choose theme
 call SetDayNNite()
-
-"runtime ./use_theme_onehalf.vim
-runtime ./use_theme_one.vim
 
 " Language-specific configs
 runtime ./languages.vim

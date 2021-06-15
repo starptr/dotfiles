@@ -1,7 +1,11 @@
 " Full config for theme sonph/onehalf
-syntax on
+"syntax on
 " onehalflight or onehalfdark
-colorscheme onehalflight
+if &background ==# "dark"
+	colorscheme onehalfdark
+else
+	colorscheme onehalflight
+endif
 
 " Comment out for light theme
 "highlight Normal guibg=NONE

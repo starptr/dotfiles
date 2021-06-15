@@ -7,7 +7,7 @@ if (has("nvim"))
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-syntax enable
+"syntax enable
 colorscheme one
 
 " Remove background color

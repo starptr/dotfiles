@@ -36,6 +36,11 @@ call plug#begin('~/.vim/plugged')
 	
 	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'ryanoasis/vim-devicons'
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	Plug 'francoiscabrol/ranger.vim'
+	if has('nvim')
+		Plug 'rbgrouleff/bclose.vim'
+	endif
 	"Plug 'vim-airline/vim-airline'
 	"Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim'
@@ -184,6 +189,37 @@ require'nvim-treesitter.configs'.setup {
 	},
 }
 EOF
+
+" vim-devicons config
+if exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
+endif
+" NERDTrees File highlighting
+"function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"	exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"	exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+"endfunction
+"augroup my_nerdtree_devicons_color
+"	autocmd!
+"	call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+"	call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+"	call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+"	call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+"	call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+"	call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+"	call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+"	call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+"augroup END
 
 " Nvimify vim
 if !has('nvim')

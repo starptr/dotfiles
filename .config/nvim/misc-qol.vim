@@ -55,7 +55,7 @@ set smartcase
 set t_Co=256
 
 " Show whitespace chars
-set listchars=eol:¬,tab:⎸\ ,trail:!
+set listchars=tab:⎸\ ,lead:·,trail:!
 set list
 
 " updatetime

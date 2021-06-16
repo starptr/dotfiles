@@ -19,8 +19,11 @@ call plug#begin('~/.vim/plugged')
 	" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
-	Plug 'sheerun/vim-polyglot'
-	Plug 'leafOfTree/vim-svelte-plugin'
+	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+	"Plug 'sheerun/vim-polyglot'
+	"Plug 'leafOfTree/vim-svelte-plugin'
+	
 	"Plug 'leafgarland/typescript-vim'
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
@@ -31,7 +34,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'puremourning/vimspector'
 	"packadd! vimspector
 	
-	Plug 'preservim/nerdtree'
+	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'ryanoasis/vim-devicons'
 	"Plug 'vim-airline/vim-airline'
 	"Plug 'vim-airline/vim-airline-themes'
@@ -164,6 +167,23 @@ runtime ./nerdtree.vim
 runtime ./coc-nvim.vim
 " ale config
 "runtime ./ale.vim
+
+
+" nvim-treesitter config
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = { "c", "cpp", "css", "svelte", "regex", "lua", "rust", "toml", "yaml", "typescript", "javascript", "scss", "json", "java", "html", "bash","python", "latex", "tsx", "graphql", "dockerfile" },
+	highlight = {
+		enable = true,
+	},
+	incremental_selection = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+}
+EOF
 
 " Nvimify vim
 if !has('nvim')

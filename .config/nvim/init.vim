@@ -19,7 +19,9 @@ call plug#begin('~/.vim/plugged')
 	" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
-	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+	if has('nvim')
+		Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+	endif
 
 	"Plug 'sheerun/vim-polyglot'
 	"Plug 'leafOfTree/vim-svelte-plugin'
@@ -174,21 +176,23 @@ runtime ./coc-nvim.vim
 "runtime ./ale.vim
 
 
+if has('nvim')
 " nvim-treesitter config
 lua << EOF
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "cpp", "css", "svelte", "regex", "lua", "rust", "toml", "yaml", "typescript", "javascript", "scss", "json", "java", "html", "bash","python", "latex", "tsx", "graphql", "dockerfile" },
-	highlight = {
-		enable = true,
-	},
-	incremental_selection = {
-		enable = true,
-	},
-	indent = {
-		enable = true,
-	},
-}
+	require'nvim-treesitter.configs'.setup {
+		ensure_installed = { "c", "cpp", "css", "svelte", "regex", "lua", "rust", "toml", "yaml", "typescript", "javascript", "scss", "json", "java", "html", "bash","python", "latex", "tsx", "graphql", "dockerfile" },
+		highlight = {
+			enable = true,
+		},
+		incremental_selection = {
+			enable = true,
+		},
+		indent = {
+			enable = true,
+		},
+	}
 EOF
+endif
 
 " vim-devicons config
 if exists("g:loaded_webdevicons")

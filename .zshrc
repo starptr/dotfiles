@@ -130,6 +130,10 @@ zinit light Peltoche/lsd
 zinit ice wait lucid from"gh-r" as"program" bpick"exa-linux-x86_64-*" mv"bin/exa -> exa"
 zinit light ogham/exa
 
+# ranger
+zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
+zinit light ranger/ranger
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"

@@ -9,7 +9,7 @@ function module.get_mode(fallback_mode)
 	local sys_theme_file = io.open(sys_theme_path, "r")
 
 	if not sys_theme_file then
-		io.stderr:write("day-n-nite mode config not found")
+		print("day-n-nite mode config not found")
 		return fallback_mode
 	end
 
@@ -24,7 +24,7 @@ function module.get_mode(fallback_mode)
 		return "My Bright Dark Alacritty"
 	end
 
-	io.stderr:write("Invalid day-n-nite mode")
+	print("Invalid day-n-nite mode")
 	return fallback_mode
 end
 

@@ -1,5 +1,8 @@
 " Miscellaneous global and common vim options
 
+" Disable K, a slow & blocking keybind
+map <S-k> <Nop>
+
 " GVim font
 set guifont=UbuntuMono\ NF:h18
 

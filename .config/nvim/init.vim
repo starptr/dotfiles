@@ -3,6 +3,7 @@ set nocompatible
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
+	"Plug 'mattn/vim-nyancat'
 
 	" Declare the list of plugins.
 	Plug 'tpope/vim-sensible'
@@ -20,14 +21,15 @@ call plug#begin('~/.vim/plugged')
 
 	" Language-specific support
 	if has('nvim')
-		Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+		"Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+		"Plug 'nvim-treesitter/playground'
 	endif
 
 	"Plug 'sheerun/vim-polyglot'
-	"Plug 'leafOfTree/vim-svelte-plugin'
+	Plug 'leafOfTree/vim-svelte-plugin'
 	
-	"Plug 'leafgarland/typescript-vim'
-	"Plug 'bfrg/vim-cpp-modern'
+	Plug 'leafgarland/typescript-vim'
+	Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'jiangmiao/auto-pairs'
 	"Plug 'rstacruz/vim-closer'
@@ -39,7 +41,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-	Plug 'francoiscabrol/ranger.vim'
+	"Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps', 'on': 'CHADopen'}
+	"Plug 'francoiscabrol/ranger.vim'
 	if has('nvim')
 		Plug 'rbgrouleff/bclose.vim'
 	endif
@@ -170,6 +173,10 @@ runtime ./rainbow.vim
 " NERDTree config
 runtime ./nerdtree.vim
 
+" CHADTree config
+"nnoremap <silent><C-t> <cmd>CHADopen<CR>
+"let g:chadtree_settings = { "view": { "open_direction": "right" } }
+
 " coc config
 runtime ./coc-nvim.vim
 " ale config
@@ -178,20 +185,20 @@ runtime ./coc-nvim.vim
 
 if has('nvim')
 " nvim-treesitter config
-lua << EOF
-	require'nvim-treesitter.configs'.setup {
-		ensure_installed = { "c", "cpp", "css", "svelte", "regex", "lua", "rust", "toml", "yaml", "typescript", "javascript", "scss", "json", "java", "html", "bash","python", "latex", "tsx", "graphql", "dockerfile" },
-		highlight = {
-			enable = true,
-		},
-		incremental_selection = {
-			enable = true,
-		},
-		indent = {
-			enable = true,
-		},
-	}
-EOF
+"lua << EOF
+"	require'nvim-treesitter.configs'.setup {
+"		ensure_installed = { "c", "cpp", "css", "svelte", "regex", "lua", "rust", "toml", "yaml", "typescript", "javascript", "scss", "json", "java", "html", "bash","python", "latex", "tsx", "graphql", "dockerfile" },
+"		highlight = {
+"			enable = true,
+"		},
+"		incremental_selection = {
+"			enable = true,
+"		},
+"		indent = {
+"			enable = true,
+"		},
+"	}
+"EOF
 endif
 
 " vim-devicons config

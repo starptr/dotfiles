@@ -137,14 +137,20 @@ endfunction
 
 " Automatic theme changing
 function! SetDayNNite()
-	let mode = readfile(expand("~/.config/day-n-nite/mode_config"))[0]
-
-	"if &background ==# "light"
-	if mode ==# "Night"
+	let l:mode_config_filepath = expand("~/.config/day-n-nite/mode_config")
+	if !filereadable(l:mode_config_filepath)
 		set background=dark
 	else
-		set background=light
+		let l:mode = readfile(l:mode_config_filepath)[0]
+
+		"if &background ==# "light"
+		if l:mode ==# "Night"
+			set background=dark
+		else
+			set background=light
+		endif
 	endif
+
 	" Apply theme
 	"runtime ./use_theme_onehalf.vim
 	runtime ./use_theme_one.vim

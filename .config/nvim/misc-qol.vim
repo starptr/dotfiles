@@ -4,7 +4,7 @@
 map <S-k> <Nop>
 
 " GVim font
-set guifont=UbuntuMono\ NF:h18
+set guifont=UbuntuMono\ NF,MS\ PGothic:h18
 
 " Mouse events
 set mouse=a

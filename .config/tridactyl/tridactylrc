@@ -1,0 +1,9 @@
+sanitise tridactyllocal tridactylsync
+
+unbind d
+unbind u
+
+bind x tabclose
+bind X undo
+bind d scrollline 35
+bind u scrollline -35

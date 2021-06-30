@@ -1,0 +1,3 @@
+[submodule "src/dotfiles-tests"]
+	path = src/dotfiles-tests
+	url = https://github.com/starptr/dotfiles-tests

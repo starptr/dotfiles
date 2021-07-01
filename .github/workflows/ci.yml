@@ -11,7 +11,6 @@ jobs:
     defaults:
       run:
         shell: bash
-    container: ubuntu:20.04
     steps:
     - name: Set APT to non-interactive
       run: "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections"

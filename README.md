@@ -1,4 +1,4 @@
-# dotfiles
+# dotfiles ![ci tests badge](https://github.com/starptr/dotfiles/actions/workflows/ci.yml/badge.svg)
 
 This file is the readme for the dotfile repo. This text is here since this file will be in the home directory when cloned.
 

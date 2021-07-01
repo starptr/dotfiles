@@ -2,8 +2,9 @@
 
 echo "Starting dotfiles bootstrapper!"
 
-read -p "Install dependencies? [y/N] "
+read -rp "Install dependencies? [y/N] "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+	echo "Installing dependencies"
 	sudo apt update
 	sudo apt -y install zsh
 	sudo apt -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tmux

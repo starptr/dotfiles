@@ -4,6 +4,7 @@ RUN useradd -m hamu && echo "hamu:hamu" | chpasswd && adduser hamu sudo
 WORKDIR /home/hamu
 RUN apt-get install -y curl git
 USER hamu
+ARG DOTS_REPO_GIT
 COPY --chown=hamu:hamu ${DOTS_REPO_GIT:-./.local/share/yadm/repo.git} /home/hamu/src/dotfiles
 RUN curl -Lo ~/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm --create-dirs \
 	&& chmod +x ~/bin/yadm \

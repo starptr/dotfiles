@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Starting dotfiles bootstrapper!"
+
 read -p "Install dependencies? [y/N] "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	sudo apt update

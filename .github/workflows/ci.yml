@@ -20,7 +20,7 @@ jobs:
     - name: Install toolchain dependencies
       run: "apt-get install -y git curl build-essential"
     - name: Install docker
-      run: "curl -sSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh"
+      run: "curl -sSL https://get.docker.com -o get-docker.sh && sh get-docker.sh"
     - name: Install cargo
       uses: actions-rs/toolchain@v1
       with:

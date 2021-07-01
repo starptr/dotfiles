@@ -6,6 +6,8 @@ RUN apt-get install -y curl git
 USER hamu
 ARG DOTS_REPO_GIT_RELATIVE
 COPY --chown=hamu:hamu ${DOTS_REPO_GIT_RELATIVE:-./.local/share/yadm/repo.git} /home/hamu/src/dotfiles
+RUN ls -al /home/hamu
+RUN ls -al /home/hamu/src
 RUN curl -Lo ~/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm --create-dirs \
 	&& chmod +x ~/bin/yadm \
 	&& ~/bin/yadm clone --no-local --no-bootstrap file:///$HOME/src/dotfiles \

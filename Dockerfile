@@ -4,6 +4,7 @@ RUN useradd -m hamu && echo "hamu:hamu" | chpasswd && adduser hamu sudo
 WORKDIR /home/hamu
 RUN apt-get install -y curl git
 USER hamu
+RUN mkdir src
 ARG DOTS_REPO_GIT_RELATIVE
 COPY --chown=hamu:hamu ${DOTS_REPO_GIT_RELATIVE:-./.local/share/yadm/repo.git} /home/hamu/src/dotfiles
 RUN ls -al /home/hamu

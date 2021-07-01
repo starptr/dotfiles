@@ -12,23 +12,23 @@ jobs:
       run:
         shell: bash
     steps:
-    - name: Set APT to non-interactive
-      run: "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections"
-    - name: Update APT
-      run: "apt-get update"
-    - name: Install toolchain dependencies
-      run: "apt-get install -y git curl build-essential"
+      #- name: Set APT to non-interactive
+      #  run: "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections"
+      #- name: Update APT
+      #  run: "apt-get update"
+      #- name: Install toolchain dependencies
+      #  run: "apt-get install -y git curl build-essential"
         #- name: Install docker
         #  run: "curl -sSL https://get.docker.com -o get-docker.sh && sh get-docker.sh"
         #- name: Install docker
         #  uses: docker-practice/actions-setup-docker@master
-    - name: Install cargo
-      uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: stable
-        override: true
-        components: rustfmt, clippy
+        #- name: Install cargo
+        #  uses: actions-rs/toolchain@v1
+        #  with:
+        #    profile: minimal
+        #    toolchain: stable
+        #    override: true
+        #    components: rustfmt, clippy
     - name: Checkout repo
       uses: actions/checkout@v2
       with:

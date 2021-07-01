@@ -29,18 +29,12 @@ jobs:
         #    toolchain: stable
         #    override: true
         #    components: rustfmt, clippy
-    - name: Print gh workspace
-      run: echo $GITHUB_WORKSPACE
-    - name: Print cwd
-      run: pwd
+    - name: Check docker version
+      run: docker --version
     - name: Checkout repo
       uses: actions/checkout@v2
       with:
         submodules: true
-    - name: Show files
-      run: ls -al
-    - name: Show git
-      run: ls -al .git
     - name: Run polka-dots
       working-directory: ./src/polka-dots
       run: DOTS_REPO=$GITHUB_WORKSPACE DOTS_REPO_GIT_RELATIVE="./.git" cargo run -- deploy

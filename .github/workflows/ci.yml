@@ -31,6 +31,8 @@ jobs:
         #    components: rustfmt, clippy
     - name: Print gh workspace
       run: echo $GITHUB_WORKSPACE
+    - name: Print cwd
+      run: pwd
     - name: Checkout repo
       uses: actions/checkout@v2
       with:

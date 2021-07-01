@@ -18,7 +18,7 @@ jobs:
     - name: Update APT
       run: "apt-get update"
     - name: Install toolchain dependencies
-      run: "apt-get install -y git curl"
+      run: "apt-get install -y git curl build-essential"
     - name: Install cargo
       uses: actions-rs/toolchain@v1
       with:

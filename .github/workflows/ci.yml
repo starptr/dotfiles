@@ -18,7 +18,7 @@ jobs:
     - name: Update APT
       run: "apt-get update"
     - name: Install toolchain dependencies
-      run: "apt-get install -y git curl sudo lsb_release build-essential"
+      run: "apt-get install -y git curl sudo lsb-release build-essential"
         #- name: Install docker
         #  run: "curl -sSL https://get.docker.com -o get-docker.sh && sh get-docker.sh"
     - name: Install docker

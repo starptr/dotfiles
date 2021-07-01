@@ -1,0 +1,33 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - ci
+
+jobs:
+  main:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    container: ubuntu:20.04
+    steps:
+    - name: "Checkout repo"
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: "try gh wksp var"
+      run: "echo $GITHUB_WORKSPACE"
+    - name: "try 2"
+      run: echo $GITHUB_WORKSPACE
+    - name: "try 3"
+      run: echo $env.GITHUB_WORKSPACE
+    - name: "try 4"
+      run: echo "${{ env.GITHUB_WORKSPACE }}"
+    - name: "try 5"
+      run: echo ${{ env.GITHUB_WORKSPACE }}
+    - name: "try 6"
+      run: "echo $env.GITHUB_WORKSPACE"
+    - name: "try 7"
+      run: "echo ${{ env.GITHUB_WORKSPACE }}"

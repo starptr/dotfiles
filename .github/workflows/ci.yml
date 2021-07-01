@@ -19,6 +19,13 @@ jobs:
       run: "apt-get update"
     - name: Install git
       run: "apt-get install -y git"
+    - name: Install cargo
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+        components: rustfmt, clippy
     - name: Checkout repo
       uses: actions/checkout@v2
       with:

@@ -2,7 +2,12 @@
 
 echo "Starting dotfiles bootstrapper!"
 
-read -rp "Install dependencies? [y/N] "
+if [ -n "$SCRIPT" ]; then
+	echo "SCRIPT is set."
+	alias sudo="sudo -kS"
+fi
+
+read -p "Install dependencies? [y/N] "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "Installing dependencies"
 	sudo apt update

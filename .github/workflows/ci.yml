@@ -32,6 +32,8 @@ jobs:
       uses: actions/checkout@v2
       with:
         submodules: true
+    - name: Show files
+      run: ls -al
     - name: Run polka-dots
       working-directory: ./src/polka-dots
       run: DOTS_REPO=$GITHUB_WORKSPACE cargo run -- deploy

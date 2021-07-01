@@ -39,4 +39,4 @@ jobs:
       run: ls -al
     - name: Run polka-dots
       working-directory: ./src/polka-dots
-      run: DOTS_REPO=$GITHUB_WORKSPACE cargo run -- deploy
+      run: DOTS_REPO=$GITHUB_WORKSPACE DOTS_REPO_GIT="$GITHUB_WORKSPACE/.git" cargo run -- deploy

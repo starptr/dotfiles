@@ -13,27 +13,16 @@ jobs:
         shell: bash
     container: ubuntu:20.04
     steps:
-    - name: "Set APT to non-interactive"
+    - name: Set APT to non-interactive
       run: "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections"
-    - name: "Update APT"
+    - name: Update APT
       run: "apt-get update"
-    - name: "Install git"
+    - name: Install git
       run: "apt-get install -y git"
-    - name: "Checkout repo"
+    - name: Checkout repo
       uses: actions/checkout@v2
       with:
         submodules: true
-    - name: "try gh wksp var"
-      run: "echo $GITHUB_WORKSPACE"
-    - name: "try 2"
-      run: echo $GITHUB_WORKSPACE
-    - name: "try 3"
-      run: echo $env.GITHUB_WORKSPACE
-    - name: "try 4"
-      run: echo "${{ env.GITHUB_WORKSPACE }}"
-    - name: "try 5"
-      run: echo ${{ env.GITHUB_WORKSPACE }}
-    - name: "try 6"
-      run: "echo $env.GITHUB_WORKSPACE"
-    - name: "try 7"
-      run: "echo ${{ env.GITHUB_WORKSPACE }}"
+    - name: Run polka-dots
+      working-directory: "$GITHUB_WORKSPACE/src/polka-dots"
+      run: DOTS_REPO=$GITHUB_WORKSPACE cargo run -- deploy

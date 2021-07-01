@@ -25,4 +25,4 @@ jobs:
         submodules: true
     - name: Run polka-dots
       working-directory: "$GITHUB_WORKSPACE/src/polka-dots"
-      run: DOTS_REPO="$GITHUB_WORKSPACE" cargo run -- deploy
+      run: "DOTS_REPO=$GITHUB_WORKSPACE cargo run -- deploy"

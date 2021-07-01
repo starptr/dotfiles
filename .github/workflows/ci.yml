@@ -39,6 +39,8 @@ jobs:
         submodules: true
     - name: Show files
       run: ls -al
+    - name: Show git
+      run: ls -al .git
     - name: Run polka-dots
       working-directory: ./src/polka-dots
       run: DOTS_REPO=$GITHUB_WORKSPACE DOTS_REPO_GIT="$GITHUB_WORKSPACE/.git" cargo run -- deploy

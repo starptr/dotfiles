@@ -17,15 +17,9 @@ first.
 
 ## Development
 
-The `Dockerfile` contains regular tests. The `docker-compose.yml` contains simple defaults so that adding and testing tests have a nicer workflow. That is,
+Run `yadm submodule update --init` to pull the [polka-dots test suite](https://github.com/starptr/polka-dots). Usage instructions are on polka-dots's readme.
 
-1. Run `docker-compose --verbose up --build -d` to build (with cahces) and detach.
-2. Run `docker exec -it <name> bash` where `<name>` is usually `<host-username>_dots_1` to explore the container's filesystem. `bash` can be replaced with `zsh`.
-3. Run `docker-compose down` to stop the container.
-
-And these steps can be quickly repeated for faster testing iterations.
-
-### Tests
+### Sidenote on Tests
 
 Since the docker images built by the dockerfile is intended to simulate dotfiles deployment on a new machine, any testing method must not use external dependencies not already present on all supported systems. That is, we can't install `rustup`, `rustc`, `cargo` during the docker image build since the new built environment that the tests will be run on won't reflect actual used environments.
 

@@ -29,6 +29,8 @@ jobs:
         #    toolchain: stable
         #    override: true
         #    components: rustfmt, clippy
+    - name: Print gh workspace
+      run: echo $GITHUB_WORKSPACE
     - name: Checkout repo
       uses: actions/checkout@v2
       with:

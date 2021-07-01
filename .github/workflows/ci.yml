@@ -17,8 +17,8 @@ jobs:
       run: "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections"
     - name: Update APT
       run: "apt-get update"
-    - name: Install git
-      run: "apt-get install -y git"
+    - name: Install toolchain dependencies
+      run: "apt-get install -y git curl"
     - name: Install cargo
       uses: actions-rs/toolchain@v1
       with:

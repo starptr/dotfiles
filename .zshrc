@@ -134,6 +134,10 @@ zinit light ogham/exa
 zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
 zinit light ranger/ranger
 
+# nix
+zinit ice wait lucid from"gh-r" as"program" mv"nix-user-chroot-bin-* -> nix-user-chroot" atclone"chmod +x nix-user-chroot" atpull"%atclone"
+zinit light nix-community/nix-user-chroot
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"

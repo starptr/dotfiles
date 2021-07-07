@@ -16,7 +16,8 @@ call plug#begin('~/.vim/plugged')
 	"	\ }
 	"Plug 'dense-analysis/ale'
 
-	Plug 'MarcWeber/vim-addon-local-vimrc'
+	" check this one again
+	""""""Plug 'MarcWeber/vim-addon-local-vimrc'
 	" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
@@ -48,7 +49,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'vim-airline/vim-airline'
 	"Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim'
-	Plug 'voldikss/vim-floaterm'
+	"Plug 'voldikss/vim-floaterm'
 
 	Plug 'rakr/vim-one'
 	Plug 'joshdick/onedark.vim'
@@ -56,7 +57,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'sonph/onehalf', {'rtp': 'vim'}
 	
 	Plug 'tmux-plugins/vim-tmux'
-	Plug 'tpope/vim-fugitive'
+	" Possibly lag culprit
+	""""""""Plug 'tpope/vim-fugitive'
 	"Plug 'edkolev/tmuxline.vim'
 	Plug 'luochen1990/rainbow'
 

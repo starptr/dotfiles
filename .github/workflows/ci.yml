@@ -17,7 +17,7 @@ jobs:
       with:
         submodules: true
     - name: Check no TODO comments (warning only)
-      run: "yadm grep -n --column TODO: | sed -r \"s/([^:]+):([^:]+):([^:]+):(.+)/::warning file={\\1},line={\\2},col={\\3}::{\\4}/g\""
+      run: "git grep -n --column TODO: | sed -r \"s/([^:]+):([^:]+):([^:]+):(.+)/::warning file={\\1},line={\\2},col={\\3}::{\\4}/g\""
     - name: Run polka-dots
       working-directory: ./src/polka-dots
       # DOTS_REPO is the root of the repo folder. This is $HOME by default.

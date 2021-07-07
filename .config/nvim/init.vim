@@ -36,7 +36,6 @@ call plug#begin('~/.vim/plugged')
 
 	let g:vimspector_enable_mappings = 'HUMAN'
 	Plug 'puremourning/vimspector'
-	"packadd! vimspector
 	
 	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'ryanoasis/vim-devicons'
@@ -67,14 +66,18 @@ call plug#end()
 " Add a neovim runtimepath to vim and windows
 " nvimify called at the end
 if has('win32')
-	let &runtimepath.=',~/dotfiles-linux/.config/nvim'
+	let g:stdpath_config = '~/dotfiles-linux/.config/nvim'
 else
-	if !has('nvim')
-		let &runtimepath.=',~/.config/nvim'
-	endif
+	let g:stdpath_config = '~/.config/nvim'
 endif
 
+" Helper function to source files relative to config dir
+function s:RelativeSource(relpath)
+	execute "source " . g:stdpath_config . a:relpath
+endfunction
+
 " Use Windows clipboard
+" TODO: separate default register and clipboard
 if has('nvim')
 	set clipboard=unnamedplus
 else
@@ -83,8 +86,8 @@ else
 	autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
 
 	function! Paste(mode)
-	    let @" = system('win32yank.exe -o --lf')
-	    return a:mode
+		let @" = system('win32yank.exe -o --lf')
+		return a:mode
 	endfunction
 
 	map <expr> p Paste('p')
@@ -92,51 +95,24 @@ else
 endif
 
 " Build c++ file
+" TODO: move this to a local vimrc
 map <leader>b :!g++ main.cpp -ggdb -fsanitize=address -fno-omit-frame-pointer -o main <enter>
 
-" Prohibit arrowkeys
-" in normal mode
-nnoremap <Left>  : echoe "Use h" <CR>
-nnoremap <Right> : echoe "Use l" <CR>
-nnoremap <Up>    : echoe "Use k" <CR>
-nnoremap <Down>  : echoe "Use j" <CR>
-" in insert mode
-inoremap <Left>  : echoe "Use h" <CR>
-inoremap <Right> : echoe "Use l" <CR>
-inoremap <Up>    : echoe "Use k" <CR>
-inoremap <Down>  : echoe "Use j" <CR>
-
-" Tmuxline config
-"let g:tmuxline_preset = 'powerline'
-"let g:tmuxline_preset = {
-"    \'a'    : '#{prefix_highlight}',
-"    \'b'    : '#W',
-"    \'c'    : '#H',
-"    \'win'  : '#I #W',
-"    \'cwin' : '#I #W',
-"    \'x'    : '%a',
-"    \'y'    : '#W %R',
-"    \'z'    : '#H'}
-"let g:airline#extensions#tmuxline#enabled = 0
-"let g:tmuxline_theme = 'powerline'
-
 " Global vim options
-runtime ./misc-qol.vim
+call s:RelativeSource("/misc-qol.vim")
 
 " Statusline Theming
-"runtime ./airline.vim
-"runtime ./onedark.vim
-runtime ./lightline.vim
+call s:RelativeSource("/lightline.vim")
 
 " Reload statusline
-function! g:LightlineReload()
+function g:LightlineReload()
 	call lightline#init()
 	call lightline#colorscheme()
 	call lightline#update()
 endfunction
 
 " Automatic theme changing
-function! SetDayNNite()
+function s:SetDayNNite()
 	let l:mode_config_filepath = expand("~/.config/day-n-nite/mode_config")
 	if !filereadable(l:mode_config_filepath)
 		set background=dark
@@ -153,7 +129,7 @@ function! SetDayNNite()
 
 	" Apply theme
 	"runtime ./use_theme_onehalf.vim
-	runtime ./use_theme_one.vim
+	call s:RelativeSource("/use_theme_one.vim")
 
 	call g:LightlineReload()
 endfunction
@@ -161,30 +137,30 @@ endfunction
 augroup daynnite
 	autocmd!
 	if has('nvim')
-		au Signal SIGUSR1 call SetDayNNite() | redraw! | normal! <c-L>
+		au Signal SIGUSR1 call s:SetDayNNite() | redraw! | normal! <c-L>
 	else
-		au SigUSR1 * call SetDayNNite() | redraw! | normal! <c-L>
+		au SigUSR1 * call s:SetDayNNite() | redraw! | normal! <c-L>
 	endif
 augroup END
 
 " Choose theme
-call SetDayNNite()
+call s:SetDayNNite()
 
 " Language-specific configs
-runtime ./languages.vim
+call s:RelativeSource("/languages.vim")
 
 " Rainbow config
-runtime ./rainbow.vim
+call s:RelativeSource("/rainbow.vim")
 
 " NERDTree config
-runtime ./nerdtree.vim
+call s:RelativeSource("/nerdtree.vim")
 
 " CHADTree config
 "nnoremap <silent><C-t> <cmd>CHADopen<CR>
 "let g:chadtree_settings = { "view": { "open_direction": "right" } }
 
 " coc config
-runtime ./coc-nvim.vim
+call s:RelativeSource("/coc-nvim.vim")
 " ale config
 "runtime ./ale.vim
 
@@ -240,5 +216,5 @@ endif
 
 " Nvimify vim
 if !has('nvim')
-	runtime ./nvimify.vim
+	call s:RelativeSource("/nvimify.vim")
 endif

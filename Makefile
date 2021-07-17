@@ -3,8 +3,8 @@
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-init: firstrun submods vim-plug python node rust go java ruby finish ## Bootstrap tools
-remove: firstrun-check submods-remove python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun ## Uninstall tools
+init: firstrun vim-plug python node rust go java ruby finish ## Bootstrap tools
+remove: firstrun-check python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun ## Uninstall tools
 
 firstrun: # Check that this home was not bootstrapped
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }

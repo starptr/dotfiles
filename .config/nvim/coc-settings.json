@@ -27,7 +27,8 @@
 		"json",
 		"javascriptreact",
 		"typescript.tsx",
-		"cpp"
+		"cpp",
+		"svelte"
 	],
 	//"diagnostic.displayByAle": true,
 	"diagnostic.virtualText": true,

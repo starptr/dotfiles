@@ -1,10 +1,25 @@
 #!/bin/bash
 
+echo "Starting dotfiles bootstrapper!"
+
+if [ -n "$SCRIPT" ]; then
+	echo "SCRIPT is set."
+fi
+
+function sudo_branch() {
+	if [ -n "$SCRIPT" ]; then
+		sudo -kS "$@"
+	else
+		sudo "$@"
+	fi
+}
+
 read -p "Install dependencies? [y/N] "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	sudo apt update
-	sudo apt -y install zsh
-	sudo apt -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tmux
+	echo "Installing dependencies"
+	sudo_branch apt update
+	sudo_branch apt -y install zsh
+	sudo_branch apt -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tmux
 fi
 
 echo "Changing shell to zsh..."

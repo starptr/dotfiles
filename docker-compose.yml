@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  dots:
+    build: .
+    tty: true
+    volumes:
+      - "${POLKA_DOTS_BIN}:/home/hamu/bin/polka-dots:ro"

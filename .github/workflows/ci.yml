@@ -1,0 +1,27 @@
+name: CI Tests
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  main:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: Enforce unix style newlines
+      run: "git grep -Il $'\\r' | sed -r \"s/^.+$/::error file=\\0::\\0/g\""
+    - name: Check no TODO comments (warning only)
+      run: "git grep -n --column TODO: | sed -r \"s/([^:]+):([^:]+):([^:]+):(.+)/::warning file=\\1,line=\\2,col=\\3::\\0/g\""
+    - name: Run polka-dots
+      working-directory: ./src/polka-dots
+      # DOTS_REPO is the root of the repo folder. This is $HOME by default.
+      # DOTS_REPO_GIT_RELATIVE is the path to the .git folder relative to DOTS_REPO. This is ./.local/share/yadm/repo.git by default.
+      run: DOTS_REPO=$GITHUB_WORKSPACE DOTS_REPO_GIT_RELATIVE="./.git" cargo run -- deploy

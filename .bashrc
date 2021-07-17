@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# mod
+
 # Force zsh shell for environments that do not support changing shells
 # `touch ~/.force_zsh` to force
 if [ -e ~/.force_zsh ]; then
@@ -121,10 +123,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-[ -s "/home/yuto/.jabba/jabba.sh" ] && source "/home/yuto/.jabba/jabba.sh"
-
-# added by travis gem
-[ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh

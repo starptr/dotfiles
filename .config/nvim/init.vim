@@ -66,17 +66,9 @@ call plug#begin('~/.vim/plugged')
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" Add a neovim runtimepath to vim and windows
-" nvimify called at the end
-if has('win32')
-	let g:stdpath_config = '~/dotfiles-linux/.config/nvim'
-else
-	let g:stdpath_config = '~/.config/nvim'
-endif
-
 " Helper function to source files relative to config dir
 function s:RelativeSource(relpath)
-	execute "source " . g:stdpath_config . a:relpath
+	execute "source " . stdpath('config') . a:relpath
 endfunction
 
 " Use Windows clipboard

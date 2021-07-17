@@ -31,6 +31,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'jiangmiao/auto-pairs'
 	"Plug 'rstacruz/vim-closer'
+	Plug 'habamax/vim-godot'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
 	Plug 'puremourning/vimspector'

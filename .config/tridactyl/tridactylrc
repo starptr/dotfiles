@@ -7,3 +7,5 @@ bind x tabclose
 bind X undo
 bind d scrollline 35
 bind u scrollline -35
+
+set smoothscroll true

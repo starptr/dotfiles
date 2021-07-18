@@ -15,6 +15,11 @@
 			}
 		}
 		*/
+		"godot": {
+			"host": "127.0.0.1",
+			"filetypes": ["gdscript"],
+			"port": 6008
+		}
 	},
 	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
 	"python.jediEnabled": false,

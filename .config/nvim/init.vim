@@ -29,6 +29,8 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'sheerun/vim-polyglot'
 	"Plug 'leafOfTree/vim-svelte-plugin'
 	
+	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+	
 	"Plug 'leafgarland/typescript-vim'
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
@@ -108,6 +110,11 @@ function g:LightlineReload()
 	call lightline#update()
 endfunction
 
+" Central function to set colorscheme
+function g:ResetColorscheme()
+	call s:RelativeSource("/use_theme_onehalf.vim")
+endfunction
+
 " Automatic theme changing
 function s:SetDayNNite()
 	let l:mode_config_filepath = expand("~/.config/day-n-nite/mode_config")
@@ -125,7 +132,7 @@ function s:SetDayNNite()
 	endif
 
 	" Apply theme
-	call s:RelativeSource("/use_theme_onehalf.vim")
+	call g:ResetColorscheme()
 
 	call g:LightlineReload()
 endfunction
@@ -144,6 +151,9 @@ call s:SetDayNNite()
 
 " Language-specific configs
 call s:RelativeSource("/languages.vim")
+
+" Goyo config
+call s:RelativeSource("/goyo.vim")
 
 " Rainbow config
 "call s:RelativeSource("/rainbow.vim")

@@ -68,7 +68,11 @@ call plug#end()
 
 " Helper function to source files relative to config dir
 function s:RelativeSource(relpath)
-	execute "source " . stdpath('config') . a:relpath
+	if has('nvim')
+		execute "source " . stdpath('config') . a:relpath
+	else
+		execute "source ~/.config/nvim" . a:relpath
+	endif
 endfunction
 
 " Use Windows clipboard

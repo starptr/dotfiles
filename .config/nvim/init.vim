@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'mattn/vim-nyancat'
 
 	" Declare the list of plugins.
-	Plug 'tpope/vim-sensible'
+	"Plug 'tpope/vim-sensible'
 	"Plug 'junegunn/seoul256.vim'
 	Plug 'christoomey/vim-tmux-navigator'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -21,46 +21,44 @@ call plug#begin('~/.vim/plugged')
 	" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
-	if has('nvim')
-		"Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-		"Plug 'nvim-treesitter/playground'
-	endif
+	"if has('nvim')
+	"	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+	"	Plug 'nvim-treesitter/playground'
+	"endif
 
 	"Plug 'sheerun/vim-polyglot'
-	Plug 'leafOfTree/vim-svelte-plugin'
+	"Plug 'leafOfTree/vim-svelte-plugin'
 	
-	Plug 'leafgarland/typescript-vim'
-	Plug 'bfrg/vim-cpp-modern'
+	"Plug 'leafgarland/typescript-vim'
+	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
-	Plug 'jiangmiao/auto-pairs'
+	"Plug 'jiangmiao/auto-pairs'
 	"Plug 'rstacruz/vim-closer'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
+	"Plug 'puremourning/vimspector', { 'on': ['<Plug>VimspectorContinue', '<Plug>VimspectorToggleBreakpoint'] }
 	Plug 'puremourning/vimspector'
 	
 	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	"Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps', 'on': 'CHADopen'}
+	"
 	"Plug 'francoiscabrol/ranger.vim'
-	if has('nvim')
-		Plug 'rbgrouleff/bclose.vim'
-	endif
-	"Plug 'vim-airline/vim-airline'
-	"Plug 'vim-airline/vim-airline-themes'
+	"if has('nvim')
+	"	Plug 'rbgrouleff/bclose.vim'
+	"endif
+
 	Plug 'itchyny/lightline.vim'
 	"Plug 'voldikss/vim-floaterm'
 
-	Plug 'rakr/vim-one'
-	Plug 'joshdick/onedark.vim'
-	Plug 'tomasiser/vim-code-dark'
-	Plug 'sonph/onehalf', {'rtp': 'vim'}
+	"Plug 'joshdick/onedark.vim'
+	Plug 'sonph/onehalf', { 'rtp': 'vim' }
 	
-	Plug 'tmux-plugins/vim-tmux'
+	Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 	" Possibly lag culprit
 	""""""""Plug 'tpope/vim-fugitive'
-	"Plug 'edkolev/tmuxline.vim'
-	Plug 'luochen1990/rainbow'
+	"Plug 'luochen1990/rainbow'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -130,8 +128,7 @@ function s:SetDayNNite()
 	endif
 
 	" Apply theme
-	"runtime ./use_theme_onehalf.vim
-	call s:RelativeSource("/use_theme_one.vim")
+	call s:RelativeSource("/use_theme_onehalf.vim")
 
 	call g:LightlineReload()
 endfunction
@@ -152,7 +149,7 @@ call s:SetDayNNite()
 call s:RelativeSource("/languages.vim")
 
 " Rainbow config
-call s:RelativeSource("/rainbow.vim")
+"call s:RelativeSource("/rainbow.vim")
 
 " NERDTree config
 call s:RelativeSource("/nerdtree.vim")

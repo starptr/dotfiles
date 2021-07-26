@@ -15,6 +15,9 @@
 # Define vars
 export ZSH_CUSTOM="$HOME/.zsh_custom"
 
+# doom
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # n-install
 export N_PREFIX="$HOME/.n"; PATH="$N_PREFIX/bin:$PATH"
 

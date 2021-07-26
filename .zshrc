@@ -143,6 +143,14 @@ zinit light ogham/exa
 zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
 zinit light ranger/ranger
 
+# ripgrep
+zinit ice wait lucid from"gh-r" as"program" mv"ripgrep*/rg -> rg"
+zinit light BurntSushi/ripgrep
+
+# fd
+zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
+zinit light sharkdp/fd
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"

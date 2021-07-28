@@ -220,6 +220,14 @@ endif
 "	call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
 "augroup END
 
+" The Pile command instantly opens the thought pile
+function s:PileOpen()
+	cd ~/src/pile/
+	e main.md
+endfunction
+
+command Pile call s:PileOpen()
+
 " Nvimify vim
 if !has('nvim')
 	call s:RelativeSource("/nvimify.vim")

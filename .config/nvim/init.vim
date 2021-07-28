@@ -95,7 +95,7 @@ endif
 
 " Build c++ file
 " TODO: move this to a local vimrc
-map <leader>b :!g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main <enter>
+map <leader>b :!g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main.out <enter>
 
 " Global vim options
 call s:RelativeSource("/misc-qol.vim")

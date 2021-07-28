@@ -15,6 +15,9 @@
 # Define vars
 export ZSH_CUSTOM="$HOME/.zsh_custom"
 
+# doom
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # n-install
 export N_PREFIX="$HOME/.n"; PATH="$N_PREFIX/bin:$PATH"
 
@@ -142,6 +145,14 @@ zinit light ogham/exa
 # ranger
 zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
 zinit light ranger/ranger
+
+# ripgrep
+zinit ice wait lucid from"gh-r" as"program" mv"ripgrep*/rg -> rg"
+zinit light BurntSushi/ripgrep
+
+# fd
+zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
+zinit light sharkdp/fd
 
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"

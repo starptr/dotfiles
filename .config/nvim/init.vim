@@ -60,7 +60,7 @@ call plug#begin('~/.vim/plugged')
 	
 	Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 	" Possibly lag culprit
-	""""""""Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-fugitive'
 	"Plug 'luochen1990/rainbow'
 
 " List ends here. Plugins become visible to Vim after this call.

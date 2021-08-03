@@ -15,6 +15,9 @@
 # Define vars
 export ZSH_CUSTOM="$HOME/.zsh_custom"
 
+# doom
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # n-install
 export N_PREFIX="$HOME/.n"; PATH="$N_PREFIX/bin:$PATH"
 
@@ -97,9 +100,6 @@ zinit snippet PZT::modules/git
 # Custom aliases
 source $ZSH_CUSTOM/aliases.sh
 
-zinit ice wait lucid
-zinit load zdharma/fast-syntax-highlighting
-
 setopt promptsubst
 
 #PS1="READY >"
@@ -112,6 +112,18 @@ zinit snippet PZT::modules/prompt
 
 #zinit ice depth=1
 #zinit light romkatv/powerlevel10k
+
+zinit ice lucid atinit"zicompinit; zicdreplay"
+zinit light zdharma/fast-syntax-highlighting
+
+#function _history_substring_search_config() {
+#	# substring search keys
+#	bindkey '$terminfo[kcuu1]' history-substring-search-up
+#	bindkey '$terminfo[kcud1]' history-substring-search-down
+#}
+#
+#zinit ice wait lucid atload'_history_substring_search_config'
+#zinit light zsh-users/zsh-history-substring-search
 
 zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 zstyle ':prezto:module:python:virtualenv' initialize 'yes'
@@ -134,6 +146,14 @@ zinit light ogham/exa
 zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
 zinit light ranger/ranger
 
+# ripgrep
+zinit ice wait lucid from"gh-r" as"program" mv"ripgrep*/rg -> rg"
+zinit light BurntSushi/ripgrep
+
+# fd
+zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
+zinit light sharkdp/fd
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"
@@ -151,3 +171,4 @@ CURR_PROCESS_LIST=$(ps aux)
 if [[ "$(grep "[s]shd: [^\/]" <<< "$CURR_PROCESS_LIST")" && "$(grep "[w]ezterm cli proxy" <<< "$CURR_PROCESS_LIST")" ]]; then
 	source ~/bin/append-winpaths.sh
 fi
+

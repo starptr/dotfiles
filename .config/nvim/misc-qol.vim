@@ -66,3 +66,12 @@ set updatetime=100
 
 " using high speed connection (vim only)
 set ttyfast
+
+" use powershell instead of cmd on windows
+if has("win32")
+	set shell=powershell.exe
+	" Don't load profile for ex commands
+	set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+	set shellpipe=|
+	set shellredir=>
+endif

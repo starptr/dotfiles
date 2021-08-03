@@ -16,6 +16,10 @@ jobs:
       uses: actions/checkout@v2
       with:
         submodules: true
+    - name: Enforce unix style newlines
+      run: "git grep -Il $'\\r' | sed -r \"s/^.+$/::error file=\\0::\\0/g\""
+    - name: Check no TODO comments (warning only)
+      run: "git grep -n --column TODO: | sed -r \"s/([^:]+):([^:]+):([^:]+):(.+)/::warning file=\\1,line=\\2,col=\\3::\\0/g\""
     - name: Run polka-dots
       working-directory: ./src/polka-dots
       # DOTS_REPO is the root of the repo folder. This is $HOME by default.

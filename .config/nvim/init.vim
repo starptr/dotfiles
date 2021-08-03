@@ -29,11 +29,14 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'sheerun/vim-polyglot'
 	"Plug 'leafOfTree/vim-svelte-plugin'
 	
+	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+	
 	"Plug 'leafgarland/typescript-vim'
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
 	"Plug 'jiangmiao/auto-pairs'
 	"Plug 'rstacruz/vim-closer'
+	Plug 'habamax/vim-godot'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
 	"Plug 'puremourning/vimspector', { 'on': ['<Plug>VimspectorContinue', '<Plug>VimspectorToggleBreakpoint'] }
@@ -57,23 +60,19 @@ call plug#begin('~/.vim/plugged')
 	
 	Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 	" Possibly lag culprit
-	""""""""Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-fugitive'
 	"Plug 'luochen1990/rainbow'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" Add a neovim runtimepath to vim and windows
-" nvimify called at the end
-if has('win32')
-	let g:stdpath_config = '~/dotfiles-linux/.config/nvim'
-else
-	let g:stdpath_config = '~/.config/nvim'
-endif
-
 " Helper function to source files relative to config dir
 function s:RelativeSource(relpath)
-	execute "source " . g:stdpath_config . a:relpath
+	if has('nvim')
+		execute "source " . stdpath('config') . a:relpath
+	else
+		execute "source ~/.config/nvim" . a:relpath
+	endif
 endfunction
 
 " Use Windows clipboard
@@ -96,7 +95,7 @@ endif
 
 " Build c++ file
 " TODO: move this to a local vimrc
-map <leader>b :!g++ main.cpp -ggdb -fsanitize=address -fno-omit-frame-pointer -o main <enter>
+map <leader>b :!g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main.out <enter>
 
 " Global vim options
 call s:RelativeSource("/misc-qol.vim")
@@ -109,6 +108,11 @@ function g:LightlineReload()
 	"call lightline#init()
 	"call lightline#colorscheme()
 	"call lightline#update()
+endfunction
+
+" Central function to set colorscheme
+function g:ResetColorscheme()
+	call s:RelativeSource("/use_theme_onehalf.vim")
 endfunction
 
 " Automatic theme changing
@@ -128,7 +132,7 @@ function s:SetDayNNite()
 	endif
 
 	" Apply theme
-	call s:RelativeSource("/use_theme_onehalf.vim")
+	call g:ResetColorscheme()
 
 	call g:LightlineReload()
 endfunction
@@ -147,6 +151,9 @@ call s:SetDayNNite()
 
 " Language-specific configs
 call s:RelativeSource("/languages.vim")
+
+" Goyo config
+call s:RelativeSource("/goyo.vim")
 
 " Rainbow config
 "call s:RelativeSource("/rainbow.vim")
@@ -212,6 +219,14 @@ endif
 "	call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
 "	call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
 "augroup END
+
+" The Pile command instantly opens the thought pile
+function s:PileOpen()
+	cd ~/src/pile/
+	e main.md
+endfunction
+
+command Pile call s:PileOpen()
 
 " Nvimify vim
 if !has('nvim')

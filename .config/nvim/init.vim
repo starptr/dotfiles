@@ -23,10 +23,14 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'jiangmiao/auto-pairs'
+	Plug 'kylelaker/riscv.vim'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
 	Plug 'puremourning/vimspector'
 	"packadd! vimspector
+	if has('nvim')
+		Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+	endif
 	
 	Plug 'preservim/nerdtree'
 	Plug 'ryanoasis/vim-devicons'

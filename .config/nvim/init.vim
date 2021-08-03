@@ -49,7 +49,7 @@ call plug#begin('~/.vim/plugged')
 	"	Plug 'rbgrouleff/bclose.vim'
 	"endif
 
-	Plug 'itchyny/lightline.vim'
+	"""Plug 'itchyny/lightline.vim'
 	"Plug 'voldikss/vim-floaterm'
 
 	"Plug 'joshdick/onedark.vim'
@@ -102,13 +102,13 @@ map <leader>b :!g++ main.cpp -ggdb -fsanitize=address -fno-omit-frame-pointer -o
 call s:RelativeSource("/misc-qol.vim")
 
 " Statusline Theming
-call s:RelativeSource("/lightline.vim")
+"call s:RelativeSource("/lightline.vim")
 
 " Reload statusline
 function g:LightlineReload()
-	call lightline#init()
-	call lightline#colorscheme()
-	call lightline#update()
+	"call lightline#init()
+	"call lightline#colorscheme()
+	"call lightline#update()
 endfunction
 
 " Automatic theme changing

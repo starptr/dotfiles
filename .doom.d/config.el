@@ -19,7 +19,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 14 :weight 'normal)
+(setq doom-font (font-spec :family "monospace" :size 16 :weight 'normal)
       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -73,3 +73,6 @@
 
 ; Set ddskk as alternate
 (setq default-input-method 'japanese-skk)
+
+; Location of projects
+(setq projectile-project-search-path '("~/src" "~/Documents/GitHub"))

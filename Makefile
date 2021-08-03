@@ -1,47 +1,50 @@
-.PHONY: init
+.PHONY: help init
 
-init: firstrun submods python node rust go java ruby vim-plug finish
-remove: firstrun-check submods-remove python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun
+help: ## This help
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-firstrun:
+init: firstrun vim-plug python node rust go java ruby finish ## Bootstrap tools
+remove: firstrun-check python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun ## Uninstall tools
+
+firstrun: # Check that this home was not bootstrapped
 	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
 	@touch ${HOME}/.bootstrapped
 	@echo "This file tells Makefile that this home is already bootstrapped. Only delete if you know what you're doing!" > $$HOME/.bootstrapped
 	@echo "First time bootstrapping!"
 	@echo
 
-firstrun-check:
+firstrun-check: # Check that this home was bootstrapped
 	@(test -s ${HOME}/.bootstrapped) || { echo "You haven't bootstrapped! Exiting..."; exit 1; }
 	@(test -s ${HOME}/.bootstrap-remove) || { echo "The file .bootstrap-remove isnt in the home directory. touch this file and enter data to continue with removal. Exiting..."; exit 1; }
 	@rm -f ${HOME}/.bootstrap-remove
 	@echo "You have bootstrapped. Continuing removal..."
 	@echo
 
-lastrun:
+lastrun: # Mark this home as bootstrapped
 	@echo "Resetting bootstrapped state to new..."
 	rm -f ${HOME}/.bootstrapped
 	@echo "Bootstrap state clean!"
 	@echo
 
-submods:
+submods: ## Clone submodules recursively
 	@echo "Cloning submodules..."
 	yadm submodule update --recursive --init
 	@echo "Submodules cloned."
 	@echo
 
-submods-update:
+submods-update: ## Update submodules recursively
 	@echo "Updating submodules..."
 	yadm submodule update --recursive --remote
 	@echo "Submodules update."
 	@echo
 
-submods-remove:
+submods-remove: ## Remove local submodule heads
 	@echo "Warning! All local submodule changes will be lost."
 	yadm submodule foreach --recursive git reset --hard
 	@echo "Submodule heads are reset."
 	@echo
 
-python:
+python: ## Installs pyenv.
 	@echo "Installing pyenv..."
 	curl https://pyenv.run | bash
 	@echo "pyenv installed."
@@ -53,10 +56,9 @@ python-remove:
 	@echo "pyenv and python removed."
 	@echo
 
-node:
+node: ## Installs n-install.
 	@echo "Installing n-install and NodeJS LTS..."
-	curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts
-	@echo "n-install and NodeJS LTS installed."
+	{ curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts; } || { mkdir ~/src; git clone https://github.com/tj/n.git ${HOME}/src/n; cd ${HOME}/src/n; PREFIX=${HOME}/.n make install; (n lts); }
 	@echo "Installing yarn..."
 	npm i --global yarn
 	@echo
@@ -105,7 +107,7 @@ java-remove:
 
 ruby:
 	@echo "Installing ruby-build plugin..."
-	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
+	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | bash
 	@echo "ruby-build installed."
 	@echo
 

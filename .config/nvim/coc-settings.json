@@ -15,24 +15,37 @@
 			}
 		}
 		*/
+		"godot": {
+			"host": "127.0.0.1",
+			"filetypes": ["gdscript"],
+			"port": 6008
+		}
 	},
 	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
 	"python.jediEnabled": false,
 	"latex.build.onSave": true,
 	"latex.build.args": ["-pdf", "-interaction=nonstopmode", "-synctex=1"],
-	"coc.preferences.formatOnSaveFiletypes": [
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"json",
-		"javascriptreact",
-		"typescript.tsx",
-		"cpp"
-	],
+	//"coc.preferences.formatOnSaveFiletypes": [
+	//	"javascript",
+	//	"typescript",
+	//	"typescriptreact",
+	//	"json",
+	//	"javascriptreact",
+	//	"typescript.tsx",
+	//	"cpp",
+	//	"svelte"
+	//],
+	//"diagnostic.displayByAle": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",
 	"diagnostic.infoSign": "",
-	"clangd.path": "/home/yuto/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
+	"diagnostic-languageserver.filetypes": {
+		"sh": "shellcheck",
+		"bash": "shellcheck",
+		"dash": "shellcheck",
+		"ksh": "shellcheck"
+	},
+	"clangd.path": "/home/yuto/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
 }

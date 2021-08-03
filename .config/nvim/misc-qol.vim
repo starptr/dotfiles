@@ -1,5 +1,14 @@
 " Miscellaneous global and common vim options
 
+" Disable K, a slow & blocking keybind
+map <S-k> <Nop>
+
+" GVim font
+set guifont=UbuntuMono\ NF,MS\ PGothic:h18
+
+" Mouse events
+set mouse=a
+
 " Hide buffers on switch
 set hidden
 
@@ -33,7 +42,7 @@ set breakindentopt=shift:2
 set diffopt+=vertical
 
 " Enable syntax
-"syntax enable
+syntax enable
 
 " Show line numbers and symbols
 set signcolumn=yes
@@ -49,8 +58,20 @@ set smartcase
 set t_Co=256
 
 " Show whitespace chars
-set listchars=eol:¬,tab:⎸\ ,trail:!
+set listchars=tab:⎸\ ,lead:·,trail:!
 set list
 
 " updatetime
-set updatetime=750
+set updatetime=100
+
+" using high speed connection (vim only)
+set ttyfast
+
+" use powershell instead of cmd on windows
+if has("win32")
+	set shell=powershell.exe
+	" Don't load profile for ex commands
+	set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+	set shellpipe=|
+	set shellredir=>
+endif

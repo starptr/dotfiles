@@ -3,9 +3,10 @@ set nocompatible
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
+	"Plug 'mattn/vim-nyancat'
 
 	" Declare the list of plugins.
-	Plug 'tpope/vim-sensible'
+	"Plug 'tpope/vim-sensible'
 	"Plug 'junegunn/seoul256.vim'
 	Plug 'christoomey/vim-tmux-navigator'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -13,48 +14,69 @@ call plug#begin('~/.vim/plugged')
 	"	\ 'branch': 'next',
 	"	\ 'do': 'bash install.sh',
 	"	\ }
+	"Plug 'dense-analysis/ale'
 
-	Plug 'MarcWeber/vim-addon-local-vimrc'
+	" check this one again
+	""""""Plug 'MarcWeber/vim-addon-local-vimrc'
 	" Plug 'embear/vim-localvimrc'
 
 	" Language-specific support
-	Plug 'sheerun/vim-polyglot'
+	"if has('nvim')
+	"	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+	"	Plug 'nvim-treesitter/playground'
+	"endif
+
+	"Plug 'sheerun/vim-polyglot'
+	"Plug 'leafOfTree/vim-svelte-plugin'
+	
+	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+	
 	"Plug 'leafgarland/typescript-vim'
 	"Plug 'bfrg/vim-cpp-modern'
 	"Plug 'octol/vim-cpp-enhanced-highlight'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'kylelaker/riscv.vim'
+	"Plug 'jiangmiao/auto-pairs'
+	"Plug 'rstacruz/vim-closer'
+	Plug 'habamax/vim-godot'
 
 	let g:vimspector_enable_mappings = 'HUMAN'
+	"Plug 'puremourning/vimspector', { 'on': ['<Plug>VimspectorContinue', '<Plug>VimspectorToggleBreakpoint'] }
 	Plug 'puremourning/vimspector'
-	"packadd! vimspector
-	if has('nvim')
-		Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-	endif
 	
-	Plug 'preservim/nerdtree'
+	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'ryanoasis/vim-devicons'
-	"Plug 'vim-airline/vim-airline'
-	"Plug 'vim-airline/vim-airline-themes'
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	"Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps', 'on': 'CHADopen'}
+	"
+	"Plug 'francoiscabrol/ranger.vim'
+	"if has('nvim')
+	"	Plug 'rbgrouleff/bclose.vim'
+	"endif
+
 	Plug 'itchyny/lightline.vim'
-	Plug 'joshdick/onedark.vim'
-	Plug 'rakr/vim-one'
-	Plug 'tomasiser/vim-code-dark'
-	Plug 'tmux-plugins/vim-tmux'
+	"Plug 'voldikss/vim-floaterm'
+
+	"Plug 'joshdick/onedark.vim'
+	Plug 'sonph/onehalf', { 'rtp': 'vim' }
+	
+	Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
+	" Possibly lag culprit
 	Plug 'tpope/vim-fugitive'
-	"Plug 'edkolev/tmuxline.vim'
-	Plug 'luochen1990/rainbow'
+	"Plug 'luochen1990/rainbow'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" Add a neovim runtimepath to vim
-" nvimify called at the end
-if !has('nvim')
-	let &runtimepath.=',/home/yuto/.config/nvim'
-endif
+" Helper function to source files relative to config dir
+function s:RelativeSource(relpath)
+	if has('nvim')
+		execute "source " . stdpath('config') . a:relpath
+	else
+		execute "source ~/.config/nvim" . a:relpath
+	endif
+endfunction
 
 " Use Windows clipboard
+" TODO: separate default register and clipboard
 if has('nvim')
 	set clipboard=unnamedplus
 else
@@ -63,8 +85,8 @@ else
 	autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
 
 	function! Paste(mode)
-	    let @" = system('win32yank.exe -o --lf')
-	    return a:mode
+		let @" = system('win32yank.exe -o --lf')
+		return a:mode
 	endfunction
 
 	map <expr> p Paste('p')
@@ -72,62 +94,141 @@ else
 endif
 
 " Build c++ file
-map <leader>b :!g++ main.cpp -ggdb -fsanitize=address -fno-omit-frame-pointer -o main <enter>
-
-" Prohibit arrowkeys
-" in normal mode
-nnoremap <Left>  : echoe "Use h" <CR>
-nnoremap <Right> : echoe "Use l" <CR>
-nnoremap <Up>    : echoe "Use k" <CR>
-nnoremap <Down>  : echoe "Use j" <CR>
-" in insert mode
-inoremap <Left>  : echoe "Use h" <CR>
-inoremap <Right> : echoe "Use l" <CR>
-inoremap <Up>    : echoe "Use k" <CR>
-inoremap <Down>  : echoe "Use j" <CR>
-
-" Tmuxline config
-"let g:tmuxline_preset = 'powerline'
-"let g:tmuxline_preset = {
-"    \'a'    : '#{prefix_highlight}',
-"    \'b'    : '#W',
-"    \'c'    : '#H',
-"    \'win'  : '#I #W',
-"    \'cwin' : '#I #W',
-"    \'x'    : '%a',
-"    \'y'    : '#W %R',
-"    \'z'    : '#H'}
-"let g:airline#extensions#tmuxline#enabled = 0
-"let g:tmuxline_theme = 'powerline'
+" TODO: move this to a local vimrc
+map <leader>b :!g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main.out <enter>
 
 " Global vim options
-runtime ./misc-qol.vim
+call s:RelativeSource("/misc-qol.vim")
 
-" Theming
-"runtime ./airline.vim
-"runtime ./onedark.vim
-runtime ./one.vim
-runtime ./lightline.vim
-" Theme-related vim options
-syntax enable
-colorscheme one
-set background=dark
-" Override theming options
-runtime ./one_overrides.vim
+" Statusline Theming
+call s:RelativeSource("/lightline.vim")
+
+" Reload statusline
+function g:LightlineReload()
+	call lightline#init()
+	call lightline#colorscheme()
+	call lightline#update()
+endfunction
+
+" Central function to set colorscheme
+function g:ResetColorscheme()
+	call s:RelativeSource("/use_theme_onehalf.vim")
+endfunction
+
+" Automatic theme changing
+function s:SetDayNNite()
+	let l:mode_config_filepath = expand("~/.config/day-n-nite/mode_config")
+	if !filereadable(l:mode_config_filepath)
+		set background=dark
+	else
+		let l:mode = readfile(l:mode_config_filepath)[0]
+
+		"if &background ==# "light"
+		if l:mode ==# "Night"
+			set background=dark
+		else
+			set background=light
+		endif
+	endif
+
+	" Apply theme
+	call g:ResetColorscheme()
+
+	call g:LightlineReload()
+endfunction
+
+augroup daynnite
+	autocmd!
+	if has('nvim')
+		au Signal SIGUSR1 call s:SetDayNNite() | redraw! | normal! <c-L>
+	else
+		au SigUSR1 * call s:SetDayNNite() | redraw! | normal! <c-L>
+	endif
+augroup END
+
+" Choose theme
+call s:SetDayNNite()
 
 " Language-specific configs
-runtime ./languages.vim
+call s:RelativeSource("/languages.vim")
+
+" Goyo config
+call s:RelativeSource("/goyo.vim")
 
 " Rainbow config
-runtime ./rainbow.vim
+"call s:RelativeSource("/rainbow.vim")
 
 " NERDTree config
-runtime ./nerdtree.vim
+call s:RelativeSource("/nerdtree.vim")
+
+" CHADTree config
+"nnoremap <silent><C-t> <cmd>CHADopen<CR>
+"let g:chadtree_settings = { "view": { "open_direction": "right" } }
 
 " coc config
-runtime ./coc-nvim.vim
+call s:RelativeSource("/coc-nvim.vim")
+" ale config
+"runtime ./ale.vim
+
+
+if has('nvim')
+" nvim-treesitter config
+"lua << EOF
+"	require'nvim-treesitter.configs'.setup {
+"		ensure_installed = { "c", "cpp", "css", "svelte", "regex", "lua", "rust", "toml", "yaml", "typescript", "javascript", "scss", "json", "java", "html", "bash","python", "latex", "tsx", "graphql", "dockerfile" },
+"		highlight = {
+"			enable = true,
+"		},
+"		incremental_selection = {
+"			enable = true,
+"		},
+"		indent = {
+"			enable = true,
+"		},
+"	}
+"EOF
+endif
+
+" vim-devicons config
+if exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
+endif
+" NERDTrees File highlighting
+"function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"	exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"	exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+"endfunction
+"augroup my_nerdtree_devicons_color
+"	autocmd!
+"	call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+"	call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+"	call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+"	call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+"	call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+"	call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+"	call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+"	call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+"	call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+"	call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+"augroup END
+
+" The Pile command instantly opens the thought pile
+function s:PileOpen()
+	cd ~/src/pile/
+	e main.md
+endfunction
+
+command Pile call s:PileOpen()
 
 " Nvimify vim
 if !has('nvim')
-	runtime ./nvimify.vim
+	call s:RelativeSource("/nvimify.vim")
 endif

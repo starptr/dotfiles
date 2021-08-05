@@ -151,7 +151,7 @@ local doom = {
 	-- Tree explorer on the right
 	-- Places the Tree explorer buffer to the right when enabled
 	-- @default = false
-	explorer_right = false,
+	explorer_right = true,
 
 	-- Show hidden files
 	-- @default = true

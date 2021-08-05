@@ -49,8 +49,8 @@ local doom = {
 		--
 		-- 'html',        -- HTML support
 		'css',         -- CSS support
-		'javascript',  -- JavaScript support
-		'typescript',  -- TypeScript support
+		'javascript +lsp',  -- JavaScript support
+		'typescript +lsp',  -- TypeScript support
 		-- 'bash',        -- The terminal gods language
 		-- 'python +lsp', -- Python support + lsp
 		-- 'ruby',        -- Look ma, I love the gems!

@@ -341,7 +341,9 @@ local nvim = {
 	--   {
 	--      'echo "Hello, custom commands!"'
 	--   }
-	commands = {},
+	commands = {
+        'set colorcolumn&',
+	},
 
 	-- Set custom functions
 	-- @default = {}

@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
 	"endif
 
 	"Plug 'sheerun/vim-polyglot'
-	"Plug 'leafOfTree/vim-svelte-plugin'
+	Plug 'leafOfTree/vim-svelte-plugin'
 	
 	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 	

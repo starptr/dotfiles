@@ -304,7 +304,7 @@ schemes:
       white:      '#828997' # mono-2
 
 # Colors (Tomorrow Night)
-colors: *my_bright_dark
+colors: 〔*my_bright_dark〜*my_material〕
   # Default colors
   #primary:
   #  background: '#1d1f21'

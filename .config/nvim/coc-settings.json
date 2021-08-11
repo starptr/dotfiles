@@ -25,16 +25,16 @@
 	"python.jediEnabled": false,
 	"latex.build.onSave": true,
 	"latex.build.args": ["-pdf", "-interaction=nonstopmode", "-synctex=1"],
-	"coc.preferences.formatOnSaveFiletypes": [
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"json",
-		"javascriptreact",
-		"typescript.tsx",
-		"cpp",
-		"svelte"
-	],
+	//"coc.preferences.formatOnSaveFiletypes": [
+	//	"javascript",
+	//	"typescript",
+	//	"typescriptreact",
+	//	"json",
+	//	"javascriptreact",
+	//	"typescript.tsx",
+	//	"cpp",
+	//	"svelte"
+	//],
 	//"diagnostic.displayByAle": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": false,

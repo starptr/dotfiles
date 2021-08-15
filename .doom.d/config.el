@@ -53,23 +53,20 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+; Remove $HOME as project root
 (after! projectile (setq projectile-project-root-files-bottom-up (remove ".git" projectile-project-root-files-bottom-up)))
 
-(projectile-add-known-project "~/Documents/GitHub/ds")
-
 ; Remap s to evil
-(after! evil-snipe
-  (evil-snipe-mode -1))
-(define-key evil-motion-state-map "s" 'evil-substitute)
-(define-key evil-motion-state-map "S" 'evil-change-whole-line)
+(remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 
 ; No confirm on exit
 (setq confirm-kill-emacs nil)
 
-(map! "C-h" #'evil-window-left)
-(map! "C-j" #'evil-window-down)
-(map! "C-k" #'evil-window-up)
-(map! "C-l" #'evil-window-right)
+; Add ctrl-direction keybinds
+;(map! "C-h" #'evil-window-left)
+;(map! "C-j" #'evil-window-down)
+;(map! "C-k" #'evil-window-up)
+;(map! "C-l" #'evil-window-right)
 
 ; Set ddskk as alternate
 (setq default-input-method 'japanese-skk)

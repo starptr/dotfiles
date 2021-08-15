@@ -168,6 +168,10 @@ zinit light microsoft/Git-Credential-Manager-Core
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"
 #zinit light wez/wezterm
 
+# clangd
+zinit ice wait lucid from"gh-r" as"program" mv"clangd*/bin/clangd -> clangd"
+zinit light clangd/clangd
+
 # yadm completions
 zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_yadm" as"program"
 zinit light TheLocehiliosan/yadm

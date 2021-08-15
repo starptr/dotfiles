@@ -89,7 +89,7 @@ zinit snippet PZT::modules/history
 zinit snippet PZT::modules/directory
 zinit snippet PZT::modules/spectrum
 zinit snippet PZT::modules/utility
-#zinit snippet PZT::modules/ssh
+zinit snippet PZT::modules/ssh
 zinit snippet PZT::modules/completion
 #zinit snippet PZT::modules/ruby
 zinit ice silent

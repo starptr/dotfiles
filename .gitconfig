@@ -4,6 +4,7 @@
 [init]
 	defaultBranch = main
 [credential]
+	helper = store
 	helper = /home/yuto/.zinit/plugins/microsoft---Git-Credential-Manager-Core/git-credential-manager-core
 	credentialStore = gpg
 [credential "https://dev.azure.com"]

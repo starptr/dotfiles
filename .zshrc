@@ -154,6 +154,10 @@ zinit light BurntSushi/ripgrep
 zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
 zinit light sharkdp/fd
 
+# shellcheck
+zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellcheck"
+zinit light koalaman/shellcheck
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"

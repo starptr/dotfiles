@@ -158,6 +158,11 @@ zinit light sharkdp/fd
 zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellcheck"
 zinit light koalaman/shellcheck
 
+# Git Credential Manager Core
+
+zinit ice wait lucid from"gh-r" as"program" mv"gcmcore-linux*/git-credential-manager-core -> git-credential-manager-core"
+zinit light microsoft/Git-Credential-Manager-Core
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"
@@ -176,3 +181,5 @@ if [[ "$(grep "[s]shd: [^\/]" <<< "$CURR_PROCESS_LIST")" && "$(grep "[w]ezterm c
 	source ~/bin/append-winpaths.sh
 fi
 
+# gpg ssh
+export GPG_TTY="$(tty)"

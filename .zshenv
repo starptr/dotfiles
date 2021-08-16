@@ -14,7 +14,7 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 
 # WSL-only config
-if [[ -n "$IS_WSL" || -n "$WSL_DISTRO_NAME" ]]; then
+if [[ "$IS_WSL" = true || -n "$WSL_DISTRO_NAME" ]]; then
 	export IS_WSL=true
   # X-server support
   export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0

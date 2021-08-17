@@ -222,8 +222,17 @@ endif
 
 " The Pile command instantly opens the thought pile
 function s:PileOpen()
-	cd ~/src/pile/
-	e main.md
+	if isdirectory(expand("~/src/pile_gitted/pile/"))
+		echom "Detected gitted pile! This message should only appear on a single device participating in Pile."
+		cd ~/src/pile_gitted/pile/
+		edit main.md
+	elseif isdirectory(expand("~/src/pile/"))
+		echom "Pile workspace found!"
+		cd ~/src/pile/
+		edit main.md
+	else
+		echoerr "Pile not found! Make sure that a synced copy exists."
+	endif
 endfunction
 
 command Pile call s:PileOpen()

@@ -15,7 +15,7 @@ else
 	alias nve="neovide"
 fi
 
-alias emax='
-setxkbmap -layout us
-setsid emacs
-'
+emax() {
+	setxkbmap -layout us
+	setsid emacs "$@"
+}

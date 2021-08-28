@@ -29,9 +29,11 @@ set splitbelow
 set termguicolors
 
 " Tab size to 4
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set smarttab
 
 " Proper linebreak
 set linebreak
@@ -58,8 +60,8 @@ set smartcase
 set t_Co=256
 
 " Show whitespace chars
-set listchars=tab:⎸\ ,lead:·,trail:!
 set list
+set listchars=tab:⎸\ ,lead:·,trail:!
 
 " updatetime
 set updatetime=100

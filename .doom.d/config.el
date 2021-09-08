@@ -27,6 +27,7 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 (defun toggle-theme ()
+  (interactive)
   (if (eq (symbol-value 'doom-theme) 'doom-one)
       (load-theme 'doom-one-light t)
     (load-theme 'doom-one t)))

@@ -44,8 +44,9 @@ fi
 
 # Add texlive to path
 export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
-export MANPATH="/usr/local/texlive/2020/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2020/texmf-dist/doc/info:$INFOPATH"
+export PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 
 
 # Custom directory colors # Update: use zinit
@@ -159,7 +160,6 @@ zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellc
 zinit light koalaman/shellcheck
 
 # Git Credential Manager Core
-
 zinit ice wait lucid from"gh-r" as"program" mv"gcmcore-linux*/git-credential-manager-core -> git-credential-manager-core"
 zinit light microsoft/Git-Credential-Manager-Core
 

@@ -4,6 +4,6 @@
 [init]
 	defaultBranch = main
 [credential]
-	helper = store
+	helper = cache
 [credential "https://dev.azure.com"]
 	useHttpPath = true

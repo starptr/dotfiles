@@ -108,6 +108,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: UbuntuMono NF
+    #family: "InconsolataGo Nerd Font Mono"
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -172,6 +173,34 @@ font:
 
 #color scheme?
 schemes:
+  my_material: &my_material
+    primary:
+      background: '#ffffff'
+      foreground: '#000000'
+    cursor:
+      text:       CellBackground
+      cursor:     CellForeground
+    selection:
+      text:       CellForeground
+      background: '#909090'
+    normal:
+      black:      '#000000'
+      red:        '#b7141f'
+      green:      '#457b24'
+      yellow:     '#f6981e'
+      blue:       '#134eb2'
+      magenta:    '#560088'
+      cyan:       '#0e717c'
+      white:      '#ffffff'
+    bright:
+      black:      '#101010'
+      red:        '#e83b3f'
+      green:      '#7aba3a'
+      yellow:     '#ff9d25'
+      blue:       '#54a4f3'
+      magenta:    '#aa4dbc'
+      cyan:       '#26bbd1'
+      white:      '#efefef'
   my_default: &my_default
     primary:
       background: '#1d1f21'
@@ -275,7 +304,7 @@ schemes:
       white:      '#828997' # mono-2
 
 # Colors (Tomorrow Night)
-colors: *my_bright_dark
+colors: 〔*my_material〜*my_bright_dark〕
   # Default colors
   #primary:
   #  background: '#1d1f21'

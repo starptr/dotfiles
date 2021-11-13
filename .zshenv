@@ -14,16 +14,19 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 
 # WSL-only config
-if [[ -n "$IS_WSL" || -n "$WSL_DISTRO_NAME" ]]; then
+if [[ "$IS_WSL" = true || -n "$WSL_DISTRO_NAME" ]]; then
 	export IS_WSL=true
   # X-server support
-  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-  export LIBGL_ALWAYS_INDIRECT=1
-  sudo /etc/init.d/dbus start &> /dev/null
+  # legacy code due to wslg
+  #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+  #export LIBGL_ALWAYS_INDIRECT=1
+  #sudo /etc/init.d/dbus start &> /dev/null
 
   # GUI theme
-  export GDK_THEME=Greybird-dark
-  export QT_STYLE_OVERRIDE=Greybird-dark
+  #export GDK_THEME=Greybird-dark
+  #export QT_STYLE_OVERRIDE=Greybird-dark
 else
 	export IS_WSL=false
 fi
+
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig

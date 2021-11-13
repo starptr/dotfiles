@@ -44,8 +44,9 @@ fi
 
 # Add texlive to path
 export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
-export MANPATH="/usr/local/texlive/2020/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2020/texmf-dist/doc/info:$INFOPATH"
+export PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 
 
 # Custom directory colors # Update: use zinit
@@ -60,7 +61,7 @@ fi
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -72,11 +73,11 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node \
-	zinit-zsh/z-a-submods
+    zdharma-continuum/z-a-rust \
+    zdharma-continuum/z-a-as-monitor \
+    zdharma-continuum/z-a-patch-dl \
+    zdharma-continuum/z-a-bin-gem-node \
+    zdharma-continuum/z-a-submods
 
 ### End of Zinit's installer chunk
 
@@ -114,7 +115,7 @@ zinit snippet PZT::modules/prompt
 #zinit light romkatv/powerlevel10k
 
 zinit ice lucid atinit"zicompinit; zicdreplay"
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 #function _history_substring_search_config() {
 #	# substring search keys
@@ -133,6 +134,10 @@ zinit snippet PZT::modules/python
 # Neovim
 zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
 zinit light neovim/neovim
+
+# Kitty term
+#zinit ice wait lucid from"gh-r" ver"latest" as"program" mv"bin/kitty -> kitty"
+#zinit light kovidgoyal/kitty
 
 # lsd
 zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-*-gnu*" mv"*-x86_64-*/lsd -> lsd" mv"*-x86_64-*/lsd.exe -> lsd"
@@ -154,10 +159,22 @@ zinit light BurntSushi/ripgrep
 zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
 zinit light sharkdp/fd
 
+# shellcheck
+zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellcheck"
+zinit light koalaman/shellcheck
+
+# Git Credential Manager Core
+zinit ice wait lucid from"gh-r" as"program" mv"gcmcore-linux*/git-credential-manager-core -> git-credential-manager-core"
+zinit light microsoft/Git-Credential-Manager-Core
+
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm -> wezterm"
 #zinit light wez/wezterm
+
+# clangd
+zinit ice wait lucid from"gh-r" as"program" mv"clangd*/bin/clangd -> clangd"
+zinit light clangd/clangd
 
 # yadm completions
 zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_yadm" as"program"
@@ -172,3 +189,5 @@ if [[ "$(grep "[s]shd: [^\/]" <<< "$CURR_PROCESS_LIST")" && "$(grep "[w]ezterm c
 	source ~/bin/append-winpaths.sh
 fi
 
+# gpg ssh
+export GPG_TTY="$(tty)"

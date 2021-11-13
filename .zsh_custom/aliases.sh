@@ -17,7 +17,9 @@ else
 	alias nve="neovide"
 fi
 
-alias emax='
-setxkbmap -layout us
-setsid emacs
-'
+emax() {
+	setxkbmap -layout us
+	setsid emacs "$@"
+}
+
+alias qcpp="g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main.out"

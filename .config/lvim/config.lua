@@ -51,18 +51,36 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 --   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 -- }
+lvim.builtin.which_key.mappings["w"] = {
+  name = "+Window",
+  h = { "<C-w>h", "Go to the left window" },
+  j = { "<C-w>j", "Go to the down window" },
+  k = { "<C-w>k", "Go to the up window" },
+  l = { "<C-w>l", "Go to the right window" },
+  -- ["\""] = { "<cmd>split<CR>", "Split window" },
+  -- ["%"] = { "<cmd>vsplit<CR>", "Split window vertically" },
+}
+
+lvim.builtin.which_key.mappings["dv"] = { "<cmd>lua require 'dapui'.toggle()<cr>", "Toggle Sidebar" }
+
+-- Remove maps set by lvim
+lvim.keys.insert_mode["jj"] = nil
+lvim.keys.insert_mode["jk"] = nil
+lvim.keys.insert_mode["kj"] = nil
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.dap.active = true
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "cpp",
   "javascript",
   "json",
   "lua",
@@ -80,13 +98,17 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = false
 
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
--- vim.list_extend(lvim.lsp.override, { "pyright" })
+vim.list_extend(lvim.lsp.override, { "pyright" })
+
+-- Configure Lsp server setup script location
+-- lvim.lsp.templates_dir = join_paths(get_runtime_dir(), "after", "ftplugin")
 
 -- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
+-- should be used in ftplugin file
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pylsp", opts)
 
@@ -99,10 +121,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   --Enable completion triggered by <c-x><c-o>
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
+
 -- you can overwrite the null_ls setup table (useful for setting the root_dir function)
 -- lvim.lsp.null_ls.setup = {
 --   root_dir = require("lspconfig").util.root_pattern("Makefile", ".git", "node_modules"),
 -- }
+
 -- or if you need something more advanced
 -- lvim.lsp.null_ls.setup.root_dir = function(fname)
 --   if vim.bo.filetype == "javascript" then
@@ -148,15 +172,46 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- }
 
 -- Additional Plugins
--- lvim.plugins = {
---     {"folke/tokyonight.nvim"},
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
+lvim.plugins = {
+    -- {"folke/tokyonight.nvim"},
+    -- {
+    --   "folke/trouble.nvim",
+    --   cmd = "TroubleToggle",
+    -- },
+  { "rcarriga/nvim-dap-ui" }
+}
+
+require('dapui').setup()
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- }
+
+-- FIXME: use ftplugin file
+
+-- local dap_install = require "dap-install"
+-- local dbg_path = require("dap-install.config.settings").options["installation_path"] .. "ccppr_vsc_dbg/"
+-- dap_install.config("ccppr_vsc", {
+--   adapters = {
+--     type = "executable",
+--     command = dbg_path .. "extension/debugAdapters/OpenDebugAD7",
+--   },
+--   configurations = {
+--     {
+--       type = "cppdbg",
+--       request = "launch",
+--       name = "Quick cpp run",
+--       program = function()
+--         return vim.fn.input('Path to exe: ', vim.fn.getcwd() .. '/', 'file')
+--       end,
+--       stopOnEntry = true,
+--       setupCommands = {
+--         {
+--           description = "Enable pretty-printing",
+--           text = "-enable-pretty-printing",
+--         }
+--       }
+--     },
+--   }
+-- })

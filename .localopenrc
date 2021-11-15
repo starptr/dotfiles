@@ -1,0 +1,4 @@
+# Config for local-open
+# See https://github.com/suan/local-open for more info
+export LOCAL_OPEN_PORT=1999
+export LOCAL_OPEN_CMD=wslview

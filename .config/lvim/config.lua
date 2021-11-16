@@ -7,11 +7,30 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+vim.opt.showtabline = 1
+vim.opt.showmode = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 0
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "vscode"
+
+local function setDayNNite()
+  local mode_config_filepath = vim.env.HOME .. "/.config/day-n-nite/mode_config"
+  local fh = io.open(mode_config_filepath, "r")
+  if fh then
+    local mode = fh:read()
+    if mode == "Night" then
+      vim.g.vscode_style = "dark"
+    else
+      vim.g.vscode_style = "light"
+    end
+    fh:close()
+  end
+end
+setDayNNite()
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -70,6 +89,7 @@ lvim.keys.insert_mode["kj"] = nil
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.lualine.options.theme = "vscode"
 lvim.builtin.dap.active = true
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
@@ -77,6 +97,7 @@ lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.show_icons.git = 0
 -- lvim.builtin.project.manual_mode = true
 lvim.builtin.project.exclude_dirs = { "~/src/contest/*" }
+lvim.builtin.bufferline.active = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -180,7 +201,8 @@ lvim.plugins = {
     --   "folke/trouble.nvim",
     --   cmd = "TroubleToggle",
     -- },
-  { "rcarriga/nvim-dap-ui" }
+  { "rcarriga/nvim-dap-ui" },
+  { "Mofiqul/vscode.nvim" },
 }
 
 require('dapui').setup()

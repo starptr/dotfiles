@@ -159,6 +159,10 @@ zinit light BurntSushi/ripgrep
 zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
 zinit light sharkdp/fd
 
+# lazygit
+zinit ice wait lucid from"gh-r" as"program"
+zinit light jesseduffield/lazygit
+
 # shellcheck
 zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellcheck"
 zinit light koalaman/shellcheck

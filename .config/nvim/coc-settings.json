@@ -1,0 +1,52 @@
+{
+	"languageserver": {
+		/*
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cc", "cpp", "cuda", "c++", "objc", "objcpp"],
+			"rootPatterns": [".ccls-root", ".ccls", "compile_commands.json", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
+				},
+				"client": {
+					"snippetSupport": true
+				}
+			}
+		}
+		*/
+		"godot": {
+			"host": "127.0.0.1",
+			"filetypes": ["gdscript"],
+			"port": 6008
+		}
+	},
+	"python.pythonPath": "/home/yuto/.pyenv/shims/python",
+	"python.jediEnabled": false,
+	"texlab.build.onSave": true,
+	"texlab.build.args": ["-pdf", "-interaction=nonstopmode", "-synctex=1"],
+	//"coc.preferences.formatOnSaveFiletypes": [
+	//	"javascript",
+	//	"typescript",
+	//	"typescriptreact",
+	//	"json",
+	//	"javascriptreact",
+	//	"typescript.tsx",
+	//	"cpp",
+	//	"svelte"
+	//],
+	//"diagnostic.displayByAle": true,
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.errorSign": "",
+	"diagnostic.warningSign": "",
+	"diagnostic.infoSign": "",
+	"diagnostic-languageserver.filetypes": {
+		"sh": "shellcheck",
+		"bash": "shellcheck",
+		"dash": "shellcheck",
+		"ksh": "shellcheck"
+	},
+	"clangd.fallbackFlags": ["-std=c++17"],
+	"clangd.path": "/home/yuto/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd"
+}

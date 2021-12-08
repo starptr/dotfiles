@@ -1,0 +1,79 @@
+" Miscellaneous global and common vim options
+
+" Disable K, a slow & blocking keybind
+map <S-k> <Nop>
+
+" GVim font
+set guifont=UbuntuMono\ NF,MS\ PGothic:h18
+
+" Mouse events
+set mouse=a
+
+" Hide buffers on switch
+set hidden
+
+" More space for messages
+set cmdheight=2
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Show keystrokes
+set showcmd
+
+" Open splits naturally
+set splitright
+set splitbelow
+
+" Enable truecolors
+set termguicolors
+
+" Tab size to 4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set smarttab
+
+" Proper linebreak
+set linebreak
+set breakindent
+set breakindentopt=shift:2
+
+" Open Gdiff with vsplits
+set diffopt+=vertical
+
+" Enable syntax
+syntax enable
+
+" Show line numbers and symbols
+set signcolumn=yes
+
+" Line numbers, relative
+set number
+set relativenumber
+
+" Search case
+set smartcase
+
+" Use 256 colors
+set t_Co=256
+
+" Show whitespace chars
+set list
+set listchars=tab:⎸\ ,lead:·,trail:!
+
+" updatetime
+set updatetime=100
+
+" using high speed connection (vim only)
+set ttyfast
+
+" use powershell instead of cmd on windows
+if has("win32")
+	set shell=powershell.exe
+	" Don't load profile for ex commands
+	set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+	set shellpipe=|
+	set shellredir=>
+endif

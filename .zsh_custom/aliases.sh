@@ -8,8 +8,6 @@ alias ea="exa -la"
 alias d="lsd -A"
 alias da="lsd -al"
 
-alias nvim=lvim
-
 alias svim="vim -u NONE"
 if $IS_WSL; then
 	alias nve="neovide.exe --wsl --disowned"

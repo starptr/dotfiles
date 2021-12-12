@@ -69,16 +69,16 @@ dap_install.config("codelldb", {
   --     end
   --   end)
   -- end,
-  -- configurations = {
-  --   {
-  --     type = "codelldb",
-  --     request = "launch",
-  --     name = "Quick rust run (codelldb)",
-  --     program = function()
-  --       return vim.fn.input('Path to build (w. symbols): ', vim.fn.getcwd() .. '/target/debug/', 'file')
-  --     end,
-  --     cwd = "${workspaceFolder}",
-  --     stopOnEntry = false,
-  --   },
-  -- }
+  configurations = {
+    {
+      type = "codelldb",
+      request = "launch",
+      name = "Quick rust run (codelldb)",
+      program = function()
+        return vim.fn.input('Path to build (w. symbols): ', vim.fn.getcwd() .. '/target/debug/', 'file')
+      end,
+      cwd = "${workspaceFolder}",
+      stopOnEntry = false,
+    },
+  }
 })

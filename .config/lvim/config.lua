@@ -36,6 +36,8 @@ setDayNNite()
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+-- disable wrapped movement
+lvim.line_wrap_cursor_movement = false
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = ""
 -- edit a default keymapping
@@ -79,8 +81,6 @@ lvim.builtin.which_key.mappings["w"] = {
   -- ["\""] = { "<cmd>split<CR>", "Split window" },
   -- ["%"] = { "<cmd>vsplit<CR>", "Split window vertically" },
 }
-
-lvim.builtin.which_key.mappings["dv"] = { "<cmd>lua require 'dapui'.toggle()<cr>", "Toggle Sidebar" }
 
 -- Remove maps set by lvim
 lvim.keys.insert_mode["jj"] = nil
@@ -126,7 +126,7 @@ lvim.lsp.automatic_servers_installation = true
 
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
-vim.list_extend(lvim.lsp.override, { "pyright" })
+-- vim.list_extend(lvim.lsp.override, { "pyright" })
 
 -- Configure Lsp server setup script location
 -- lvim.lsp.templates_dir = join_paths(get_runtime_dir(), "after", "ftplugin")
@@ -202,11 +202,18 @@ lvim.plugins = {
     --   "folke/trouble.nvim",
     --   cmd = "TroubleToggle",
     -- },
-  { "rcarriga/nvim-dap-ui" },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require('dapui').setup()
+      lvim.builtin.which_key.mappings["dv"] = { "<cmd>lua require 'dapui'.toggle()<cr>", "Toggle Sidebar" }
+    end,
+  },
   { "Mofiqul/vscode.nvim" },
 }
 
-require('dapui').setup()
+
+-- Neovim keybinds
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {

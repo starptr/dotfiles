@@ -30,3 +30,12 @@ else
 fi
 
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+
+# Create env var to expose OS
+OS_ID="$(uname -s)"
+case "${OS_ID}" in
+	Linux*) OS_NAME=Linux;;
+	Darwin*) OS_NAME=Mac;;
+	*) OS_NAME=Other;;
+esac
+export OS_NAME

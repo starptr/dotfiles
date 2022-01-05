@@ -132,7 +132,11 @@ zinit ice wait lucid
 zinit snippet PZT::modules/python
 
 # Neovim
-zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
+if [ "$OS_NAME" = "Mac" ]; then
+	zinit ice wait lucid from"gh-r" as"program" bpick"*macos*" mv"*/bin/nvim -> nvim"
+else
+	zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
+fi
 zinit light neovim/neovim
 
 # Kitty term
@@ -140,12 +144,16 @@ zinit light neovim/neovim
 #zinit light kovidgoyal/kitty
 
 # lsd
-zinit ice wait lucid from"gh-r" as"program" bpick"*-x86_64-*-gnu*" mv"*-x86_64-*/lsd -> lsd" mv"*-x86_64-*/lsd.exe -> lsd"
+zinit ice wait lucid from"gh-r" as"program" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd"
 zinit light Peltoche/lsd
 
 # exa
 zinit ice wait lucid from"gh-r" as"program" bpick"exa-linux-x86_64-*" mv"bin/exa -> exa"
 zinit light ogham/exa
+
+# bat
+zinit ice wait lucid from"gh-r" as"program" mv"*/bat -> bat"
+zinit light sharkdp/bat
 
 # ranger
 zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
@@ -168,8 +176,8 @@ zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellc
 zinit light koalaman/shellcheck
 
 # Git Credential Manager Core
-zinit ice wait lucid from"gh-r" as"program" mv"gcmcore-linux*/git-credential-manager-core -> git-credential-manager-core"
-zinit light microsoft/Git-Credential-Manager-Core
+#zinit ice wait lucid from"gh-r" as"program" mv"gcmcore-linux*/git-credential-manager-core -> git-credential-manager-core"
+#zinit light microsoft/Git-Credential-Manager-Core
 
 # wezterm
 #zinit ice wait lucid from"gh-r" as"program" bpick"wezterm-*Ubuntu20.04.tar.xz" mv"wezterm/usr/bin/wezterm-mux-server -> wezterm-mux-server"

@@ -1,11 +1,37 @@
 #!/bin/bash
-
-echo "Starting dotfiles bootstrapper!"
-
 if [ -n "$SCRIPT" ]; then
-	echo "SCRIPT is set."
+	echo "SCRIPT is set. This is likely a CI environment."
+  set -ex
 fi
 
+# Create env var to expose OS
+OS_ID="$(uname -s)"
+case "${OS_ID}" in
+	Linux*) OS_DIST=Linux;;
+	Darwin*) OS_DIST=Mac;;
+	*) OS_DIST=Other;;
+esac
+
+if [ "$OS_DIST" == "Linux" ]; then
+  echo 'Specify the linux distribution:'
+  PS3='Enter (1-2): '
+  options=("Ubuntu" "Debian" "Other")
+  select opt in "${options[@]}"; do
+      case $opt in
+          "Ubuntu"|"Debian")
+              OS_DIST="$opt"
+              break
+              ;;
+          "Other")
+              echo "This distro is not supported!"
+              exit 1
+              ;;
+          *) echo "Invalid Option $REPLY";;
+      esac
+  done
+fi
+
+# Allow using sudo from CI (accepts pw from piped input)
 function sudo_branch() {
 	if [ -n "$SCRIPT" ]; then
 		sudo -kS "$@"
@@ -14,22 +40,58 @@ function sudo_branch() {
 	fi
 }
 
-read -p "Install dependencies? [y/N] "
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-	echo "Installing dependencies"
-	sudo_branch apt update
-	sudo_branch apt -y install zsh
-	sudo_branch apt -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tmux
+# Get OS version
+if [ "$OS_DIST" = "Mac" ]; then
+  OS_VER="$(sw_vers -productVersion)"
 fi
 
-echo "Changing shell to zsh..."
-chsh -s /bin/zsh
+# Set OS-specific options and dependencies
+if [ "$OS_DIST" = "Mac" ]; then
+  read -p "Set system to allow any app to run? [Y/n] "
+  if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+    OS_VER_MAJOR=${${OS_VER}:0:2}
+    if (( "$OS_VER_MAJOR" < "12" )); then
+      sudo spctl —master-disable
+    else
+      sudo spctl —global-disable
+    fi
+  fi
+
+  read -p "Install brew and dependencies? [y/N] "
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /usr/local/bin/brew install git subversion cmake ninja libtool automake pkg-config gettext curl
+    /usr/local/bin/brew tap homebrew/cask-fonts
+    /usr/local/bin/brew install —cask font-ubuntu-mono-nerd-font iterm2 alacritty
+    /usr/local/bin/brew install tmux tealdeer
+  fi
+elif [ "$OS_DIST" = "Ubuntu" ] || [ "$OS_DIST" = "Debian" ]; then
+  read -p "Install dependencies? [y/N] "
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+  	sudo_branch apt update
+  	sudo_branch apt -y install zsh
+  	sudo_branch apt -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tmux
+  fi
+fi
+
+# Change default shell to zsh
+if [ "$OS_DIST" != "Mac" ]; then
+  echo "Changing shell to zsh..."
+  chsh -s /bin/zsh
+fi
 
 # Make
 cd "$HOME"
 echo "Begin make"
-make init
+if [ "$OS_DIST" = "Mac" ]; then
+  make run-macos
+else
+  make run-linux
+fi
 
-cargo install tealdeer vivid bat exa
+#cargo install tealdeer vivid
+
+# Bootstrap shell
+zsh -ic "make test-shell"
 
 echo "Done! To install tmux plugins, press <prefix>+I in a tmux environment."

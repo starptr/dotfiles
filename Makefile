@@ -1,129 +1,62 @@
-.PHONY: help init
+.PHONY: readme run-macos run-linux test-shell
 
-help: ## This help
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+readme:
+	@echo "This Makefile should be ran on bootstrap in all cases."
+	@echo "If the makefile fails at any step, manually install every step after fixing the failure (i.e. manually installing the tool)."
 
-init: firstrun vim-plug python node rust go java ruby finish ## Bootstrap tools
-remove: firstrun-check python-remove node-remove rust-remove go-remove java-remove ruby-remove lastrun ## Uninstall tools
+run-linux: firstrun submods python-linux node-linux rust-linux go-linux java-linux ruby-linux tinytex-linux
+run-macos: firstrun submods node-macos rust-macos go-macos java-macos tinytex-macos
 
-firstrun: # Check that this home was not bootstrapped
-	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! Exiting..."; exit 1; }
-	@touch ${HOME}/.bootstrapped
+# Writes a file that tells the Makefile that bootstrap was ran.
+# Prevents accidentally running the `run-*` targets multiple times.
+firstrun: 
+	@(! test -s ${HOME}/.bootstrapped) || { echo "You are already bootstrapped! \nTo really run a `run-*` target again, remove `~.bootstrapped`."; exit 1; }
+	touch ${HOME}/.bootstrapped
 	@echo "This file tells Makefile that this home is already bootstrapped. Only delete if you know what you're doing!" > $$HOME/.bootstrapped
 	@echo "First time bootstrapping!"
 	@echo
 
-firstrun-check: # Check that this home was bootstrapped
-	@(test -s ${HOME}/.bootstrapped) || { echo "You haven't bootstrapped! Exiting..."; exit 1; }
-	@(test -s ${HOME}/.bootstrap-remove) || { echo "The file .bootstrap-remove isnt in the home directory. touch this file and enter data to continue with removal. Exiting..."; exit 1; }
-	@rm -f ${HOME}/.bootstrap-remove
-	@echo "You have bootstrapped. Continuing removal..."
-	@echo
-
-lastrun: # Mark this home as bootstrapped
-	@echo "Resetting bootstrapped state to new..."
-	rm -f ${HOME}/.bootstrapped
-	@echo "Bootstrap state clean!"
-	@echo
-
-submods: ## Clone submodules recursively
+# Clone submodules recursively
+submods: 
 	@echo "Cloning submodules..."
 	yadm submodule update --recursive --init
 	@echo "Submodules cloned."
 	@echo
 
-submods-update: ## Update submodules recursively
-	@echo "Updating submodules..."
-	yadm submodule update --recursive --remote
-	@echo "Submodules update."
-	@echo
-
-submods-remove: ## Remove local submodule heads
-	@echo "Warning! All local submodule changes will be lost."
-	yadm submodule foreach --recursive git reset --hard
-	@echo "Submodule heads are reset."
-	@echo
-
-python: ## Installs pyenv.
-	@echo "Installing pyenv..."
+python-linux:
+	@echo "Installing: pyenv"
 	curl https://pyenv.run | bash
-	@echo "pyenv installed."
 	@echo
 
-python-remove:
-	@echo "Warning! pyenv and local python installs will be removed."
-	rm -rf ${HOME}/.pyenv
-	@echo "pyenv and python removed."
-	@echo
-
-node: ## Installs n-install.
-	@echo "Installing n-install and NodeJS LTS..."
+node-linux node-macos:
+	@echo "Installing: node (LTS) and yarn"
 	{ curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -n -y lts; } || { mkdir ~/src; git clone https://github.com/tj/n.git ${HOME}/src/n; cd ${HOME}/src/n; PREFIX=${HOME}/.n make install; (n lts); }
-	@echo "Installing yarn..."
 	npm i --global yarn
 	@echo
 
-node-remove:
-	@echo "Warning! n-install will be removed."
-	n-uninstall -y
-	@echo "n-install and NodeJS installs removed."
-	@echo
-
-rust:
-	@echo "Installing rust..."
+rust-linux rust-macos:
+	@echo "Installing: rust"
 	curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-	@echo "Rust installed."
 	@echo
 
-rust-remove:
-	@echo "Warning! rust will be removed."
-	rustup self uninstall
-	@echo "Rust removed."
-	@echo
-
-go:
-	@echo "Installing g-install..."
+go-linux go-macos:
+	@echo "Installing: go"
 	curl -sSL https://git.io/g-install | GOPATH=${HOME}/bin/go GOROOT=${HOME}/.go sh -s -- -y
-	@echo "g-install finished."
 	@echo
 
-go-remove:
-	@echo "Warning! go and g will be removed, including files in $$GOROOT."
-	rm -rf ${GOPATH} ${GOROOT}
-	@echo "g removed."
-	@echo
-
-java:
-	@echo "Installing jabba..."
+java-linux java-macos:
+	@echo "Installing: java"
 	curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash -s -- --skip-rc && . ~/.jabba/jabba.sh
-	@echo "jabba installed."
 	@echo
 
-java-remove:
-	@echo "Warning! jabba and java will be removed."
-	rm -rf ${JABBA_HOME}
-	@echo "jabba removed."
-	@echo
-
-ruby:
-	@echo "Installing ruby-build plugin..."
+ruby-linux:
+	@echo "Installing: ruby"
 	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | bash
-	@echo "ruby-build installed."
 	@echo
 
-ruby-remove:
-	@echo "Warning! rbenv will be removed."
-	rm -rf `rbenv root`
-	@echo "rbenv removed."
-	@echo
+tinytex-linux tinytex-macos:
+	@echo "Installing: tinytex"
+	curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
-vim-plug:
-	@echo "Installing vim-plug..."
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	sh -c 'curl -fLo "${HOME}"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	@echo "vim-plug installed."
-	@echo
-
-finish:
-	@echo "Bootstrap complete."
-	@echo
+test-shell: # TODO: call a bunch of binaries that shell and bootstrapper should have installed
+	bat --version

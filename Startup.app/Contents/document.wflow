@@ -114,7 +114,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:104.000000</string>
+				<string>301.500000:172.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Pause.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -213,7 +213,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:204.000000</string>
+				<string>301.500000:272.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Launch Application.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -324,7 +324,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:306.000000</string>
+				<string>301.500000:374.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Pause.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -423,7 +423,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:406.000000</string>
+				<string>301.500000:474.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Launch Application.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -531,12 +531,10 @@
 						<string>1</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:508.000000</string>
+				<string>301.500000:576.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Pause.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -632,12 +630,10 @@
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:608.000000</string>
+				<string>301.500000:676.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Launch Application.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -748,7 +744,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:710.000000</string>
+				<string>301.500000:778.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Pause.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -847,7 +843,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>301.500000:810.000000</string>
+				<string>301.500000:878.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Launch Application.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -857,60 +853,60 @@
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>3F43FFE0-B05A-4FD4-8B26-5DAF033A251B</key>
+		<key>33B7C3C3-E3C1-4D39-81E1-FFAA36461048</key>
 		<dict>
 			<key>from</key>
-			<string>FF41AEE4-049E-4CF5-8D59-4610F62304B5 - FF41AEE4-049E-4CF5-8D59-4610F62304B5</string>
+			<string>C5EF8CDC-2A68-411A-9E44-1981C3520FF7 - C5EF8CDC-2A68-411A-9E44-1981C3520FF7</string>
 			<key>to</key>
-			<string>BAAFB3DD-58AA-4BE0-B244-D4E05633C1C7 - BAAFB3DD-58AA-4BE0-B244-D4E05633C1C7</string>
+			<string>768A9153-6AB8-4316-84BE-CA8A32DA487A - 768A9153-6AB8-4316-84BE-CA8A32DA487A</string>
 		</dict>
-		<key>421AF71D-59D4-4566-B8E2-FB133F2E09D0</key>
+		<key>3ED80EA2-41E7-47C8-8817-52410A84C269</key>
 		<dict>
 			<key>from</key>
 			<string>D2A70FDA-2B3B-44BE-BC02-311F9F9C4D92 - D2A70FDA-2B3B-44BE-BC02-311F9F9C4D92</string>
 			<key>to</key>
 			<string>ADAFFABD-F554-468D-9ACE-CDE78ADA3E36 - ADAFFABD-F554-468D-9ACE-CDE78ADA3E36</string>
 		</dict>
-		<key>8EB7A539-0C1C-4A50-8E56-B18E096BBB4D</key>
-		<dict>
-			<key>from</key>
-			<string>C5EF8CDC-2A68-411A-9E44-1981C3520FF7 - C5EF8CDC-2A68-411A-9E44-1981C3520FF7</string>
-			<key>to</key>
-			<string>768A9153-6AB8-4316-84BE-CA8A32DA487A - 768A9153-6AB8-4316-84BE-CA8A32DA487A</string>
-		</dict>
-		<key>A372DCCB-8109-428E-90F3-F282BAA46924</key>
-		<dict>
-			<key>from</key>
-			<string>768A9153-6AB8-4316-84BE-CA8A32DA487A - 768A9153-6AB8-4316-84BE-CA8A32DA487A</string>
-			<key>to</key>
-			<string>257F9209-C867-46DD-A020-E721BE2A007E - 257F9209-C867-46DD-A020-E721BE2A007E</string>
-		</dict>
-		<key>AC7B8D9C-003D-4F6D-81DD-BA1F9183C811</key>
+		<key>4F26D690-8C71-409E-8878-5CD94B0E28ED</key>
 		<dict>
 			<key>from</key>
 			<string>BAAFB3DD-58AA-4BE0-B244-D4E05633C1C7 - BAAFB3DD-58AA-4BE0-B244-D4E05633C1C7</string>
 			<key>to</key>
 			<string>C5EF8CDC-2A68-411A-9E44-1981C3520FF7 - C5EF8CDC-2A68-411A-9E44-1981C3520FF7</string>
 		</dict>
-		<key>B6C9C48C-1548-4E70-8690-2B61E51E43CF</key>
+		<key>63C8BD76-2E83-4636-A6E3-C08E6F8C77A8</key>
 		<dict>
 			<key>from</key>
 			<string>257F9209-C867-46DD-A020-E721BE2A007E - 257F9209-C867-46DD-A020-E721BE2A007E</string>
 			<key>to</key>
 			<string>D2A70FDA-2B3B-44BE-BC02-311F9F9C4D92 - D2A70FDA-2B3B-44BE-BC02-311F9F9C4D92</string>
 		</dict>
-		<key>FDCD24B0-BEC2-4661-83D0-A2F6A9CEBFDE</key>
+		<key>81EF2F85-6C85-4304-8489-053B1B4A16FD</key>
 		<dict>
 			<key>from</key>
 			<string>139E0086-C7DE-477A-B6B2-753A1F10FDAB - 139E0086-C7DE-477A-B6B2-753A1F10FDAB</string>
 			<key>to</key>
 			<string>FF41AEE4-049E-4CF5-8D59-4610F62304B5 - FF41AEE4-049E-4CF5-8D59-4610F62304B5</string>
 		</dict>
+		<key>8CA7C66A-743F-4182-A05F-60972A355A00</key>
+		<dict>
+			<key>from</key>
+			<string>768A9153-6AB8-4316-84BE-CA8A32DA487A - 768A9153-6AB8-4316-84BE-CA8A32DA487A</string>
+			<key>to</key>
+			<string>257F9209-C867-46DD-A020-E721BE2A007E - 257F9209-C867-46DD-A020-E721BE2A007E</string>
+		</dict>
+		<key>DB8D341E-405E-47C5-9A9A-ACC28E28CC53</key>
+		<dict>
+			<key>from</key>
+			<string>FF41AEE4-049E-4CF5-8D59-4610F62304B5 - FF41AEE4-049E-4CF5-8D59-4610F62304B5</string>
+			<key>to</key>
+			<string>BAAFB3DD-58AA-4BE0-B244-D4E05633C1C7 - BAAFB3DD-58AA-4BE0-B244-D4E05633C1C7</string>
+		</dict>
 	</dict>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>workflowTypeIdentifier</key>
-		<string>com.apple.Automator.workflow</string>
+		<string>com.apple.Automator.application</string>
 	</dict>
 </dict>
 </plist>

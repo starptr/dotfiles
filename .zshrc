@@ -132,12 +132,16 @@ zinit ice wait lucid
 zinit snippet PZT::modules/python
 
 # Neovim
-if [ "$OS_NAME" = "Mac" ]; then
-	zinit ice wait lucid from"gh-r" as"program" bpick"*macos*" mv"*/bin/nvim -> nvim"
-else
-	zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
-fi
+#if [ "$OS_NAME" = "Mac" ]; then
+#	zinit ice wait lucid from"gh-r" as"program" bpick"*macos*" mv"*/bin/nvim -> nvim"
+#else
+#	zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
+#fi
+zinit ice wait lucid as"null" atclone'git checkout 76435c0cfa8f39024a3b931276478b5007a1f421; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make install' atpull"rm -rf $HOME/neovim_build; %atclone"
 zinit light neovim/neovim
+
+# add neovim bins to path
+export PATH="$HOME/neovim_build/bin:$PATH"
 
 # Kitty term
 #zinit ice wait lucid from"gh-r" ver"latest" as"program" mv"bin/kitty -> kitty"

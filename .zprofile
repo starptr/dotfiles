@@ -65,4 +65,6 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
 fi
 
 # Brew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ "$OS_NAME" = "Linux" ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi

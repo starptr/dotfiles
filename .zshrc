@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -83,20 +90,20 @@ zinit light-mode for \
 
 alias zce="zinit ice"
 
-zinit snippet PZTM::environment
-zinit snippet PZT::modules/terminal
-zinit snippet PZT::modules/editor
-zinit snippet PZT::modules/history
-zinit snippet PZT::modules/directory
-zinit snippet PZT::modules/spectrum
-zinit snippet PZT::modules/utility
-zinit snippet PZT::modules/ssh
-zinit snippet PZT::modules/completion
-#zinit snippet PZT::modules/ruby
-zinit ice silent
-zinit snippet PZT::modules/git
-#zinit snippet PZT::modules/history-substring-search
-#zinit snippet PZTM::syntax-highlighting
+#zinit snippet PZTM::environment
+#zinit snippet PZT::modules/terminal
+#zinit snippet PZT::modules/editor
+#zinit snippet PZT::modules/history
+#zinit snippet PZT::modules/directory
+#zinit snippet PZT::modules/spectrum
+#zinit snippet PZT::modules/utility
+#zinit snippet PZT::modules/ssh
+#zinit snippet PZT::modules/completion
+##zinit snippet PZT::modules/ruby
+#zinit ice silent
+#zinit snippet PZT::modules/git
+##zinit snippet PZT::modules/history-substring-search
+##zinit snippet PZTM::syntax-highlighting
 
 # Custom aliases
 source $ZSH_CUSTOM/aliases.sh
@@ -108,11 +115,11 @@ setopt promptsubst
 zinit ice pick"async.zsh"
 zinit light mafredri/zsh-async
 
-zinit ice svn silent atload'prompt sorin'
-zinit snippet PZT::modules/prompt
+#zinit ice svn silent atload'prompt sorin'
+#zinit snippet PZT::modules/prompt
 
-#zinit ice depth=1
-#zinit light romkatv/powerlevel10k
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 
 zinit ice lucid atinit"zicompinit; zicdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting
@@ -207,3 +214,6 @@ fi
 
 # gpg ssh
 export GPG_TTY="$(tty)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

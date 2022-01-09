@@ -22,12 +22,14 @@ local function setDayNNite()
   local fh = io.open(mode_config_filepath, "r")
   if fh then
     local mode = fh:read()
-    if mode == "Night" then
-      vim.g.vscode_style = "dark"
-    else
+    if mode == "Day" then
       vim.g.vscode_style = "light"
+    else
+      vim.g.vscode_style = "dark"
     end
     fh:close()
+  else
+    vim.g.vscode_style = "dark"
   end
 end
 setDayNNite()

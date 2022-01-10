@@ -134,35 +134,35 @@ export PATH="$HOME/neovim_build/bin:$PATH"
 #zinit light kovidgoyal/kitty
 
 # lsd
-zinit ice wait lucid from"gh-r" as"program" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd"
+zinit ice wait lucid from"gh-r" as"null" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd" fbin"lsd"
 zinit light Peltoche/lsd
 
 # exa
-zinit ice wait lucid from"gh-r" as"program" bpick"exa-linux-x86_64-*" mv"bin/exa -> exa"
+zinit ice wait lucid from"gh-r" as"null" fbin"bin/exa -> exa"
 zinit light ogham/exa
 
 # bat
-zinit ice wait lucid from"gh-r" as"program" mv"*/bat -> bat"
+zinit ice wait lucid from"gh-r" as"null" mv"*/bat -> bat" fbin"bat"
 zinit light sharkdp/bat
 
 # ranger
-zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
-zinit light ranger/ranger
+#zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
+#zinit light ranger/ranger
 
 # ripgrep
-zinit ice wait lucid from"gh-r" as"program" mv"ripgrep*/rg -> rg"
+zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
 zinit light BurntSushi/ripgrep
 
 # fd
-zinit ice wait lucid from"gh-r" as"program" mv"fd*/fd -> fd"
+zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
 zinit light sharkdp/fd
 
 # lazygit
-zinit ice wait lucid from"gh-r" as"program"
+zinit ice wait lucid from"gh-r" as"null" fbin
 zinit light jesseduffield/lazygit
 
-# shellcheck
-zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellcheck"
+# install shellcheck
+zinit ice wait lucid from"gh-r" as"null" mv"shellcheck-*/shellcheck -> shellcheck" fbin"shellcheck"
 zinit light koalaman/shellcheck
 
 # Git Credential Manager Core
@@ -175,7 +175,7 @@ zinit light koalaman/shellcheck
 #zinit light wez/wezterm
 
 # clangd
-zinit ice wait lucid from"gh-r" as"program" mv"clangd*/bin/clangd -> clangd"
+zinit ice wait lucid from"gh-r" as"null" mv"clangd*/bin/clangd -> clangd" fbin"clangd"
 zinit light clangd/clangd
 
 # yadm completions

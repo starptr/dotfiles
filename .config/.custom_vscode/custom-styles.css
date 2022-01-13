@@ -1,0 +1,22 @@
+@keyframes example {
+  from {background-position-x: left}
+  to {background-position-x: right}
+}
+
+#workbench\.parts\.titlebar {
+  padding: 0% !important;
+}
+
+#workbench\.parts\.statusbar {
+  background-image: url("/Users/yuto/.config/.custom_vscode/mario.gif") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  display: block !important;
+  animation-name: example !important;
+  animation-duration: 30s !important;
+  animation-iteration-count: infinite !important;
+  animation-timing-function: linear !important;
+  width: 100% !important;
+  position: absolute !important;
+  -webkit-app-region: drag !important;
+}

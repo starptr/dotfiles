@@ -100,7 +100,7 @@ zinit light mafredri/zsh-async
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-zinit ice lucid atinit"zicompinit; zicdreplay"
+zinit ice wait lucid atinit"zicompinit; zicdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 #function _history_substring_search_config() {
@@ -123,7 +123,7 @@ zinit snippet PZT::modules/python
 #else
 #	zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
 #fi
-zinit ice wait lucid as"null" atclone'git checkout 76435c0cfa8f39024a3b931276478b5007a1f421; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make install' atpull"rm -rf $HOME/neovim_build; %atclone"
+zinit ice wait lucid as"null" atclone'rm -rf $HOME/neovim_build; git checkout 4306b395defb7ef8f614127e0fbe362656346da3; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make install' atpull"%atclone"
 zinit light neovim/neovim
 
 # add neovim bins to path

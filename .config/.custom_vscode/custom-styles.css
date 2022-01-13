@@ -1,6 +1,6 @@
 @keyframes example {
   from {background-position-x: left}
-  to {background-position-x: right}
+  to {background-position-x: 110%}
 }
 
 #workbench\.parts\.titlebar {
@@ -11,12 +11,12 @@
   background-image: url("/Users/yuto/.config/.custom_vscode/mario.gif") !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
-  display: block !important;
+  /* display: block !important; */
   animation-name: example !important;
-  animation-duration: 30s !important;
+  animation-duration: 40s !important;
   animation-iteration-count: infinite !important;
   animation-timing-function: linear !important;
-  width: 100% !important;
-  position: absolute !important;
-  -webkit-app-region: drag !important;
+  /* width: 100% !important; */
+  /* position: absolute !important; */
+  /* -webkit-app-region: drag !important; */
 }

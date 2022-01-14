@@ -123,7 +123,7 @@ zinit snippet PZT::modules/python
 #else
 #	zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
 #fi
-zinit ice wait lucid as"null" atclone'rm -rf $HOME/neovim_build; git checkout 4306b395defb7ef8f614127e0fbe362656346da3; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make -j8 install' atpull"%atclone"
+zinit ice wait lucid as"null" ver"4306b395defb7ef8f614127e0fbe362656346da3" atclone'rm -rf $HOME/neovim_build; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make -j8 install' atpull"%atclone"
 zinit light neovim/neovim
 
 # add neovim bins to path

@@ -190,6 +190,10 @@ zinit light bootandy/dust
 zinit ice wait lucid from"gh-r" as"null" fbin"procs"
 zinit light dalance/procs
 
+# bottom
+zinit ice wait lucid from"gh-r" as"null" fbin"btm"
+zinit light ClementTsang/bottom
+
 # clangd
 zinit ice wait lucid from"gh-r" as"null" mv"clangd*/bin/clangd -> clangd" fbin"clangd"
 zinit light clangd/clangd

@@ -2,6 +2,9 @@
 export LANG_TOOLS_DIR="$HOME/.lang-tools"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
 
+# Add local bins to path
+export PATH="$HOME/.local/bin:$PATH"
+
 # doom
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
@@ -233,7 +236,7 @@ fi
 # gpg ssh
 export GPG_TTY="$(tty)"
 
-# Add local bins to path
+# Add user bins to path
 export PATH="$HOME/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

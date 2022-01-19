@@ -123,3 +123,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Run instructional script if in an instructional env
+if [ -f "~/.bashrc.instructional" ]; then
+    source ~/.bashrc.instructional
+fi

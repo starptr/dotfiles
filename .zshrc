@@ -4,6 +4,11 @@ export ZSH_CUSTOM="$HOME/.zsh_custom"
 # doom
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
+# brew
+if [ -e ~/.linuxbrew ]; then
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
+fi
+
 # n-install
 export N_PREFIX="$HOME/.n"; PATH="$N_PREFIX/bin:$PATH"
 
@@ -219,6 +224,9 @@ fi
 
 # gpg ssh
 export GPG_TTY="$(tty)"
+
+# Add local bins to path
+export PATH="$HOME/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

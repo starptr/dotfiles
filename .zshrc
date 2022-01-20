@@ -15,7 +15,8 @@ fi
 
 # pyenv
 # TODO: use function wrapper instead of modifying path
-export PATH="$LANG_TOOLS_DIR/.pyenv/bin:$PATH"
+export PYENV_ROOT="$LANG_TOOLS_DIR/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 # n-install
 export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
@@ -29,17 +30,19 @@ fi
 # add rust bins to path
 export CARGO_HOME="$LANG_TOOLS_DIR/.cargo" # NOTE: tied to Makefile
 export RUSTUP_HOME="$LANG_TOOLS_DIR/.rustup" # NOTE: tied to Makefile
-export PATH="$LANG_TOOLS_DIR/.cargo/bin:$PATH"
+export PATH="$CARGO_HOME/bin:$PATH"
 
 # Go version manager and golang paths
 export GOPATH="$LANG_TOOLS_DIR/.go-bins"; export GOROOT="$LANG_TOOLS_DIR/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # jabba paths
-[ -s "$LANG_TOOLS_DIR/.jabba/jabba.sh" ] && source "$LANG_TOOLS_DIR/.jabba/jabba.sh"
+export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
+[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
 
 # ruby paths
-export PATH="$LANG_TOOLS_DIR/.rbenv/bin:$PATH"
+export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
 if command -v rbenv &> /dev/null; then
 	eval "$(rbenv init -)"
 fi

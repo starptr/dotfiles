@@ -5,8 +5,22 @@ alias la="ls -al"
 
 alias e="exa -a"
 alias ea="exa -la"
-alias d="lsd -A"
-alias da="lsd -al"
+
+d() {
+  if [ "$PWD" = ~/Downloads ]; then
+    lsd -A --sort time "$@"
+  else
+    lsd -A "$@"
+  fi
+}
+
+da() {
+  if [ "$PWD" = ~/Downloads ]; then
+    lsd -Alr --sort time "$@"
+  else
+    lsd -Al "$@"
+  fi
+}
 
 alias svim="vim -u NONE"
 if $IS_WSL; then

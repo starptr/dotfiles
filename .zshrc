@@ -176,6 +176,10 @@ zinit light BurntSushi/ripgrep
 zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
 zinit light sharkdp/fd
 
+# hyperfine
+zinit ice wait lucid from"gh-r" as"null" mv"hyperfine*/hyperfine -> hyperfine" fbin"hyperfine"
+zinit light sharkdp/hyperfine
+
 # lazygit
 zinit ice wait lucid from"gh-r" as"null" fbin
 zinit light jesseduffield/lazygit
@@ -212,6 +216,10 @@ zinit light dalance/procs
 # bottom
 zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
+
+# delta
+zinit ice wait lucid from"gh-r" as"null" mv"delta*/delta -> delta" fbin"delta"
+zinit light dandavison/delta
 
 # clangd
 zinit ice wait lucid from"gh-r" as"null" mv"clangd*/bin/clangd -> clangd" fbin"clangd"

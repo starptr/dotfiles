@@ -7,7 +7,7 @@ readme:
 	@echo "If the makefile fails at any step, manually install every step after fixing the failure (i.e. manually installing the tool)."
 
 run-linux: firstrun submods python-linux node-linux rust-linux go-linux java-linux ruby-linux tinytex-linux
-run-macos: firstrun submods node-macos rust-macos go-macos java-macos tinytex-macos
+run-macos: firstrun submods python-macos node-macos rust-macos go-macos java-macos ruby-linux tinytex-macos
 
 # Writes a file that tells the Makefile that bootstrap was ran.
 # Prevents accidentally running the `run-*` targets multiple times.
@@ -25,7 +25,7 @@ submods:
 	@echo "Submodules cloned."
 	@echo
 
-python-linux:
+python-linux python-macos:
 	@echo "Installing: pyenv"
 	curl https://pyenv.run | PYENV_ROOT="${LANG_TOOLS_DIR}/.pyenv" bash
 	@echo
@@ -33,7 +33,7 @@ python-linux:
 node-linux node-macos:
 	@echo "Installing: node (LTS) and yarn"
 	{ curl -L https://git.io/n-install | N_PREFIX=${LANG_TOOLS_DIR}/.n bash -s -- -n -y lts; } || { mkdir ~/src; git clone https://github.com/tj/n.git ${HOME}/src/n; cd ${HOME}/src/n; PREFIX=${LANG_TOOLS_DIR}/.n make install; (n lts); }
-	npm i --global yarn
+	corepack enable
 	@echo
 
 rust-linux rust-macos:
@@ -51,7 +51,7 @@ java-linux java-macos:
 	curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_HOME=${LANG_TOOLS_DIR}/.jabba bash -s -- --skip-rc && . ${LANG_TOOLS_DIR}/.jabba/jabba.sh
 	@echo
 
-ruby-linux:
+ruby-linux ruby-macos:
 	@echo "Installing: ruby"
 	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | RBENV_ROOT=${LANG_TOOLS_DIR}/.rbenv bash
 	@echo

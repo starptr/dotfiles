@@ -22,6 +22,8 @@ da() {
   fi
 }
 
+alias f="ranger"
+
 alias svim="vim -u NONE"
 if $IS_WSL; then
 	alias nve="neovide.exe --wsl --disowned"

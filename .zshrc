@@ -165,8 +165,8 @@ zinit ice wait lucid from"gh-r" as"null" mv"*/bat -> bat" fbin"bat"
 zinit light sharkdp/bat
 
 # ranger
-#zinit ice wait lucid ver"stable" as"null" atclone"~/.pyenv/shims/python3 setup.py -- install --user --optimize=1 --record=install_log.txt" atpull"xargs rm < install_log.txt; %atclone"
-#zinit light ranger/ranger
+zinit ice wait lucid ver"stable" as"null" fbin"ranger.py -> ranger"
+zinit light ranger/ranger
 
 # ripgrep
 zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"

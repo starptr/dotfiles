@@ -39,3 +39,8 @@ case "${OS_ID}" in
 	*) OS_NAME=Other;;
 esac
 export OS_NAME
+
+# Run instructional script if in an instructional env
+if [ -f "~/.zshenv.instructional" ]; then
+    source ~/.zshenv.instructional
+fi

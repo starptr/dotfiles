@@ -1,29 +1,48 @@
 # Define vars
+export LANG_TOOLS_DIR="$HOME/.lang-tools"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
+
+# Add local bins to path
+export PATH="$HOME/.local/bin:$PATH"
 
 # doom
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
+# brew
+if [ -e ~/.linuxbrew ]; then
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
+fi
+
+# pyenv
+# TODO: use function wrapper instead of modifying path
+export PYENV_ROOT="$LANG_TOOLS_DIR/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 # n-install
-export N_PREFIX="$HOME/.n"; PATH="$N_PREFIX/bin:$PATH"
+export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
 
 # yarn
+# TODO: set global bin to be under LANG_TOOLS_DIR
 if command -v yarn &> /dev/null; then
 	export PATH="$(yarn global bin):$PATH"
 fi
 
 # add rust bins to path
-export PATH="$HOME/.cargo/bin:$PATH"
+export CARGO_HOME="$LANG_TOOLS_DIR/.cargo" # NOTE: tied to Makefile
+export RUSTUP_HOME="$LANG_TOOLS_DIR/.rustup" # NOTE: tied to Makefile
+export PATH="$CARGO_HOME/bin:$PATH"
 
 # Go version manager and golang paths
-export GOPATH="$HOME/bin/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+export GOPATH="$LANG_TOOLS_DIR/.go-bins"; export GOROOT="$LANG_TOOLS_DIR/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # jabba paths
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
+[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
 
 # ruby paths
-export PATH="$HOME/.rbenv/bin:$PATH"
+export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
 if command -v rbenv &> /dev/null; then
 	eval "$(rbenv init -)"
 fi
@@ -157,6 +176,10 @@ zinit light BurntSushi/ripgrep
 zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
 zinit light sharkdp/fd
 
+# hyperfine
+zinit ice wait lucid from"gh-r" as"null" mv"hyperfine*/hyperfine -> hyperfine" fbin"hyperfine"
+zinit light sharkdp/hyperfine
+
 # lazygit
 zinit ice wait lucid from"gh-r" as"null" fbin
 zinit light jesseduffield/lazygit
@@ -194,6 +217,10 @@ zinit light dalance/procs
 zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
 
+# delta
+zinit ice wait lucid from"gh-r" as"null" mv"delta*/delta -> delta" fbin"delta"
+zinit light dandavison/delta
+
 # clangd
 zinit ice wait lucid from"gh-r" as"null" mv"clangd*/bin/clangd -> clangd" fbin"clangd"
 zinit light clangd/clangd
@@ -219,6 +246,9 @@ fi
 
 # gpg ssh
 export GPG_TTY="$(tty)"
+
+# Add user bins to path
+export PATH="$HOME/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

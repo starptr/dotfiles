@@ -1,6 +1,17 @@
 [user]
-	email = starptr@users.noreply.github.com
+	email = yuto@berkeley.edu
 	name = Yuto Nishida
+[core]
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
 [init]
 	defaultBranch = main
 [credential]

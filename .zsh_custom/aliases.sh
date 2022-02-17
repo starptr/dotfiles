@@ -22,7 +22,7 @@ da() {
   fi
 }
 
-alias f="ranger"
+alias ra="ranger"
 
 alias svim="vim -u NONE"
 if $IS_WSL; then

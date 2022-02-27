@@ -14,8 +14,9 @@ vim.opt.scrolloff = 0
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 lvim.colorscheme = "vscode"
+lvim.transparent_window = true
 
 local function setDayNNite()
   local mode_config_filepath = vim.env.HOME .. "/.config/day-n-nite/mode_config"

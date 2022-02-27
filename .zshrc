@@ -168,6 +168,12 @@ zinit light sharkdp/bat
 zinit ice wait lucid ver"stable" as"null" fbin"ranger.py -> ranger"
 zinit light ranger/ranger
 
+# nnn
+if [ "$OS_NAME" = "Linux" ]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"nnn-nerd*" mv"nnn* -> nnn" fbin"nnn"
+  zinit light jarun/nnn
+fi
+
 # ripgrep
 zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
 zinit light BurntSushi/ripgrep
@@ -218,7 +224,7 @@ zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
 
 # delta
-zinit ice wait lucid from"gh-r" as"null" mv"delta*/delta -> delta" fbin"delta"
+zinit ice wait lucid from"gh-r" as"program" mv"delta*/delta -> delta"
 zinit light dandavison/delta
 
 # clangd

@@ -213,6 +213,7 @@ lvim.plugins = {
     end,
   },
   { "Mofiqul/vscode.nvim" },
+  { "tpope/vim-fugitive" }
 }
 
 

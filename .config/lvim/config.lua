@@ -213,7 +213,16 @@ lvim.plugins = {
     end,
   },
   { "Mofiqul/vscode.nvim" },
-  { "tpope/vim-fugitive" }
+  { "tpope/vim-fugitive" },
+  { "APZelos/blamer.nvim",
+    opt = true,
+    cmd = "BlamerToggle",
+    setup = function()
+      vim.api.nvim_set_var('blamer_delay', 200)
+      vim.api.nvim_set_var('blamer_prefix', ' 著者 ')
+      vim.cmd([[highlight Blamer ctermfg=grey guifg=grey]])
+    end,
+  }
 }
 
 

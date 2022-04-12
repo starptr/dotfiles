@@ -66,15 +66,17 @@ lvim.line_wrap_cursor_movement = false
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
--- }
+lvim.builtin.which_key.mappings["t"] = {
+  name = "+Trouble",
+  t = { "<cmd>TroubleToggle<cr>", "Trouble" },
+  r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+  f = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+  D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Worksplace Diagnostics" },
+  q = { "<cmd>TroubleToggle quickfix<cr>", "QuickFix" },
+  l = { "<cmd>TroubleToggle loclist<cr>", "LocationList" },
+  o = { "<cmd>TodoTrouble<cr>", "Todo" },
+}
 lvim.builtin.which_key.mappings["w"] = {
   name = "+Window",
   h = { "<C-w>h", "Go to the left window" },
@@ -214,14 +216,42 @@ lvim.plugins = {
   },
   { "Mofiqul/vscode.nvim" },
   { "tpope/vim-fugitive" },
-  { "APZelos/blamer.nvim",
-    opt = true,
-    cmd = "BlamerToggle",
+  --{
+  --  "APZelos/blamer.nvim",
+  --  disable = true,
+  --  opt = true,
+  --  cmd = "BlamerShow",
+  --  setup = function()
+  --    vim.api.nvim_set_var('blamer_enabled', 1)
+  --    vim.api.nvim_set_var('blamer_delay', 200)
+  --    vim.api.nvim_set_var('blamer_prefix', ' 著者 ')
+  --    vim.cmd([[highlight Blamer ctermfg=grey guifg=grey]])
+  --  end,
+  --},
+  {
+    "f-person/git-blame.nvim",
+    cmd = { "GitBlameToggle", "GitBlameEnable", "GitBlameCopySHA", "GitBlameOpenCommitURL" },
     setup = function()
-      vim.api.nvim_set_var('blamer_delay', 200)
-      vim.api.nvim_set_var('blamer_prefix', ' 著者 ')
-      vim.cmd([[highlight Blamer ctermfg=grey guifg=grey]])
+      vim.g.gitblame_date_format = '%m/%d/%y %H:%M'
+      vim.g.gitblame_message_template = ' 著者 <author>, <date> • <summary>'
+      vim.g.gitblame_highlight_group = "GitBlame"
+      vim.cmd([[highlight GitBlame ctermfg=grey guifg=grey]])
     end,
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup({})
+    end,
+  },
+  {
+    "ruifm/gitlinker.nvim",
+    requires = 'nvim-lua/plenary.nvim',
   }
 }
 

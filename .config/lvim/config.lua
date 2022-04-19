@@ -200,6 +200,18 @@ lvim.lsp.automatic_servers_installation = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "mrjones2014/legendary.nvim",
+    setup = function ()
+      require('legendary').setup({
+        which_key = {
+          mappings = lvim.builtin.which_key.mappings,
+          opts = lvim.builtin.which_key.opts,
+          do_binding = false,
+        },
+      })
+    end,
+  },
     -- {"folke/tokyonight.nvim"},
     -- {
     --   "folke/trouble.nvim",

@@ -41,6 +41,7 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- disable wrapped movement
 lvim.line_wrap_cursor_movement = false
+vim.opt.whichwrap=""
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = ""
 -- edit a default keymapping
@@ -88,9 +89,9 @@ lvim.builtin.which_key.mappings["w"] = {
 }
 
 -- Remove maps set by lvim
-lvim.keys.insert_mode["jj"] = nil
-lvim.keys.insert_mode["jk"] = nil
-lvim.keys.insert_mode["kj"] = nil
+lvim.keys.insert_mode["jj"] = false
+lvim.keys.insert_mode["jk"] = false
+lvim.keys.insert_mode["kj"] = false
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -204,6 +205,7 @@ lvim.lsp.automatic_servers_installation = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {'stevearc/dressing.nvim'},
   {
     'Pocco81/dap-buddy.nvim',
     commit = "24923c3819a450a772bb8f675926d530e829665f",

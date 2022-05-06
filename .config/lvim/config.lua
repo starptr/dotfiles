@@ -205,8 +205,12 @@ lvim.lsp.automatic_servers_installation = true
 -- Additional Plugins
 lvim.plugins = {
   {
+    'Pocco81/dap-buddy.nvim',
+    commit = "24923c3819a450a772bb8f675926d530e829665f",
+  },
+  {
     "mrjones2014/legendary.nvim",
-    setup = function ()
+    config = function ()
       require('legendary').setup({
         which_key = {
           mappings = lvim.builtin.which_key.mappings,

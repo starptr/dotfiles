@@ -1,3 +1,6 @@
+# emacs mode
+bindkey -e
+
 # Define vars
 export LANG_TOOLS_DIR="$HOME/.lang-tools"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
@@ -137,13 +140,16 @@ zinit ice wait lucid
 zinit snippet PZT::modules/python
 
 # Neovim
+# Legacy config below; lunarvim expects neovim to be installed via homebrew on macos
+# Must use `as"program"` so that lunarvim can find neovim in path
 #if [ "$OS_NAME" = "Mac" ]; then
-#	zinit ice wait lucid from"gh-r" as"program" bpick"*macos*" mv"*/bin/nvim -> nvim"
+#	zinit ice wait lucid from"gh-r" as"program" ver"v0.7.0" bpick"*macos*" mv"*/bin/nvim -> nvim"
 #else
-#	zinit ice wait lucid from"gh-r" as"program" bpick"*.appimage" mv"*.appimage -> nvim"
+#	zinit ice wait lucid from"gh-r" as"program" ver"v0.7.0" bpick"*.appimage" mv"*.appimage -> nvim"
 #fi
-zinit ice wait lucid as"null" ver"4306b395defb7ef8f614127e0fbe362656346da3" atclone'rm -rf $HOME/neovim_build; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make -j8 install' atpull"%atclone"
-zinit light neovim/neovim
+## legacy pinned neovim (known to work)
+##zinit ice wait lucid as"null" ver"4306b395defb7ef8f614127e0fbe362656346da3" atclone'rm -rf $HOME/neovim_build; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim_build"; make -j8 install' atpull"%atclone"
+#zinit light neovim/neovim
 
 # add neovim bins to path
 export PATH="$HOME/neovim_build/bin:$PATH"
@@ -173,6 +179,10 @@ if [ "$OS_NAME" = "Linux" ]; then
   zinit ice wait lucid from"gh-r" as"null" bpick"nnn-nerd*" mv"nnn* -> nnn" fbin"nnn"
   zinit light jarun/nnn
 fi
+
+# hunter
+zinit ice wait lucid from"gh-r" as"null" mv"hunter*/hunter -> hunter" fbin"hunter"
+zinit light rabite0/hunter
 
 # ripgrep
 zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
@@ -222,6 +232,10 @@ zinit light dalance/procs
 # bottom
 zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
+
+# ttyper
+zinit ice wait lucid from"gh-r" as"null" fbin"ttyper"
+zinit light max-niederman/ttyper
 
 # delta
 zinit ice wait lucid from"gh-r" as"program" mv"delta*/delta -> delta"

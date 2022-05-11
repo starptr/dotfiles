@@ -88,6 +88,12 @@ lvim.builtin.which_key.mappings["w"] = {
   -- ["%"] = { "<cmd>vsplit<CR>", "Split window vertically" },
 }
 
+-- Hook into rename command to move cursor to beginning of word
+lvim.builtin.which_key.mappings["l"]["r"] = { function (passing_arg)
+  vim.api.nvim_command("normal! viwo")
+  vim.lsp.buf.rename(passing_arg)
+end, "Rename" }
+
 -- Remove maps set by lvim
 lvim.keys.insert_mode["jj"] = false
 lvim.keys.insert_mode["jk"] = false

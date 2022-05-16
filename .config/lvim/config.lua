@@ -246,12 +246,23 @@ lvim.plugins = {
   {
     "mrjones2014/legendary.nvim",
     config = function ()
-      require('legendary').setup({
+      local legendary = require('legendary')
+      legendary.setup({
         which_key = {
           mappings = lvim.builtin.which_key.mappings,
           opts = lvim.builtin.which_key.opts,
           do_binding = false,
         },
+      })
+      -- Light emacs binds
+      -- TODO: support ex mode (command mode)
+      legendary.bind_keymaps({
+        { '<C-a>', '<C-o>0', description = 'Start of line', mode = {'i', 'c'} },
+        { '<C-e>', '<C-o>A', description = 'End of line', mode = {'i'} },
+        { '<C-f>', '<Right>', description = 'Move right', mode = {'i'} },
+        { '<C-b>', '<Left>', description = 'Move left', mode = {'i'} },
+        { '<M-f>', 'wi', description = 'Start of next word', mode = {'i'} },
+        { '<M-b>', 'bi', description = 'Start of previous word', mode = {'i'} },
       })
     end,
   },

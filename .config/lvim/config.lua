@@ -113,6 +113,9 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.project.exclude_dirs = { "~/src/contest/*" }
 lvim.builtin.bufferline.active = false
 
+lvim.builtin.cmp.mapping["<C-b>"] = lvim.builtin.cmp.mapping["<C-d>"]
+lvim.builtin.cmp.mapping["<C-d>"] = nil
+
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -192,22 +195,46 @@ lvim.lsp.automatic_servers_installation = true
 --   },
 -- }
 
--- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---   { exe = "flake8", filetypes = { "python" } },
---   {
---     exe = "shellcheck",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     args = { "--severity", "warning" },
---   },
---   {
---     exe = "codespell",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "python" },
---   },
--- }
+-- set additional linters
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  --{ exe = "flake8", filetypes = { "python" } },
+  {
+    exe = "shellcheck",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    args = { "--severity", "warning" },
+  },
+  --{
+  --  exe = "codespell",
+  --  ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --  filetypes = { "javascript", "python" },
+  --},
+  {
+    exe = "eslint_d",
+    filetypes = {
+      "javascriptreact",
+      "javascript",
+      "typescriptreact",
+      "typescript",
+      "vue",
+    },
+  },
+}
+-- set code actions
+local code_actions = require "lvim.lsp.null-ls.code_actions"
+code_actions.setup {
+  {
+    exe = "eslint_d",
+    filetypes = {
+      "javascriptreact",
+      "javascript",
+      "typescriptreact",
+      "typescript",
+      "vue",
+    },
+  },
+}
 
 -- Additional Plugins
 lvim.plugins = {
@@ -354,7 +381,6 @@ lvim.plugins = {
     end,
   }
 }
-
 
 -- Neovim keybinds
 

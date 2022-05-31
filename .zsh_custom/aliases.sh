@@ -23,6 +23,7 @@ da() {
 }
 
 alias ra="ranger"
+alias f="nnn"
 
 alias svim="vim -u NONE"
 if $IS_WSL; then
@@ -37,3 +38,8 @@ emax() {
 }
 
 alias qcpp="g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main.out"
+
+# generate list of words between parenthesis
+ttgen() {
+  rg '"([^"]+)"' "$@" -or '$1'
+}

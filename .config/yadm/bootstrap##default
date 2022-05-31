@@ -57,6 +57,7 @@ if [ "$OS_DIST" = "Mac" ]; then
     fi
   fi
 
+  # TODO: call common.sh instead
   read -p "Install brew and dependencies? [y/N] "
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -94,4 +95,4 @@ fi
 # Bootstrap shell
 zsh -ic "make test-shell"
 
-echo "Done! To install tmux plugins, press <prefix>+I in a tmux environment."
+echo "Almost done! To install tmux plugins, press <prefix>+I in a tmux environment."

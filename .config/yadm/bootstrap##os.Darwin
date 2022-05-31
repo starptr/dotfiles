@@ -1,3 +1,28 @@
 #!/bin/zsh
 
 false || { echo "Bootstrapping on Darwin is untested so it is disabled by default." 1>&2; exit 1; }
+
+# Get OSX version
+OS_VER="$(sw_vers -productVersion)"
+
+read -p "Set system to allow any app to run? [Y/n] "
+if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+  OS_VER_MAJOR=${${OS_VER}:0:2}
+  if (( "$OS_VER_MAJOR" < "12" )); then
+    sudo spctl —master-disable
+  else
+    sudo spctl —global-disable
+  fi
+fi
+
+source ~/config/yadm/common.sh
+
+/usr/local/bin/brew install —cask font-ubuntu-mono-nerd-font iterm2 alacritty stats
+
+# Make
+cd "$HOME"
+echo "Begin make"
+make run-macos
+make test-shell
+
+echo "Almost done! To install tmux plugins, press <prefix>+I in a tmux environment."

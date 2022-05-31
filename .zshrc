@@ -201,7 +201,7 @@ zinit ice wait lucid from"gh-r" as"null" fbin
 zinit light jesseduffield/lazygit
 
 # install shellcheck
-zinit ice wait lucid from"gh-r" as"null" mv"shellcheck-*/shellcheck -> shellcheck" fbin"shellcheck"
+zinit ice wait lucid from"gh-r" as"program" mv"shellcheck-*/shellcheck -> shellcheck"
 zinit light koalaman/shellcheck
 
 # Git Credential Manager Core

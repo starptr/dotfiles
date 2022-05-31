@@ -34,6 +34,7 @@ node-linux node-macos:
 	@echo "Installing: node (LTS) and yarn"
 	{ curl -L https://git.io/n-install | N_PREFIX=${LANG_TOOLS_DIR}/.n bash -s -- -n -y lts; } || { mkdir ~/src; git clone https://github.com/tj/n.git ${HOME}/src/n; cd ${HOME}/src/n; PREFIX=${LANG_TOOLS_DIR}/.n make install; (n lts); }
 	corepack enable
+	${LANG_TOOLS_DIR}/.n/bin/npm install -g eslint eslint_d
 	@echo
 
 rust-linux rust-macos:
@@ -56,9 +57,9 @@ ruby-linux ruby-macos:
 	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | RBENV_ROOT=${LANG_TOOLS_DIR}/.rbenv bash
 	@echo
 
-tinytex-linux tinytex-macos: # TODO: install under LANG_TOOLS_DIR
+tinytex-linux tinytex-macos:
 	@echo "Installing: tinytex"
-	curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+	curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | TINYTEX_DIR="${LANG_TOOLS_DIR}/.TinyTex" sh
 
 test-shell: # TODO: call a bunch of binaries that shell and bootstrapper should have installed
 	bat --version

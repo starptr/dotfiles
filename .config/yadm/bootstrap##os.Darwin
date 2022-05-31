@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+false || { echo "Bootstrapping on Darwin is untested so it is disabled by default." 1>&2; exit 1; }

@@ -2,3 +2,6 @@
 	filemode = true
 [pull]
 	rebase = false
+[user]
+	name = Yuto Nishida
+	email = yuyu.nishida@gmail.com

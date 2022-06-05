@@ -12,9 +12,12 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # brew
-if [ -e ~/.linuxbrew ]; then
-    eval "$(~/.linuxbrew/bin/brew shellenv)"
-fi
+# PENDING: delete (see `~/.zprofile`)
+#if [ -e ~/.linuxbrew ]; then
+#    eval "$(~/.linuxbrew/bin/brew shellenv)"
+#fi
+## TODO: temporary handle apple silicon
+#eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # pyenv
 # TODO: use function wrapper instead of modifying path

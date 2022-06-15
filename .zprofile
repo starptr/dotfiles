@@ -80,7 +80,6 @@ elif [[ "$OS_NAME" = "Mac" ]]; then
     # TODO: handle x86-64 apple
   fi
 fi
-export PATH=$PATH:/Users/ynishida/src/game-engine/Tools/Utilexport PATH=$PATH:/Users/ynishida/src/game-engine/Tools/Util
 
 # Run instructional script if in an instructional env
 if [ -f "$HOME/.zprofile.instructional" ]; then

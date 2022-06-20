@@ -5,61 +5,6 @@ bindkey -e
 export LANG_TOOLS_DIR="$HOME/.lang-tools"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
 
-# Add local bins to path
-export PATH="$HOME/.local/bin:$PATH"
-
-# doom
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
-# brew
-# PENDING: delete (see `~/.zprofile`)
-#if [ -e ~/.linuxbrew ]; then
-#    eval "$(~/.linuxbrew/bin/brew shellenv)"
-#fi
-## TODO: temporary handle apple silicon
-#eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# pyenv
-# TODO: use function wrapper instead of modifying path
-export PYENV_ROOT="$LANG_TOOLS_DIR/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-# n-install
-export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
-
-# yarn
-# TODO: set global bin to be under LANG_TOOLS_DIR
-if command -v yarn &> /dev/null; then
-	export PATH="$(yarn global bin):$PATH"
-fi
-
-# add rust bins to path
-export CARGO_HOME="$LANG_TOOLS_DIR/.cargo" # NOTE: tied to Makefile
-export RUSTUP_HOME="$LANG_TOOLS_DIR/.rustup" # NOTE: tied to Makefile
-export PATH="$CARGO_HOME/bin:$PATH"
-
-# Go version manager and golang paths
-export GOPATH="$LANG_TOOLS_DIR/.go-bins"; export GOROOT="$LANG_TOOLS_DIR/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-
-# jabba paths
-export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
-[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
-
-# ruby paths
-export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
-export PATH="$RBENV_ROOT/bin:$PATH"
-if command -v rbenv &> /dev/null; then
-	eval "$(rbenv init -)"
-fi
-
-# Add texlive to path
-export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
-export PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
-export MANPATH="/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
-
-
 # Custom directory colors # Update: use zinit
 if command -v vivid &> /dev/null; then
 	export LS_COLORS="$(vivid generate snazzy)"
@@ -305,6 +250,63 @@ fi
 
 # gpg ssh
 export GPG_TTY="$(tty)"
+
+# Add local bins to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# doom
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+#=== PATH modifications ============================================
+# Should take precedence over zinit
+
+# brew
+# PENDING: delete (see `~/.zprofile`)
+#if [ -e ~/.linuxbrew ]; then
+#    eval "$(~/.linuxbrew/bin/brew shellenv)"
+#fi
+## TODO: temporary handle apple silicon
+#eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# pyenv
+# TODO: use function wrapper instead of modifying path
+export PYENV_ROOT="$LANG_TOOLS_DIR/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# n-install
+export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
+
+# yarn
+# TODO: set global bin to be under LANG_TOOLS_DIR
+if command -v yarn &> /dev/null; then
+	export PATH="$(yarn global bin):$PATH"
+fi
+
+# add rust bins to path
+export CARGO_HOME="$LANG_TOOLS_DIR/.cargo" # NOTE: tied to Makefile
+export RUSTUP_HOME="$LANG_TOOLS_DIR/.rustup" # NOTE: tied to Makefile
+export PATH="$CARGO_HOME/bin:$PATH"
+
+# Go version manager and golang paths
+export GOPATH="$LANG_TOOLS_DIR/.go-bins"; export GOROOT="$LANG_TOOLS_DIR/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
+# jabba paths
+export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
+[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
+
+# ruby paths
+export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+if command -v rbenv &> /dev/null; then
+	eval "$(rbenv init -)"
+fi
+
+# Add texlive to path
+export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
+export PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 
 # Add user bins to path
 export PATH="$HOME/bin:$PATH"

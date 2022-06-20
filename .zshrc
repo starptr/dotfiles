@@ -188,8 +188,13 @@ zinit ice wait lucid from"gh-r" as"null" mv"hunter*/hunter -> hunter" fbin"hunte
 zinit light rabite0/hunter
 
 # ripgrep
-zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
-zinit light BurntSushi/ripgrep
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"rg"
+  zinit light microsoft/ripgrep-prebuilt
+else
+  zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
+  zinit light BurntSushi/ripgrep
+fi
 
 # fd
 zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
@@ -200,7 +205,11 @@ zinit ice wait lucid from"gh-r" as"null" mv"hyperfine*/hyperfine -> hyperfine" f
 zinit light sharkdp/hyperfine
 
 # lazygit
-zinit ice wait lucid from"gh-r" as"null" fbin
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*Darwin_arm64*" fbin
+else
+  zinit ice wait lucid from"gh-r" as"null" fbin
+fi
 zinit light jesseduffield/lazygit
 
 # install shellcheck
@@ -217,7 +226,11 @@ zinit light koalaman/shellcheck
 #zinit light wez/wezterm
 
 # zellij
-zinit ice wait lucid from"gh-r" as"null" fbin"zellij"
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"zellij"
+else
+  zinit ice wait lucid from"gh-r" as"null" fbin"zellij"
+fi
 zinit light zellij-org/zellij
 
 # dog
@@ -237,7 +250,11 @@ zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
 
 # ttyper
-zinit ice wait lucid from"gh-r" as"null" fbin"ttyper"
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"ttyper"
+else
+  zinit ice wait lucid from"gh-r" as"null" fbin"ttyper"
+fi
 zinit light max-niederman/ttyper
 
 # delta
@@ -253,10 +270,29 @@ zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_
 zinit light TheLocehiliosan/yadm
 
 # direnv
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
+    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+    pick"direnv" src="zhook.zsh"
+else
 zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
+fi
 zinit light direnv/direnv
+
+# nushell
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"nu"
+else
+  zinit ice lucid from"gh-r" as"null" fbin"nu"
+fi
+zinit light nushell/nushell
+
+# tree-sitter-cli
+# automatically insalled through npm by lunarvim
+#zinit ice lucid from"gh-r" as"program" mv"tree-sitter-* -> tree-sitter-cli"
+#zinit light tree-sitter/tree-sitter
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh

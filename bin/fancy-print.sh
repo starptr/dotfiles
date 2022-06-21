@@ -4,6 +4,7 @@
 echo -e '\033[1mbold\033[22m'
 echo -e '\033[2mdim\033[22m'
 echo -e '\033[3mitalic\033[23m'
+echo -e '\033[1m\033[3mbold-italic\033[0m'
 echo -e '\033[4munderline\033[24m'
 echo -e '\033[4:1mthis is also underline (new in 0.52)\033[4:0m'
 echo -e '\033[21mdouble underline (new in 0.52)\033[24m'

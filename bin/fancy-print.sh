@@ -1,6 +1,7 @@
 #!/bin/bash
 # Based on https://askubuntu.com/a/985386
 
+echo -e 'regular'
 echo -e '\033[1mbold\033[22m'
 echo -e '\033[2mdim\033[22m'
 echo -e '\033[3mitalic\033[23m'

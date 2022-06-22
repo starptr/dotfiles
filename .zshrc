@@ -145,6 +145,20 @@ fi
 zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
 zinit light sharkdp/fd
 
+# fzf
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+zi for \
+    from'gh-r'      \
+    sbin'fzf'       \
+    bpick'*arm64*'  \
+  junegunn/fzf
+else
+  zi for \
+      from'gh-r'  \
+      sbin'fzf'   \
+    junegunn/fzf
+fi
+
 # hyperfine
 zinit ice wait lucid from"gh-r" as"null" mv"hyperfine*/hyperfine -> hyperfine" fbin"hyperfine"
 zinit light sharkdp/hyperfine

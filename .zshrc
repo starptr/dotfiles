@@ -1,6 +1,13 @@
 # emacs mode
 bindkey -e
 
+# Up and down keys use prefix
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
 # Define vars
 export LANG_TOOLS_DIR="$HOME/.lang-tools"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
@@ -60,6 +67,11 @@ source $ZSH_CUSTOM/aliases.sh
 setopt promptsubst
 
 #PS1="READY >"
+
+zinit light zsh-hooks/zsh-hooks
+
+# Custom local plugin
+source $ZSH_CUSTOM/iced-bell.sh
 
 zinit ice pick"async.zsh"
 zinit light mafredri/zsh-async
@@ -131,6 +143,10 @@ fi
 # hunter
 zinit ice wait lucid from"gh-r" as"null" mv"hunter*/hunter -> hunter" fbin"hunter"
 zinit light rabite0/hunter
+
+# xplr
+zinit ice wait lucid from"gh-r" as"null" fbin"xplr"
+zinit light sayanarijit/xplr
 
 # ripgrep
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then

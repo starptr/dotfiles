@@ -40,6 +40,15 @@ case "${OS_ID}" in
 esac
 export OS_NAME
 
+if [[ "$OS_NAME" = "Mac" ]]; then
+  if [[ "$(uname -m)" = "arm64" ]]; then
+    IS_APL_SILIC=true
+  else
+    IS_APL_SILIC=false
+  fi
+  export IS_APL_SILIC
+fi
+
 # Run instructional script if in an instructional env
 if [ -f "~/.zshenv.instructional" ]; then
     source ~/.zshenv.instructional

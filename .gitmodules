@@ -1,3 +1,6 @@
 [submodule "src/polka-dots"]
 	path = src/polka-dots
 	url = https://github.com/starptr/polka-dots
+[submodule "src/bypass-paywalls-chrome"]
+	path = src/bypass-paywalls-chrome
+	url = https://github.com/iamadamdev/bypass-paywalls-chrome

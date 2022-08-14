@@ -66,5 +66,22 @@ fi
 
 # Brew
 if [[ "$OS_NAME" = "Linux" ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  if [ -e ~/.linuxbrew ]; then
+    # Linuxbrew installed under home (possibly symlink)
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
+  else
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+elif [[ "$OS_NAME" = "Mac" ]]; then
+  if [[ "$(uname -m)" = "arm64" ]]; then
+    # apple silicon
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    # TODO: handle x86-64 apple
+  fi
+fi
+
+# Run instructional script if in an instructional env
+if [ -f "$HOME/.zprofile.instructional" ]; then
+    source ~/.zprofile.instructional
 fi

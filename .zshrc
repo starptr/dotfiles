@@ -1,61 +1,16 @@
 # emacs mode
 bindkey -e
 
+# Up and down keys use prefix
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
 # Define vars
 export LANG_TOOLS_DIR="$HOME/.lang-tools"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
-
-# Add local bins to path
-export PATH="$HOME/.local/bin:$PATH"
-
-# doom
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
-# brew
-if [ -e ~/.linuxbrew ]; then
-    eval "$(~/.linuxbrew/bin/brew shellenv)"
-fi
-
-# pyenv
-# TODO: use function wrapper instead of modifying path
-export PYENV_ROOT="$LANG_TOOLS_DIR/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-# n-install
-export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
-
-# yarn
-# TODO: set global bin to be under LANG_TOOLS_DIR
-if command -v yarn &> /dev/null; then
-	export PATH="$(yarn global bin):$PATH"
-fi
-
-# add rust bins to path
-export CARGO_HOME="$LANG_TOOLS_DIR/.cargo" # NOTE: tied to Makefile
-export RUSTUP_HOME="$LANG_TOOLS_DIR/.rustup" # NOTE: tied to Makefile
-export PATH="$CARGO_HOME/bin:$PATH"
-
-# Go version manager and golang paths
-export GOPATH="$LANG_TOOLS_DIR/.go-bins"; export GOROOT="$LANG_TOOLS_DIR/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-
-# jabba paths
-export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
-[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
-
-# ruby paths
-export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
-export PATH="$RBENV_ROOT/bin:$PATH"
-if command -v rbenv &> /dev/null; then
-	eval "$(rbenv init -)"
-fi
-
-# Add texlive to path
-export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
-export PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
-export MANPATH="/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
-
 
 # Custom directory colors # Update: use zinit
 if command -v vivid &> /dev/null; then
@@ -112,6 +67,11 @@ source $ZSH_CUSTOM/aliases.sh
 setopt promptsubst
 
 #PS1="READY >"
+
+zinit light zsh-hooks/zsh-hooks
+
+# Custom local plugin
+source $ZSH_CUSTOM/iced-bell.sh
 
 zinit ice pick"async.zsh"
 zinit light mafredri/zsh-async
@@ -184,20 +144,47 @@ fi
 zinit ice wait lucid from"gh-r" as"null" mv"hunter*/hunter -> hunter" fbin"hunter"
 zinit light rabite0/hunter
 
+# xplr
+zinit ice wait lucid from"gh-r" as"null" fbin"xplr"
+zinit light sayanarijit/xplr
+
 # ripgrep
-zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
-zinit light BurntSushi/ripgrep
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"rg"
+  zinit light microsoft/ripgrep-prebuilt
+else
+  zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
+  zinit light BurntSushi/ripgrep
+fi
 
 # fd
 zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
 zinit light sharkdp/fd
+
+# fzf
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+zi for \
+    from'gh-r'      \
+    sbin'fzf'       \
+    bpick'*arm64*'  \
+  junegunn/fzf
+else
+  zi for \
+      from'gh-r'  \
+      sbin'fzf'   \
+    junegunn/fzf
+fi
 
 # hyperfine
 zinit ice wait lucid from"gh-r" as"null" mv"hyperfine*/hyperfine -> hyperfine" fbin"hyperfine"
 zinit light sharkdp/hyperfine
 
 # lazygit
-zinit ice wait lucid from"gh-r" as"null" fbin
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*Darwin_arm64*" fbin
+else
+  zinit ice wait lucid from"gh-r" as"null" fbin
+fi
 zinit light jesseduffield/lazygit
 
 # install shellcheck
@@ -214,7 +201,11 @@ zinit light koalaman/shellcheck
 #zinit light wez/wezterm
 
 # zellij
-zinit ice wait lucid from"gh-r" as"null" fbin"zellij"
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"zellij"
+else
+  zinit ice wait lucid from"gh-r" as"null" fbin"zellij"
+fi
 zinit light zellij-org/zellij
 
 # dog
@@ -234,7 +225,11 @@ zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
 
 # ttyper
-zinit ice wait lucid from"gh-r" as"null" fbin"ttyper"
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"ttyper"
+else
+  zinit ice wait lucid from"gh-r" as"null" fbin"ttyper"
+fi
 zinit light max-niederman/ttyper
 
 # delta
@@ -250,10 +245,29 @@ zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_
 zinit light TheLocehiliosan/yadm
 
 # direnv
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
+    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+    pick"direnv" src="zhook.zsh"
+else
 zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
+fi
 zinit light direnv/direnv
+
+# nushell
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+  zinit ice lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"nu"
+else
+  zinit ice lucid from"gh-r" as"null" fbin"nu"
+fi
+zinit light nushell/nushell
+
+# tree-sitter-cli
+# automatically insalled through npm by lunarvim
+#zinit ice lucid from"gh-r" as"program" mv"tree-sitter-* -> tree-sitter-cli"
+#zinit light tree-sitter/tree-sitter
 
 # added by travis gem
 [ ! -s /home/yuto/.travis/travis.sh ] || source /home/yuto/.travis/travis.sh
@@ -266,6 +280,63 @@ fi
 
 # gpg ssh
 export GPG_TTY="$(tty)"
+
+# Add local bins to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# doom
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+#=== PATH modifications ============================================
+# Should take precedence over zinit
+
+# brew
+# PENDING: delete (see `~/.zprofile`)
+#if [ -e ~/.linuxbrew ]; then
+#    eval "$(~/.linuxbrew/bin/brew shellenv)"
+#fi
+## TODO: temporary handle apple silicon
+#eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# pyenv
+# TODO: use function wrapper instead of modifying path
+export PYENV_ROOT="$LANG_TOOLS_DIR/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# n-install
+export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
+
+# yarn
+# TODO: set global bin to be under LANG_TOOLS_DIR
+if command -v yarn &> /dev/null; then
+	export PATH="$(yarn global bin):$PATH"
+fi
+
+# add rust bins to path
+export CARGO_HOME="$LANG_TOOLS_DIR/.cargo" # NOTE: tied to Makefile
+export RUSTUP_HOME="$LANG_TOOLS_DIR/.rustup" # NOTE: tied to Makefile
+export PATH="$CARGO_HOME/bin:$PATH"
+
+# Go version manager and golang paths
+export GOPATH="$LANG_TOOLS_DIR/.go-bins"; export GOROOT="$LANG_TOOLS_DIR/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
+# jabba paths
+export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
+[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
+
+# ruby paths
+export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+if command -v rbenv &> /dev/null; then
+	eval "$(rbenv init -)"
+fi
+
+# Add texlive to path
+export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
+export PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 
 # Add user bins to path
 export PATH="$HOME/bin:$PATH"

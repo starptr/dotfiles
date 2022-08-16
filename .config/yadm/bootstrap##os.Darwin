@@ -9,9 +9,9 @@ read -p "Set system to allow any app to run? [Y/n] "
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   OS_VER_MAJOR=${${OS_VER}:0:2}
   if (( "$OS_VER_MAJOR" < "12" )); then
-    sudo spctl —master-disable
+    sudo spctl --master-disable
   else
-    sudo spctl —global-disable
+    sudo spctl --global-disable
   fi
 fi
 

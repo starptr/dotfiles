@@ -246,12 +246,10 @@ zinit light TheLocehiliosan/yadm
 
 # direnv
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
-echo "nah"
 zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
 else
-echo "yeah"
 zinit ice lucid from"gh-r" as"program" bpick"*darwin-amd64*" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"

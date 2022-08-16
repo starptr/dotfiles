@@ -119,7 +119,7 @@ export PATH="$HOME/neovim_build/bin:$PATH"
 #zinit light kovidgoyal/kitty
 
 # lsd
-zinit ice wait lucid from"gh-r" as"null" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd" fbin"lsd"
+zinit ice wait lucid from"gh-r" as"program" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd"
 zinit light Peltoche/lsd
 
 # exa
@@ -127,7 +127,7 @@ zinit ice wait lucid from"gh-r" as"null" fbin"bin/exa -> exa"
 zinit light ogham/exa
 
 # bat
-zinit ice wait lucid from"gh-r" as"null" mv"*/bat -> bat" fbin"bat"
+zinit ice wait lucid from"gh-r" as"program" mv"*/bat -> bat"
 zinit light sharkdp/bat
 
 # ranger

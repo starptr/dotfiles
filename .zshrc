@@ -149,7 +149,7 @@ zinit ice wait lucid from"gh-r" as"null" fbin"xplr"
 zinit light sayanarijit/xplr
 
 # ripgrep
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
   zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"rg"
   zinit light microsoft/ripgrep-prebuilt
 else
@@ -162,7 +162,7 @@ zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
 zinit light sharkdp/fd
 
 # fzf
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
 zi for \
     from'gh-r'      \
     sbin'fzf'       \
@@ -180,7 +180,7 @@ zinit ice wait lucid from"gh-r" as"null" mv"hyperfine*/hyperfine -> hyperfine" f
 zinit light sharkdp/hyperfine
 
 # lazygit
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
   zinit ice wait lucid from"gh-r" as"null" bpick"*Darwin_arm64*" fbin
 else
   zinit ice wait lucid from"gh-r" as"null" fbin
@@ -201,7 +201,7 @@ zinit light koalaman/shellcheck
 #zinit light wez/wezterm
 
 # zellij
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
   zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"zellij"
 else
   zinit ice wait lucid from"gh-r" as"null" fbin"zellij"
@@ -225,7 +225,7 @@ zinit ice wait lucid from"gh-r" as"null" fbin"btm"
 zinit light ClementTsang/bottom
 
 # ttyper
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
   zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"ttyper"
 else
   zinit ice wait lucid from"gh-r" as"null" fbin"ttyper"
@@ -245,19 +245,21 @@ zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_
 zinit light TheLocehiliosan/yadm
 
 # direnv
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
+echo "nah"
 zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
 else
-zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
+echo "yeah"
+zinit ice lucid from"gh-r" as"program" bpick"*darwin-amd64*" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
 fi
 zinit light direnv/direnv
 
 # nushell
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC ]]; then
+if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
   zinit ice lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"nu"
 else
   zinit ice lucid from"gh-r" as"null" fbin"nu"

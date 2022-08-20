@@ -124,6 +124,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Define NIX_PATH
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+
 # Run instructional script if in an instructional env
 if [ -f "~/.bashrc.instructional" ]; then
     source ~/.bashrc.instructional

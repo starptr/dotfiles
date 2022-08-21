@@ -124,8 +124,16 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Define NIX_PATH
+# Nix stuff
+## Enable nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+## Define NIX_PATH
 export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+
+# Clarify which profile ran
+echo "~/.bashrc was called"
 
 # Run instructional script if in an instructional env
 if [ -f "~/.bashrc.instructional" ]; then

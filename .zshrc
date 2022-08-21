@@ -127,8 +127,8 @@ zinit ice wait lucid from"gh-r" as"null" fbin"bin/exa -> exa"
 zinit light ogham/exa
 
 # bat
-zinit ice wait lucid from"gh-r" as"program" mv"*/bat -> bat"
-zinit light sharkdp/bat
+#zinit ice wait lucid from"gh-r" as"program" mv"*/bat -> bat"
+#zinit light sharkdp/bat
 
 # ranger
 zinit ice wait lucid ver"stable" as"null" fbin"ranger.py -> ranger"
@@ -341,8 +341,16 @@ export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 # Add user bins to path
 export PATH="$HOME/bin:$PATH"
 
-# Add home-manager to NIX_PATH
+# Nix stuff
+## Enable nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+## Add home-manager to NIX_PATH
 export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+
+# Clarify which profile ran
+echo "~/.zshrc was called"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

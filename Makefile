@@ -57,9 +57,10 @@ ruby-linux ruby-macos:
 	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | RBENV_ROOT=${LANG_TOOLS_DIR}/.rbenv bash
 	@echo
 
+tinytex-linux tinytex-macos: export TINYTEX_DIR = "${LANG_TOOLS_DIR}"
 tinytex-linux tinytex-macos:
 	@echo "Installing: tinytex"
-	curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | TINYTEX_DIR="${LANG_TOOLS_DIR}/.TinyTex" sh
+	curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | TINYTEX_DIR=${TINYTEX_DIR} sh
 
 test-shell: # TODO: call a bunch of binaries that shell and bootstrapper should have installed
 	bat --version

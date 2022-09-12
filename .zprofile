@@ -66,12 +66,7 @@ fi
 
 # Brew
 if [[ "$OS_NAME" = "Linux" ]]; then
-  if [ -e ~/.linuxbrew ]; then
-    # Linuxbrew installed under home (possibly symlink)
-    eval "$(~/.linuxbrew/bin/brew shellenv)"
-  else
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  fi
+  # For Linux, shellenv is set in zshrc
 elif [[ "$OS_NAME" = "Mac" ]]; then
   if [[ "$(uname -m)" = "arm64" ]]; then
     # apple silicon

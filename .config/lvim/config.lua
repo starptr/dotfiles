@@ -153,7 +153,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
-lvim.builtin.nvimtree.show_icons.git = 0
+--lvim.builtin.nvimtree.show_icons.git = 0 -- invalid config
 -- lvim.builtin.project.manual_mode = true
 lvim.builtin.project.exclude_dirs = { "~/src/contest/*" }
 lvim.builtin.bufferline.active = false
@@ -364,7 +364,10 @@ lvim.plugins = {
       lvim.builtin.which_key.mappings["dv"] = { "<cmd>lua require 'dapui'.toggle()<cr>", "Toggle Sidebar" }
     end,
   },
-  { "Mofiqul/vscode.nvim" },
+  {
+    "Mofiqul/vscode.nvim",
+    disable = false,
+  },
   { "tpope/vim-fugitive" },
   --{
   --  "APZelos/blamer.nvim",

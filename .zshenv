@@ -50,6 +50,6 @@ if [[ "$OS_NAME" = "Mac" ]]; then
 fi
 
 # Run instructional script if in an instructional env
-if [ -f "~/.zshenv.instructional" ]; then
+if [ -f "$HOME/.zshenv.instructional" ]; then
     source ~/.zshenv.instructional
 fi

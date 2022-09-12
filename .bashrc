@@ -125,6 +125,6 @@ if ! shopt -oq posix; then
 fi
 
 # Run instructional script if in an instructional env
-if [ -f "~/.bashrc.instructional" ]; then
+if [ -f "$HOME/.bashrc.instructional" ]; then
     source ~/.bashrc.instructional
 fi

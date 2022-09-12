@@ -246,13 +246,19 @@ zinit light TheLocehiliosan/yadm
 
 # direnv
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
-zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
-    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-    pick"direnv" src="zhook.zsh"
+  if [[ $IS_APL_SILIC = true ]]; then
+    zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
+        atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+        pick"direnv" src="zhook.zsh"
+  else
+    zinit ice lucid from"gh-r" as"program" bpick"*darwin-amd64*" mv"direnv* -> direnv" \
+        atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+        pick"direnv" src="zhook.zsh"
+  fi
 else
-zinit ice lucid from"gh-r" as"program" bpick"*darwin-amd64*" mv"direnv* -> direnv" \
-    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-    pick"direnv" src="zhook.zsh"
+  zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
+      atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+      pick"direnv" src="zhook.zsh"
 fi
 zinit light direnv/direnv
 
@@ -290,13 +296,17 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 #=== PATH modifications ============================================
 # Should take precedence over zinit
 
-# brew
-# PENDING: delete (see `~/.zprofile`)
-#if [ -e ~/.linuxbrew ]; then
-#    eval "$(~/.linuxbrew/bin/brew shellenv)"
-#fi
-## TODO: temporary handle apple silicon
-#eval "$(/opt/homebrew/bin/brew shellenv)"
+# Brew
+if [[ "$OS_NAME" = "Linux" ]]; then
+  if [ -e ~/.linuxbrew ]; then
+    # Linuxbrew installed under home (possibly symlink)
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
+  else
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+elif [[ "$OS_NAME" = "Mac" ]]; then
+  # For MacOS, shellenv is set in zprofile
+fi
 
 # pyenv
 # TODO: use function wrapper instead of modifying path
@@ -310,6 +320,12 @@ export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
 # TODO: set global bin to be under LANG_TOOLS_DIR
 if command -v yarn &> /dev/null; then
 	export PATH="$(yarn global bin):$PATH"
+fi
+
+# pnpm
+if command -v pnpm &> /dev/null; then
+	export PNPM_HOME="$HOME/.local/share/pnpm"
+	export PATH="$PNPM_HOME:$PATH"
 fi
 
 # add rust bins to path
@@ -340,6 +356,11 @@ export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 
 # Add user bins to path
 export PATH="$HOME/bin:$PATH"
+
+# Run instructional script
+if [ -f "$HOME/.zshrc.instructional" ]; then
+  source ~/.zshrc.instructional
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

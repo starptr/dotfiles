@@ -128,3 +128,8 @@ fi
 if [ -f "$HOME/.bashrc.instructional" ]; then
     source ~/.bashrc.instructional
 fi
+
+# Define nix path for home-manager
+# See https://nix-community.github.io/home-manager/index.html#sec-install-standalone:~:text=export%20NIX_PATH%3D%24HOME/.nix%2Ddefexpr/channels%3A/nix/var/nix/profiles/per%2Duser/root/channels%24%7BNIX_PATH%3A%2B%3A%24NIX_PATH%7D
+# TODO: separate this into a shared rc file for both bash and zsh
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}

@@ -53,3 +53,5 @@ fi
 if [ -f "$HOME/.zshenv.instructional" ]; then
     source ~/.zshenv.instructional
 fi
+
+if [ -e /home/y/yu/yuto/.nix-profile/etc/profile.d/nix.sh ]; then . /home/y/yu/yuto/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

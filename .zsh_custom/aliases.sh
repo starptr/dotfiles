@@ -1,3 +1,6 @@
+alias nuc="nix-user-chroot ~/.nix bash -l"
+alias nucz="nix-user-chroot ~/.nix zsh --login" # breaks home-manager
+
 alias c="code -n"
 alias ls="ls --color"
 alias l="ls -A"

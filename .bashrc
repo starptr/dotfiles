@@ -128,3 +128,5 @@ fi
 if [ -f "$HOME/.bashrc.instructional" ]; then
     source ~/.bashrc.instructional
 fi
+
+export GOPATH="$HOME/.lang-tools/.go-bins"; export GOROOT="$HOME/.lang-tools/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g

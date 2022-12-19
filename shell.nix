@@ -5,5 +5,11 @@ pkgs.mkShell {
     pkgs.ripgrep
     pkgs.exa
     pkgs.lsd
+    pkgs.git
   ];
+  shellHook =
+    ''
+      alias d="lsd -A"
+      alias da="lsd -Al"
+    '';
 }

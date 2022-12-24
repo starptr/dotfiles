@@ -126,8 +126,11 @@ export PATH="$HOME/neovim_build/bin:$PATH"
 #zinit light kovidgoyal/kitty
 
 # lsd
-zinit ice wait lucid from"gh-r" as"program" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd"
-zinit light Peltoche/lsd
+# On M1 Macs, use hoembrew
+if [[ "$OS_NAME" != "Mac" || $IS_APL_SILIC = false ]]; then
+  zinit ice wait lucid from"gh-r" as"program" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd"
+  zinit light Peltoche/lsd
+fi
 
 # exa
 zinit ice wait lucid from"gh-r" as"null" fbin"bin/exa -> exa"

@@ -49,7 +49,7 @@ go-linux go-macos:
 
 java-linux java-macos:
 	@echo "Installing: java"
-	curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_HOME=${LANG_TOOLS_DIR}/.jabba bash -s -- --skip-rc && . ${LANG_TOOLS_DIR}/.jabba/jabba.sh
+	curl -sL https://github.com/Jabba-Team/jabba/raw/main/install.sh | JABBA_HOME=${LANG_TOOLS_DIR}/.jabba bash -s -- --skip-rc && . ${LANG_TOOLS_DIR}/.jabba/jabba.sh
 	@echo
 
 ruby-linux ruby-macos:

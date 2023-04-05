@@ -1,12 +1,15 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # emacs mode
 bindkey -e
+
+# Add mactex script to adjust path
+eval "$(/usr/libexec/path_helper)"
 
 # Up and down keys use prefix
 autoload -U history-search-end
@@ -328,9 +331,10 @@ export N_PREFIX="$LANG_TOOLS_DIR/.n"; PATH="$N_PREFIX/bin:$PATH"
 
 # yarn
 # TODO: set global bin to be under LANG_TOOLS_DIR
-if command -v yarn &> /dev/null; then
-	export PATH="$(yarn global bin):$PATH"
-fi
+# TODO: this points to /usr/local/bin on mac so I commented it out
+#if command -v yarn &> /dev/null; then
+#	export PATH="$(yarn global bin):$PATH"
+#fi
 
 # pnpm
 if command -v pnpm &> /dev/null; then
@@ -350,12 +354,13 @@ alias ggg="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stef
 # jabba paths
 export JABBA_HOME="$LANG_TOOLS_DIR/.jabba"
 [ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
+[ -s "$JABBA_HOME/jabba.sh" ] && jabba use system@17.0.6-aarch64
 
 # ruby paths
 export RBENV_ROOT="$LANG_TOOLS_DIR/.rbenv"
 export PATH="$RBENV_ROOT/bin:$PATH"
 if command -v rbenv &> /dev/null; then
-	eval "$(rbenv init -)"
+	eval "$(rbenv init - zsh)"
 fi
 
 # Add texlive to path
@@ -374,3 +379,19 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/yuto/.lang-tools/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/yuto/.lang-tools/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/yuto/.lang-tools/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/yuto/.lang-tools/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

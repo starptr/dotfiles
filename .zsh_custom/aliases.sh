@@ -43,3 +43,23 @@ alias qcpp="g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame
 ttgen() {
   rg '"([^"]+)"' "$@" -or '$1'
 }
+
+# Use homebrew llvm@11
+use-llvm@11() {
+  export PATH="/opt/homebrew/opt/llvm@11/bin:$PATH"
+  export LDFLAGS="-L/opt/homebrew/opt/llvm@11/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm@11/include"
+  export LLVM_CONFIG_PATH="/opt/homebrew/opt/llvm@11/bin/llvm-config"
+}
+
+# Use homebrew llvm@15
+use-llvm@15() {
+  export PATH="/opt/homebrew/opt/llvm@15/bin:$PATH"
+  export LDFLAGS="-L/opt/homebrew/opt/llvm@15/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm@15/include"
+  export LLVM_CONFIG_PATH="/opt/homebrew/opt/llvm@15/bin/llvm-config"
+}
+
+prioritize-bins() {
+  export PATH="$HOME/bin:$PATH"
+}

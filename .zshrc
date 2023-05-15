@@ -277,7 +277,7 @@ zinit light direnv/direnv
 
 # nushell
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
-  zinit ice lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"nu"
+  zinit ice lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" mv"nu-*/nu -> nu" fbin"nu"
 else
   zinit ice lucid from"gh-r" as"null" fbin"nu"
 fi

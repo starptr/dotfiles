@@ -132,7 +132,7 @@ export PATH="$HOME/neovim_build/bin:$PATH"
 # On M1 Macs, use hoembrew
 if [[ "$OS_NAME" != "Mac" || $IS_APL_SILIC = false ]]; then
   zinit ice wait lucid from"gh-r" as"program" bpick"lsd*" mv"*/lsd -> lsd" mv"*/lsd.exe -> lsd"
-  zinit light Peltoche/lsd
+  zinit light lsd-rs/lsd
 fi
 
 # exa
@@ -165,9 +165,9 @@ zinit light sayanarijit/xplr
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
   zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"rg"
   zinit light microsoft/ripgrep-prebuilt
-else
-  zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
-  zinit light BurntSushi/ripgrep
+#else
+#  zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
+#  zinit light BurntSushi/ripgrep
 fi
 
 # fd

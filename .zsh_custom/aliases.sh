@@ -39,6 +39,18 @@ emax() {
 
 alias qcpp="g++ main.cpp -ggdb -O0 -std=c++17 -fsanitize=address -fno-omit-frame-pointer -o main.out"
 
+# qmk cli wrapper for upstream qmk or sonix qmk
+alias qmk-bin=$(which qmk)
+qmk() {
+	echo "'qmk' is ambiguous; use qmku or qmks"
+}
+qmks() {
+	qmk-bin --config-file "$HOME/.config/qmk_custom/qmk_sonix.ini" "$@"
+}
+qmku() {
+	qmk-bin --config-file "$HOME/.config/qmk_custom/qmk_upstream.ini" "$@"
+}
+
 # generate list of words between parenthesis
 ttgen() {
   rg '"([^"]+)"' "$@" -or '$1'

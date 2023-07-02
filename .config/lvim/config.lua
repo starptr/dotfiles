@@ -72,32 +72,32 @@ vim.opt.whichwrap = ""
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  t = { "<cmd>TroubleToggle<cr>", "Trouble" },
-  r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-  f = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
-  D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Worksplace Diagnostics" },
-  q = { "<cmd>TroubleToggle quickfix<cr>", "QuickFix" },
-  l = { "<cmd>TroubleToggle loclist<cr>", "LocationList" },
-  o = { "<cmd>TodoTrouble<cr>", "Todo" },
-}
-lvim.builtin.which_key.mappings["w"] = {
-  name = "+Window",
-  h = { "<C-w>h", "Go to the left window" },
-  j = { "<C-w>j", "Go to the down window" },
-  k = { "<C-w>k", "Go to the up window" },
-  l = { "<C-w>l", "Go to the right window" },
-  -- ["\""] = { "<cmd>split<CR>", "Split window" },
-  -- ["%"] = { "<cmd>vsplit<CR>", "Split window vertically" },
-}
+-- lvim.builtin.which_key.mappings["t"] = {
+--   name = "+Trouble",
+--   t = { "<cmd>TroubleToggle<cr>", "Trouble" },
+--   r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+--   f = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+--   d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+--   D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Worksplace Diagnostics" },
+--   q = { "<cmd>TroubleToggle quickfix<cr>", "QuickFix" },
+--   l = { "<cmd>TroubleToggle loclist<cr>", "LocationList" },
+--   o = { "<cmd>TodoTrouble<cr>", "Todo" },
+-- }
+-- lvim.builtin.which_key.mappings["w"] = {
+--   name = "+Window",
+--   h = { "<C-w>h", "Go to the left window" },
+--   j = { "<C-w>j", "Go to the down window" },
+--   k = { "<C-w>k", "Go to the up window" },
+--   l = { "<C-w>l", "Go to the right window" },
+--   -- ["\""] = { "<cmd>split<CR>", "Split window" },
+--   -- ["%"] = { "<cmd>vsplit<CR>", "Split window vertically" },
+-- }
 
 -- Hook into rename command to move cursor to beginning of word
-lvim.builtin.which_key.mappings["l"]["r"] = { function(passing_arg)
-  vim.api.nvim_command("normal! viwo")
-  vim.lsp.buf.rename(passing_arg)
-end, "Rename" }
+-- lvim.builtin.which_key.mappings["l"]["r"] = { function(passing_arg)
+--   vim.api.nvim_command("normal! viwo")
+--   vim.lsp.buf.rename(passing_arg)
+-- end, "Rename" }
 
 -- Remove maps set by lvim
 lvim.keys.insert_mode["jj"] = false
@@ -150,7 +150,7 @@ lvim.builtin.lualine.style = "lvim"
 lvim.builtin.dap.active = true
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 --lvim.builtin.nvimtree.show_icons.git = 0 -- invalid config
@@ -266,16 +266,16 @@ linters.setup {
   --  ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
   --  filetypes = { "javascript", "python" },
   --},
-  {
-    exe = "eslint_d",
-    filetypes = {
-      "javascriptreact",
-      "javascript",
-      "typescriptreact",
-      "typescript",
-      "vue",
-    },
-  },
+  --{
+  --  exe = "eslint_d",
+  --  filetypes = {
+  --    "javascriptreact",
+  --    "javascript",
+  --    "typescriptreact",
+  --    "typescript",
+  --    "vue",
+  --  },
+  --},
 }
 -- set code actions
 local code_actions = require "lvim.lsp.null-ls.code_actions"
@@ -331,15 +331,16 @@ lvim.plugins = {
   },
   {
     "mrjones2014/legendary.nvim",
+    commit = "b1943584b1b1e808ae449a5ada56407fb41671d6",
     config = function()
       local legendary = require('legendary')
-      legendary.setup({
-        which_key = {
-          mappings = lvim.builtin.which_key.mappings,
-          opts = lvim.builtin.which_key.opts,
-          do_binding = false,
-        },
-      })
+      -- legendary.setup({
+      --   which_key = {
+      --     mappings = lvim.builtin.which_key.mappings,
+      --     opts = lvim.builtin.which_key.opts,
+      --     do_binding = false,
+      --   },
+      -- })
       -- Light emacs binds
       -- TODO: support ex mode (command mode)
       legendary.bind_keymaps({
@@ -357,13 +358,13 @@ lvim.plugins = {
   --   "folke/trouble.nvim",
   --   cmd = "TroubleToggle",
   -- },
-  {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require('dapui').setup()
-      lvim.builtin.which_key.mappings["dv"] = { "<cmd>lua require 'dapui'.toggle()<cr>", "Toggle Sidebar" }
-    end,
-  },
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   config = function()
+  --     require('dapui').setup()
+  --     -- lvim.builtin.which_key.mappings["dv"] = { "<cmd>lua require 'dapui'.toggle()<cr>", "Toggle Sidebar" }
+  --   end,
+  -- },
   {
     "Mofiqul/vscode.nvim",
     disable = false,
@@ -402,49 +403,49 @@ lvim.plugins = {
       require("todo-comments").setup({})
     end,
   },
-  {
-    "ruifm/gitlinker.nvim",
-    requires = 'nvim-lua/plenary.nvim',
-    setup = function()
-      require('legendary').bind_keymap({
-        'gh',
-        {
-          n = { function() require 'gitlinker'.get_repo_url() end, description = "Remote repo url" },
-          v = { function() require 'gitlinker'.get_buf_range_url('v', {}) end, description = "Remote repo url with lines" },
-        },
-      })
-    end,
-    config = function()
-      require('gitlinker').setup({
-        mappings = nil,
-        opts = {
-          action_callback = function(url)
-            vim.api.nvim_command('let @" = \'' .. url .. '\'')
-            vim.fn.setreg('+', url)
-            vim.api.nvim_command(':OSCYankReg +')
-          end,
-        },
-        callbacks = {
-          ["github.rbx.com"] = require "gitlinker.hosts".get_github_type_url,
-        }
-      })
-    end,
-  },
-  {
-    "ojroques/vim-oscyank",
-    branch = "main",
-    cmd = { "OSCYank", "OSCYankReg" },
-    setup = function()
-      require('legendary').bind_keymap({
-        'gy',
-        {
-          n = { ':OSCYank<CR>', opts = { noremap = true } },
-          v = { ':OSCYank<CR>', opts = { noremap = true } },
-        },
-        description = 'Copy with OSC52',
-      })
-    end,
-  },
+  -- {
+  --   "ruifm/gitlinker.nvim",
+  --   requires = 'nvim-lua/plenary.nvim',
+  --   setup = function()
+  --     require('legendary').bind_keymap({
+  --       'gh',
+  --       {
+  --         n = { function() require 'gitlinker'.get_repo_url() end, description = "Remote repo url" },
+  --         v = { function() require 'gitlinker'.get_buf_range_url('v', {}) end, description = "Remote repo url with lines" },
+  --       },
+  --     })
+  --   end,
+  --   config = function()
+  --     require('gitlinker').setup({
+  --       mappings = nil,
+  --       opts = {
+  --         action_callback = function(url)
+  --           vim.api.nvim_command('let @" = \'' .. url .. '\'')
+  --           vim.fn.setreg('+', url)
+  --           vim.api.nvim_command(':OSCYankReg +')
+  --         end,
+  --       },
+  --       callbacks = {
+  --         ["github.rbx.com"] = require "gitlinker.hosts".get_github_type_url,
+  --       }
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "ojroques/vim-oscyank",
+  --   branch = "main",
+  --   cmd = { "OSCYank", "OSCYankReg" },
+  --   setup = function()
+  --     require('legendary').bind_keymap({
+  --       'gy',
+  --       {
+  --         n = { ':OSCYank<CR>', opts = { noremap = true } },
+  --         v = { ':OSCYank<CR>', opts = { noremap = true } },
+  --       },
+  --       description = 'Copy with OSC52',
+  --     })
+  --   end,
+  -- },
   {
     "windwp/windline.nvim",
     disable = true,

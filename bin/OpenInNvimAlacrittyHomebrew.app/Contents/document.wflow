@@ -60,7 +60,10 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string># See https://adrianchongsf.com/blog/macos-open-vim-from-finder
-/opt/homebrew/bin/alacritty -e $SHELL -c "nvim '$@'"</string>
+# /opt/homebrew/bin/alacritty -e $SHELL -c "nvim '$@'"
+for f in "$@"; do
+    /opt/homebrew/bin/alacritty -e $SHELL -c "nvim '$f'"
+done </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>

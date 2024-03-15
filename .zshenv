@@ -53,3 +53,6 @@ fi
 if [ -f "$HOME/.zshenv.instructional" ]; then
     source ~/.zshenv.instructional
 fi
+
+# Added by Radicle.
+export PATH="$PATH:/Users/yuto/.radicle/bin"

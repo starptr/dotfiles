@@ -3,6 +3,7 @@
 	name = Yuto Nishida
 [core]
   pager = delta
+	excludesfile = /Users/yuto/.gitignore_global
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -25,3 +26,19 @@
 	smudge = git-lfs smudge -- %f
 [pull]
 	rebase = false
+[push]
+	autoSetupRemote = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[http]
+	postBuffer = 157286400

@@ -162,17 +162,17 @@ zinit ice wait lucid from"gh-r" as"null" fbin"xplr"
 zinit light sayanarijit/xplr
 
 # ripgrep
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
-  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"rg"
-  zinit light microsoft/ripgrep-prebuilt
-#else
-#  zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
-#  zinit light BurntSushi/ripgrep
-fi
+#if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
+#  zinit ice wait lucid from"gh-r" as"null" bpick"*-aarch64-apple-*" fbin"rg"
+#  zinit light microsoft/ripgrep-prebuilt
+##else
+##  zinit ice wait lucid from"gh-r" as"null" mv"ripgrep*/rg -> rg" fbin"rg"
+##  zinit light BurntSushi/ripgrep
+#fi
 
 # fd
-zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
-zinit light sharkdp/fd
+#zinit ice wait lucid from"gh-r" as"null" mv"fd*/fd -> fd" fbin"fd"
+#zinit light sharkdp/fd
 
 # fzf
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
@@ -257,23 +257,23 @@ zinit light clangd/clangd
 zinit ice wait lucid atload"zicompinit; zicdreplay" blockf pick"completion/zsh/_yadm" as"program"
 zinit light TheLocehiliosan/yadm
 
-# direnv
-if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
-  if [[ $IS_APL_SILIC = true ]]; then
-    zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
-        atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-        pick"direnv" src="zhook.zsh"
-  else
-    zinit ice lucid from"gh-r" as"program" bpick"*darwin-amd64*" mv"direnv* -> direnv" \
-        atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-        pick"direnv" src="zhook.zsh"
-  fi
-else
-  zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
-      atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-      pick"direnv" src="zhook.zsh"
-fi
-zinit light direnv/direnv
+## direnv
+#if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
+#  if [[ $IS_APL_SILIC = true ]]; then
+#    zinit ice lucid from"gh-r" as"program" bpick"*darwin-arm64*" mv"direnv* -> direnv" \
+#        atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+#        pick"direnv" src="zhook.zsh"
+#  else
+#    zinit ice lucid from"gh-r" as"program" bpick"*darwin-amd64*" mv"direnv* -> direnv" \
+#        atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+#        pick"direnv" src="zhook.zsh"
+#  fi
+#else
+#  zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
+#      atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+#      pick"direnv" src="zhook.zsh"
+#fi
+#zinit light direnv/direnv
 
 # nushell
 if [[ "$OS_NAME" = "Mac" && $IS_APL_SILIC = true ]]; then
@@ -371,6 +371,7 @@ export INFOPATH="/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH"
 
 # Add user bins to path
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/src/uxn/bin:$PATH"
 
 # Run instructional script
 if [ -f "$HOME/.zshrc.instructional" ]; then

@@ -19,8 +19,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 16 :weight 'normal)
-      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 14 :weight 'normal)
+      doom-variable-pitch-font (font-spec :family "Arial" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -59,28 +59,28 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-; Remove $HOME as project root
+                                        ; Remove $HOME as project root
 (after! projectile (setq projectile-project-root-files-bottom-up (remove ".git" projectile-project-root-files-bottom-up)))
 
-; Remap s to evil
+                                        ; Remap s to evil
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 
-; No confirm on exit
+                                        ; No confirm on exit
 (setq confirm-kill-emacs nil)
 
-; Add ctrl-direction keybinds
-;(map! "C-h" #'evil-window-left)
-;(map! "C-j" #'evil-window-down)
-;(map! "C-k" #'evil-window-up)
-;(map! "C-l" #'evil-window-right)
+                                        ; Add ctrl-direction keybinds
+                                        ;(map! "C-h" #'evil-window-left)
+                                        ;(map! "C-j" #'evil-window-down)
+                                        ;(map! "C-k" #'evil-window-up)
+                                        ;(map! "C-l" #'evil-window-right)
 
-; Set ddskk as alternate
+                                        ; Set ddskk as alternate
 (setq default-input-method 'japanese-skk)
 
-; Location of projects
+                                        ; Location of projects
 (setq projectile-project-search-path '("~/src" "~/Documents/GitHub"))
 
-; Set clangd args
+                                        ; Set clangd args
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
                                 "--clang-tidy"
@@ -88,3 +88,7 @@
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+(setq scroll-conservatively 101 ; important!
+      scroll-margin 0)
+(ultra-scroll-mac-mode 1)
